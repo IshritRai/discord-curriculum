@@ -1,0 +1,368 @@
+[
+  {
+    "category": "People",
+    "emoji": [
+      {
+        "char": "😀",
+        "name": "grinning"
+      },
+      {
+        "char": "😃",
+        "name": "smiley"
+      },
+      {
+        "char": "😄",
+        "name": "smile"
+      },
+      {
+        "char": "😁",
+        "name": "grin"
+      },
+      {
+        "char": "😆",
+        "name": "laughing"
+      },
+      {
+        "char": "😅",
+        "name": "sweat smile"
+      },
+      {
+        "char": "😂",
+        "name": "joy tears laughing"
+      },
+      {
+        "char": "🙂",
+        "name": "slight smile"
+      },
+      {
+        "char": "😉",
+        "name": "wink"
+      },
+      {
+        "char": "😊",
+        "name": "blush"
+      },
+      {
+        "char": "😍",
+        "name": "heart eyes"
+      },
+      {
+        "char": "🥰",
+        "name": "smiling hearts"
+      },
+      {
+        "char": "😎",
+        "name": "sunglasses cool"
+      },
+      {
+        "char": "🤓",
+        "name": "nerd"
+      },
+      {
+        "char": "🤔",
+        "name": "thinking"
+      },
+      {
+        "char": "😐",
+        "name": "neutral"
+      },
+      {
+        "char": "🙄",
+        "name": "eye roll"
+      },
+      {
+        "char": "😴",
+        "name": "sleeping"
+      },
+      {
+        "char": "😮",
+        "name": "open mouth wow"
+      },
+      {
+        "char": "😢",
+        "name": "cry sad"
+      },
+      {
+        "char": "😭",
+        "name": "sob"
+      },
+      {
+        "char": "😡",
+        "name": "angry"
+      },
+      {
+        "char": "🤯",
+        "name": "mind blown"
+      },
+      {
+        "char": "🥳",
+        "name": "party"
+      },
+      {
+        "char": "😬",
+        "name": "grimace"
+      },
+      {
+        "char": "🤗",
+        "name": "hug"
+      }
+    ]
+  },
+  {
+    "category": "Gestures",
+    "emoji": [
+      {
+        "char": "👍",
+        "name": "thumbs up yes"
+      },
+      {
+        "char": "👎",
+        "name": "thumbs down no"
+      },
+      {
+        "char": "👏",
+        "name": "clap"
+      },
+      {
+        "char": "🙌",
+        "name": "raised hands"
+      },
+      {
+        "char": "🙏",
+        "name": "pray thanks"
+      },
+      {
+        "char": "👋",
+        "name": "wave hi"
+      },
+      {
+        "char": "🤝",
+        "name": "handshake"
+      },
+      {
+        "char": "💪",
+        "name": "muscle strong"
+      },
+      {
+        "char": "✌️",
+        "name": "victory peace"
+      },
+      {
+        "char": "🤞",
+        "name": "crossed fingers"
+      },
+      {
+        "char": "👀",
+        "name": "eyes look"
+      },
+      {
+        "char": "🙋",
+        "name": "raising hand"
+      }
+    ]
+  },
+  {
+    "category": "Hearts",
+    "emoji": [
+      {
+        "char": "❤️",
+        "name": "red heart love"
+      },
+      {
+        "char": "🧡",
+        "name": "orange heart"
+      },
+      {
+        "char": "💛",
+        "name": "yellow heart"
+      },
+      {
+        "char": "💚",
+        "name": "green heart"
+      },
+      {
+        "char": "💙",
+        "name": "blue heart"
+      },
+      {
+        "char": "💜",
+        "name": "purple heart"
+      },
+      {
+        "char": "🖤",
+        "name": "black heart"
+      },
+      {
+        "char": "💯",
+        "name": "hundred"
+      },
+      {
+        "char": "✨",
+        "name": "sparkles"
+      },
+      {
+        "char": "🔥",
+        "name": "fire"
+      },
+      {
+        "char": "⭐",
+        "name": "star"
+      },
+      {
+        "char": "🎉",
+        "name": "tada party"
+      }
+    ]
+  },
+  {
+    "category": "Nature",
+    "emoji": [
+      {
+        "char": "🐈",
+        "name": "cat"
+      },
+      {
+        "char": "🐶",
+        "name": "dog"
+      },
+      {
+        "char": "🦊",
+        "name": "fox"
+      },
+      {
+        "char": "🐢",
+        "name": "turtle"
+      },
+      {
+        "char": "🌱",
+        "name": "seedling"
+      },
+      {
+        "char": "🍂",
+        "name": "fallen leaf autumn"
+      },
+      {
+        "char": "🌙",
+        "name": "moon"
+      },
+      {
+        "char": "☀️",
+        "name": "sun"
+      },
+      {
+        "char": "⛰️",
+        "name": "mountain"
+      },
+      {
+        "char": "🌊",
+        "name": "wave ocean"
+      }
+    ]
+  },
+  {
+    "category": "Food",
+    "emoji": [
+      {
+        "char": "☕",
+        "name": "coffee"
+      },
+      {
+        "char": "🍕",
+        "name": "pizza"
+      },
+      {
+        "char": "🌯",
+        "name": "burrito"
+      },
+      {
+        "char": "🍪",
+        "name": "cookie"
+      },
+      {
+        "char": "🍩",
+        "name": "doughnut"
+      },
+      {
+        "char": "🍎",
+        "name": "apple"
+      },
+      {
+        "char": "🍅",
+        "name": "tomato pomodoro"
+      },
+      {
+        "char": "🍿",
+        "name": "popcorn"
+      }
+    ]
+  },
+  {
+    "category": "Objects",
+    "emoji": [
+      {
+        "char": "💻",
+        "name": "laptop computer"
+      },
+      {
+        "char": "⌨️",
+        "name": "keyboard"
+      },
+      {
+        "char": "🖱️",
+        "name": "mouse"
+      },
+      {
+        "char": "📚",
+        "name": "books"
+      },
+      {
+        "char": "📌",
+        "name": "pin"
+      },
+      {
+        "char": "🔔",
+        "name": "bell"
+      },
+      {
+        "char": "🎧",
+        "name": "headphones"
+      },
+      {
+        "char": "🎮",
+        "name": "game controller"
+      },
+      {
+        "char": "🎲",
+        "name": "dice"
+      },
+      {
+        "char": "🎨",
+        "name": "art palette"
+      },
+      {
+        "char": "🚀",
+        "name": "rocket"
+      },
+      {
+        "char": "🐛",
+        "name": "bug"
+      },
+      {
+        "char": "✅",
+        "name": "check done"
+      },
+      {
+        "char": "❌",
+        "name": "cross no"
+      },
+      {
+        "char": "⚠️",
+        "name": "warning"
+      },
+      {
+        "char": "❓",
+        "name": "question"
+      }
+    ]
+  }
+]

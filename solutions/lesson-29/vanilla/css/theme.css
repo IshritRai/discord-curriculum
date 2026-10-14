@@ -1,0 +1,51 @@
+/* The color palette for the whole app.
+   Every other CSS file uses these variables instead of raw values,
+   so changing the theme means changing this file only.
+   (The brand accent color is not here: it comes from js/brand.js.) */
+
+:root {
+  /* Backgrounds, from darkest to lightest */
+  --bg-tertiary: #1e1f22;      /* server rail */
+  --bg-secondary-alt: #232428; /* user panel */
+  --bg-secondary: #2b2d31;     /* channel sidebar, member list */
+  --bg-primary: #313338;       /* chat area */
+  --bg-input: #383a40;         /* message composer */
+
+  /* Interactive backgrounds (hover / selected) */
+  --bg-hover: rgba(78, 80, 88, 0.3);
+  --bg-selected: rgba(78, 80, 88, 0.6);
+  --bg-message-hover: rgba(2, 2, 2, 0.06);
+
+  /* Text */
+  --text-strong: #f2f3f5;
+  --text-normal: #dbdee1;
+  --text-muted: #949ba4;
+  --text-faint: #6d6f78;
+  --text-link: #00a8fc;
+
+  /* Mentions of you */
+  --mention-bg: rgba(240, 178, 50, 0.1);
+  --mention-border: #f0b232;
+
+  /* Status colors */
+  --green: #23a559;
+  --yellow: #f0b232;
+  --red: #f23f43;
+  --gray: #80848e;
+
+  /* Lines and shadows */
+  --divider: rgba(78, 80, 88, 0.48);
+  --header-shadow: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05), 0 2px 0 rgba(4, 4, 5, 0.05);
+
+  /* Sizes */
+  --rail-width: 72px;
+  --sidebar-width: 240px;
+  --members-width: 240px;
+  --header-height: 48px;
+  --radius-small: 4px;
+  --radius: 8px;
+
+  /* Fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}

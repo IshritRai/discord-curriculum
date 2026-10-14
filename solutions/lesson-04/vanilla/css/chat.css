@@ -1,0 +1,47 @@
+/* The chat area: header, message feed and composer. */
+
+.chat {
+  background-color: var(--bg-primary);
+}
+
+.chat-title {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-topic {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.date-divider {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.message-author {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+
+.message-time,
+.message-hover-time {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400; /* the <h3> around the time would make it bold */
+}
+
+.message-content {
+  color: var(--text-normal);
+}
+
+.composer {
+  background-color: var(--bg-input);
+}
+
+.search-input {
+  background-color: var(--bg-tertiary);
+  font-size: 14px;
+}

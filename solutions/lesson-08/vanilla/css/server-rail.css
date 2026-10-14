@@ -1,0 +1,73 @@
+/* The column of server icons on the far left. */
+
+.server-rail {
+  width: var(--rail-width);
+  padding: 12px 0;
+  background-color: var(--bg-tertiary);
+}
+
+/* A column of icons, centered, with 8px between them */
+.server-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The space between the three lists in the rail */
+.server-list + .server-list {
+  margin-top: 8px;
+}
+
+.server-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.server-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  color: var(--text-normal);
+  font-size: 18px;
+  font-weight: 500;
+  transition: border-radius 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+/* Hover and selected: the circle becomes a rounded square */
+.server-button:hover,
+.server-item.is-active .server-button {
+  border-radius: 16px;
+  background-color: var(--brand-accent);
+  color: white;
+}
+
+.server-button.is-emoji {
+  font-size: 24px;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.add-server-button {
+  color: var(--green);
+}
+
+.add-server-button:hover {
+  background-color: var(--green);
+}
+
+/* The thin line under the home button */
+.server-separator {
+  width: 32px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--divider);
+}

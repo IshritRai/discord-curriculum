@@ -1,0 +1,191 @@
+/* Base styles: things every part of the app shares. */
+
+/* width and height include padding and border (much easier to reason about) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-tertiary);
+  color: var(--text-normal);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.375;
+}
+
+/* Buttons and text fields come with the browser's own look (light gray,
+   a different font). Turn that off so they match the app. */
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Remove the browser's default spacing; we'll add our own where we want it */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* A visible ring around whatever you reach with the Tab key */
+:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+code {
+  padding: 0.1em 0.25em;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+/* ---------- Avatars ---------- */
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  /* --avatar-color is set from JavaScript; gray if it isn't set */
+  background-color: var(--avatar-color, var(--gray));
+  color: white;
+  font-weight: 600;
+}
+
+/* The status dot sits on the bottom-right corner of an avatar.
+   --status-ring is the color around it (the background behind the avatar). */
+.status-dot {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--status-ring, var(--bg-secondary));
+  background-color: var(--gray);
+}
+
+.status-online .status-dot {
+  background-color: var(--green);
+}
+
+/* Idle: a moon shape made from an inset shadow */
+.status-idle .status-dot {
+  background-color: transparent;
+  box-shadow: inset -3px -1px 0 0 var(--yellow);
+}
+
+/* Do not disturb: red with a short bar in the middle */
+.status-dnd .status-dot {
+  background-color: var(--red);
+}
+
+.status-dnd .status-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--status-ring, var(--bg-secondary));
+  transform: translate(-50%, -50%);
+}
+
+/* Offline: a gray ring */
+.status-offline .status-dot {
+  background-color: var(--status-ring, var(--bg-secondary));
+  box-shadow: inset 0 0 0 2px var(--gray);
+}
+
+/* ---------- Scrollbars ---------- */
+
+/* Thin scrollbars for Chrome, Edge and Safari */
+.scroller::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  background-color: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.scroller::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Firefox doesn't support ::-webkit-scrollbar, so it gets the standard properties */
+@supports not selector(::-webkit-scrollbar) {
+  .scroller {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-tertiary) transparent;
+  }
+}
+
+/* ---------- Icons ---------- */
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+}
+
+.icon-button .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-button:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
+}
+
+/* A pressed toggle button (like the member list button) */
+.icon-button[aria-pressed="true"] {
+  color: var(--text-strong);
+}

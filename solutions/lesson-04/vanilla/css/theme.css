@@ -1,0 +1,36 @@
+/* The color palette for the whole app.
+   Every other CSS file uses these variables instead of raw values,
+   so changing the theme means changing this file only. */
+
+:root {
+  /* Brand accent color (Lesson 16 moves this into js/brand.js) */
+  --brand-accent: #0f7b6c;
+
+  /* Backgrounds, from darkest to lightest */
+  --bg-tertiary: #1e1f22;      /* server rail */
+  --bg-secondary-alt: #232428; /* user panel */
+  --bg-secondary: #2b2d31;     /* channel sidebar, member list */
+  --bg-primary: #313338;       /* chat area */
+  --bg-input: #383a40;         /* message composer */
+
+  /* Interactive backgrounds (hover / selected) */
+  --bg-hover: rgba(78, 80, 88, 0.3);
+  --bg-selected: rgba(78, 80, 88, 0.6);
+
+  /* Text */
+  --text-strong: #f2f3f5;
+  --text-normal: #dbdee1;
+  --text-muted: #949ba4;
+  --text-faint: #6d6f78;
+  --text-link: #00a8fc;
+
+  /* Status colors */
+  --green: #23a559;
+  --yellow: #f0b232;
+  --red: #f23f43;
+  --gray: #80848e;
+
+  /* Fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Noto Sans", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+}

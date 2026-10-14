@@ -1,0 +1,101 @@
+/* Voice channels: who is connected, the "Voice Connected" panel, speaking rings. */
+
+.voice-users {
+  padding: 0 0 4px 32px;
+}
+
+.voice-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.voice-user:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
+}
+
+.voice-user-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.voice-user .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  --icon-slash-color: var(--red);
+}
+
+/* A green ring around the avatar while someone is speaking */
+.voice-user .avatar {
+  transition: box-shadow 0.1s ease;
+}
+
+.voice-user.is-speaking .avatar {
+  box-shadow: 0 0 0 2px var(--bg-secondary), 0 0 0 4px var(--green);
+}
+
+/* The panel above the user panel while you're connected */
+.voice-panel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid var(--divider);
+  background-color: var(--bg-secondary-alt);
+}
+
+.voice-panel-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.voice-panel-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.voice-panel-status .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.voice-panel-channel {
+  color: var(--text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mic-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* Muted or deafened: the button turns red */
+.user-panel .icon-button[aria-pressed="true"] {
+  color: var(--red);
+  --icon-slash-color: var(--red);
+}
+
+/* Your own avatar in the user panel lights up too */
+.user-panel-profile.is-speaking .avatar {
+  box-shadow: 0 0 0 2px var(--bg-secondary-alt), 0 0 0 4px var(--green);
+}

@@ -1,0 +1,80 @@
+/* Base styles: things every part of the app shares. */
+
+/* width and height include padding and border (much easier to reason about) */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-tertiary);
+  color: var(--text-normal);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.375;
+}
+
+/* Buttons and text fields come with the browser's own look (light gray,
+   a different font). Turn that off so they match the app. */
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  padding: 0;
+}
+
+/* Remove the browser's default spacing; we'll add our own where we want it */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--text-link);
+}
+
+code {
+  padding: 0.1em 0.25em;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+/* ---------- Avatars ---------- */
+
+.avatar {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--gray);
+  color: white;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
+}
+
+/* ---------- Buttons with an icon ---------- */
+
+.icon-button {
+  height: 32px;
+  padding: 0 6px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+}

@@ -1,0 +1,465 @@
+[
+  {
+    "id": "s-frontend",
+    "name": "Frontend Friends",
+    "icon": "FF",
+    "iconIsEmoji": false,
+    "roles": [
+      {
+        "id": "r-ff-admin",
+        "name": "Admin",
+        "color": "#f47b67"
+      },
+      {
+        "id": "r-ff-mentor",
+        "name": "Mentor",
+        "color": "#5ac8fa"
+      },
+      {
+        "id": "r-ff-bot",
+        "name": "Bots",
+        "color": "#a3a6aa"
+      }
+    ],
+    "members": [
+      {
+        "userId": "u-me",
+        "roleId": null
+      },
+      {
+        "userId": "u-ava",
+        "roleId": "r-ff-admin"
+      },
+      {
+        "userId": "u-priya",
+        "roleId": "r-ff-mentor"
+      },
+      {
+        "userId": "u-leo",
+        "roleId": null
+      },
+      {
+        "userId": "u-maya",
+        "roleId": "r-ff-mentor"
+      },
+      {
+        "userId": "u-noah",
+        "roleId": null
+      },
+      {
+        "userId": "u-ravi",
+        "roleId": null
+      },
+      {
+        "userId": "u-zoe",
+        "roleId": null
+      },
+      {
+        "userId": "u-omar",
+        "roleId": null
+      },
+      {
+        "userId": "u-kenji",
+        "roleId": null
+      },
+      {
+        "userId": "u-nora",
+        "roleId": null
+      },
+      {
+        "userId": "u-mateo",
+        "roleId": null
+      },
+      {
+        "userId": "u-bot",
+        "roleId": "r-ff-bot"
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-ff-text",
+        "name": "Text Channels",
+        "channels": [
+          {
+            "id": "c-ff-general",
+            "name": "general",
+            "type": "text",
+            "topic": "Chat about anything frontend: HTML, CSS, JavaScript, React.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-ff-help",
+            "name": "help",
+            "type": "text",
+            "topic": "Stuck? Post your code (use ``` code blocks) and what you expected to happen.",
+            "unread": true,
+            "mentions": 1
+          },
+          {
+            "id": "c-ff-showcase",
+            "name": "showcase",
+            "type": "text",
+            "topic": "Show off what you built this week.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-ff-offtopic",
+            "name": "off-topic",
+            "type": "text",
+            "topic": "Cats, coffee, keyboards.",
+            "unread": false,
+            "mentions": 0
+          }
+        ]
+      },
+      {
+        "id": "cat-ff-info",
+        "name": "Info",
+        "channels": [
+          {
+            "id": "c-ff-welcome",
+            "name": "welcome",
+            "type": "text",
+            "topic": "Start here! Say hi and tell us what you're learning.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-ff-announcements",
+            "name": "announcements",
+            "type": "text",
+            "topic": "News from the admins.",
+            "unread": true,
+            "mentions": 0
+          }
+        ]
+      },
+      {
+        "id": "cat-ff-voice",
+        "name": "Voice Channels",
+        "channels": [
+          {
+            "id": "c-ff-lounge",
+            "name": "Lounge",
+            "type": "voice",
+            "voiceUserIds": [
+              "u-ava",
+              "u-priya"
+            ]
+          },
+          {
+            "id": "c-ff-pairing",
+            "name": "Pair Programming",
+            "type": "voice",
+            "voiceUserIds": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "s-pixel",
+    "name": "Pixel Art Club",
+    "icon": "🎨",
+    "iconIsEmoji": true,
+    "roles": [
+      {
+        "id": "r-px-host",
+        "name": "Host",
+        "color": "#ffb86c"
+      }
+    ],
+    "members": [
+      {
+        "userId": "u-me",
+        "roleId": null
+      },
+      {
+        "userId": "u-lina",
+        "roleId": "r-px-host"
+      },
+      {
+        "userId": "u-maya",
+        "roleId": null
+      },
+      {
+        "userId": "u-kenji",
+        "roleId": null
+      },
+      {
+        "userId": "u-zoe",
+        "roleId": null
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-px-text",
+        "name": "Text Channels",
+        "channels": [
+          {
+            "id": "c-px-general",
+            "name": "general",
+            "type": "text",
+            "topic": "Everything pixels.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-px-sketch",
+            "name": "daily-sketch",
+            "type": "text",
+            "topic": "Post one sketch a day. No pressure.",
+            "unread": true,
+            "mentions": 0
+          }
+        ]
+      },
+      {
+        "id": "cat-px-voice",
+        "name": "Voice Channels",
+        "channels": [
+          {
+            "id": "c-px-studio",
+            "name": "Drawing Room",
+            "type": "voice",
+            "voiceUserIds": [
+              "u-lina"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "s-hikers",
+    "name": "Weekend Hikers",
+    "icon": "🥾",
+    "iconIsEmoji": true,
+    "roles": [
+      {
+        "id": "r-hk-guide",
+        "name": "Trail Guide",
+        "color": "#7bd88f"
+      }
+    ],
+    "members": [
+      {
+        "userId": "u-me",
+        "roleId": null
+      },
+      {
+        "userId": "u-mateo",
+        "roleId": "r-hk-guide"
+      },
+      {
+        "userId": "u-kenji",
+        "roleId": null
+      },
+      {
+        "userId": "u-omar",
+        "roleId": null
+      },
+      {
+        "userId": "u-noah",
+        "roleId": null
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-hk-text",
+        "name": "Text Channels",
+        "channels": [
+          {
+            "id": "c-hk-general",
+            "name": "general",
+            "type": "text",
+            "topic": "Trails, gear and snacks.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-hk-trips",
+            "name": "trip-planning",
+            "type": "text",
+            "topic": "Plan the next trip here.",
+            "unread": false,
+            "mentions": 0
+          }
+        ]
+      },
+      {
+        "id": "cat-hk-voice",
+        "name": "Voice Channels",
+        "channels": [
+          {
+            "id": "c-hk-campfire",
+            "name": "Campfire",
+            "type": "voice",
+            "voiceUserIds": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "s-study",
+    "name": "Study Group",
+    "icon": "SG",
+    "iconIsEmoji": false,
+    "roles": [
+      {
+        "id": "r-sg-tutor",
+        "name": "Tutor",
+        "color": "#bd93f9"
+      }
+    ],
+    "members": [
+      {
+        "userId": "u-me",
+        "roleId": null
+      },
+      {
+        "userId": "u-ivy",
+        "roleId": null
+      },
+      {
+        "userId": "u-priya",
+        "roleId": "r-sg-tutor"
+      },
+      {
+        "userId": "u-ravi",
+        "roleId": null
+      },
+      {
+        "userId": "u-noah",
+        "roleId": null
+      },
+      {
+        "userId": "u-nora",
+        "roleId": null
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-sg-text",
+        "name": "Text Channels",
+        "channels": [
+          {
+            "id": "c-sg-general",
+            "name": "general",
+            "type": "text",
+            "topic": "Study together, stay sane.",
+            "unread": false,
+            "mentions": 0
+          },
+          {
+            "id": "c-sg-homework",
+            "name": "homework-help",
+            "type": "text",
+            "topic": "Ask specific questions and show what you tried.",
+            "unread": true,
+            "mentions": 2
+          }
+        ]
+      },
+      {
+        "id": "cat-sg-voice",
+        "name": "Voice Channels",
+        "channels": [
+          {
+            "id": "c-sg-library",
+            "name": "Library",
+            "type": "voice",
+            "voiceUserIds": [
+              "u-ivy",
+              "u-ravi",
+              "u-noah"
+            ]
+          },
+          {
+            "id": "c-sg-room2",
+            "name": "Study Room 2",
+            "type": "voice",
+            "voiceUserIds": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "s-games",
+    "name": "Game Night",
+    "icon": "🎲",
+    "iconIsEmoji": true,
+    "roles": [
+      {
+        "id": "r-gn-host",
+        "name": "Host",
+        "color": "#ff79c6"
+      }
+    ],
+    "members": [
+      {
+        "userId": "u-me",
+        "roleId": null
+      },
+      {
+        "userId": "u-theo",
+        "roleId": "r-gn-host"
+      },
+      {
+        "userId": "u-zoe",
+        "roleId": null
+      },
+      {
+        "userId": "u-omar",
+        "roleId": null
+      },
+      {
+        "userId": "u-leo",
+        "roleId": null
+      }
+    ],
+    "categories": [
+      {
+        "id": "cat-gn-text",
+        "name": "Text Channels",
+        "channels": [
+          {
+            "id": "c-gn-general",
+            "name": "general",
+            "type": "text",
+            "topic": "Friday 8pm. Bring snacks.",
+            "unread": true,
+            "mentions": 0
+          },
+          {
+            "id": "c-gn-lfg",
+            "name": "looking-for-group",
+            "type": "text",
+            "topic": "Find people to play with.",
+            "unread": false,
+            "mentions": 0
+          }
+        ]
+      },
+      {
+        "id": "cat-gn-voice",
+        "name": "Voice Channels",
+        "channels": [
+          {
+            "id": "c-gn-room",
+            "name": "Game Room",
+            "type": "voice",
+            "voiceUserIds": [
+              "u-theo",
+              "u-zoe"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

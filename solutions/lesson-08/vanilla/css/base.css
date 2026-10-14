@@ -1,0 +1,119 @@
+/* Base styles: things every part of the app shares. */
+
+/* width and height include padding and border (much easier to reason about) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-tertiary);
+  color: var(--text-normal);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.375;
+}
+
+/* Buttons and text fields come with the browser's own look (light gray,
+   a different font). Turn that off so they match the app. */
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Remove the browser's default spacing; we'll add our own where we want it */
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* A visible ring around whatever you reach with the Tab key */
+:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 2px;
+}
+
+code {
+  padding: 0.1em 0.25em;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+/* ---------- Avatars ---------- */
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--gray);
+  color: white;
+  font-weight: 600;
+}
+
+/* ---------- Icons ---------- */
+
+.icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+}
+
+.icon-button .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-button:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
+}
+
+/* A pressed toggle button (like the member list button) */
+.icon-button[aria-pressed="true"] {
+  color: var(--text-strong);
+}

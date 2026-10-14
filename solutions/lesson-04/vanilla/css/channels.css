@@ -1,0 +1,45 @@
+/* The channel sidebar: server name, channel list and the user panel. */
+
+.channel-sidebar {
+  background-color: var(--bg-secondary);
+}
+
+.server-name {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.category-toggle {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.channel-button {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Two classes on the same element: an unread channel item */
+.channel-item.is-unread .channel-button {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+.user-panel {
+  background-color: var(--bg-secondary-alt);
+}
+
+.user-panel-name {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-panel-tag {
+  color: var(--text-muted);
+  font-size: 12px;
+}

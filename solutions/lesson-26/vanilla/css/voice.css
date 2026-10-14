@@ -1,0 +1,28 @@
+/* Voice channels: who is connected. */
+
+.voice-users {
+  padding: 0 0 4px 32px;
+}
+
+.voice-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.voice-user:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-normal);
+}
+
+.voice-user-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

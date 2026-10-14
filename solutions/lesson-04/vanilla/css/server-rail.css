@@ -1,0 +1,16 @@
+/* The column of server icons on the far left. */
+
+.server-rail {
+  background-color: var(--bg-tertiary);
+}
+
+.server-button {
+  background-color: var(--bg-primary);
+  color: var(--text-normal);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.server-button.is-emoji {
+  font-size: 24px;
+}

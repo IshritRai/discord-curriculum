@@ -1,0 +1,130 @@
+/* The channel sidebar: server name, channel list and the user panel. */
+
+.channel-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  background-color: var(--bg-secondary);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  padding: 0 16px;
+  box-shadow: var(--header-shadow);
+  color: var(--text-strong);
+  flex-shrink: 0;
+}
+
+.server-name {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sidebar-header .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.channel-list {
+  padding: 0 8px 16px 0;
+}
+
+.category {
+  padding-top: 16px;
+}
+
+.category-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  padding: 0 8px 4px 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.category-toggle .icon {
+  width: 12px;
+  height: 12px;
+}
+
+.channel-item {
+  padding-left: 8px;
+}
+
+.channel-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  margin: 1px 0;
+  padding: 6px 8px;
+  border-radius: var(--radius-small);
+  color: var(--text-muted);
+  font-weight: 500;
+  text-align: left;
+}
+
+.channel-button .icon {
+  width: 20px;
+  height: 20px;
+  color: var(--gray);
+}
+
+.channel-name {
+  flex: 1;
+}
+
+/* Two classes on the same element: an unread channel item */
+.channel-item.is-unread .channel-button {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+.user-panel {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 52px;
+  padding: 0 8px;
+  background-color: var(--bg-secondary-alt);
+  flex-shrink: 0;
+}
+
+.user-panel-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  padding: 4px 2px;
+  border-radius: var(--radius-small);
+  text-align: left;
+}
+
+.user-panel-profile .avatar {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+.user-panel-names {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-panel-name {
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.user-panel-tag {
+  color: var(--text-muted);
+  font-size: 12px;
+}

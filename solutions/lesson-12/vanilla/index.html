@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hubbub</title>
+    <link rel="icon" href="assets/brand/logo.svg">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/server-rail.css">
+    <link rel="stylesheet" href="css/channels.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/members.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- defer: run the scripts after the whole page has been read -->
+    <script src="js/data.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- The server rail and channel sidebar together (on phones they slide in as a "drawer") -->
+      <div class="nav-drawer">
+        <!-- 1. Server rail: one button per server -->
+        <nav class="server-rail" aria-label="Servers">
+          <ul class="server-list">
+            <li class="server-item">
+              <button class="server-button home-button" type="button" aria-label="Direct Messages">
+                <img class="brand-logo" src="assets/brand/logo.svg" alt="">
+              </button>
+            </li>
+            <li class="server-separator" role="separator"></li>
+          </ul>
+          <ul class="server-list" id="server-list">
+            <li class="server-item is-active">
+              <button class="server-button" type="button" aria-label="Frontend Friends">FF<span class="mention-badge">1</span></button>
+            </li>
+            <li class="server-item is-unread">
+              <button class="server-button is-emoji" type="button" aria-label="Pixel Art Club">🎨</button>
+            </li>
+            <li class="server-item">
+              <button class="server-button is-emoji" type="button" aria-label="Weekend Hikers">🥾</button>
+            </li>
+            <li class="server-item is-unread">
+              <button class="server-button" type="button" aria-label="Study Group">SG<span class="mention-badge">2</span></button>
+            </li>
+            <li class="server-item is-unread">
+              <button class="server-button is-emoji" type="button" aria-label="Game Night">🎲</button>
+            </li>
+          </ul>
+          <ul class="server-list">
+            <li class="server-item">
+              <button class="server-button add-server-button" type="button" aria-label="Add a Server">
+                <svg class="icon"><use href="assets/icons.svg#plus"></use></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- 2. Channel sidebar: server name, channels, and your user panel -->
+        <aside class="channel-sidebar" aria-label="Channels">
+          <header class="sidebar-header">
+            <h1 class="server-name" id="server-name">Frontend Friends</h1>
+            <svg class="icon"><use href="assets/icons.svg#chevron-down"></use></svg>
+          </header>
+          <nav class="channel-list scroller" id="channel-list" aria-label="Channel list">
+            <section class="category">
+              <h3><button class="category-toggle" type="button"><svg class="icon"><use href="assets/icons.svg#chevron-down"></use></svg>Text Channels</button></h3>
+              <ul>
+                <li class="channel-item is-selected">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#hash"></use></svg><span class="channel-name">general</span></button>
+                </li>
+                <li class="channel-item is-unread">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#hash"></use></svg><span class="channel-name">help</span><span class="channel-mention-badge">1</span></button>
+                </li>
+                <li class="channel-item">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#hash"></use></svg><span class="channel-name">showcase</span></button>
+                </li>
+                <li class="channel-item">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#hash"></use></svg><span class="channel-name">off-topic</span></button>
+                </li>
+              </ul>
+            </section>
+            <section class="category">
+              <h3><button class="category-toggle" type="button"><svg class="icon"><use href="assets/icons.svg#chevron-down"></use></svg>Voice Channels</button></h3>
+              <ul>
+                <li class="channel-item">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#speaker"></use></svg><span class="channel-name">Lounge</span></button>
+                </li>
+                <li class="channel-item">
+                  <button class="channel-button" type="button"><svg class="icon"><use href="assets/icons.svg#speaker"></use></svg><span class="channel-name">Pair Programming</span></button>
+                </li>
+              </ul>
+            </section>
+          </nav>
+
+          <section class="user-panel" aria-label="Your account">
+            <button class="user-panel-profile" type="button" id="user-panel-profile">
+              <span class="avatar status-online" id="user-panel-avatar">S<span class="status-dot"></span></span>
+              <span class="user-panel-names">
+                <span class="user-panel-name" id="user-panel-name">Sam</span>
+                <span class="user-panel-tag" id="user-panel-tag">Learning frontend 🚀</span>
+              </span>
+            </button>
+            <button class="icon-button" type="button" id="mute-button" aria-label="Mute">
+              <svg class="icon"><use href="assets/icons.svg#mic"></use></svg>
+            </button>
+            <button class="icon-button" type="button" id="deafen-button" aria-label="Deafen">
+              <svg class="icon"><use href="assets/icons.svg#headphones"></use></svg>
+            </button>
+            <button class="icon-button" type="button" id="settings-button" aria-label="User Settings">
+              <svg class="icon"><use href="assets/icons.svg#settings"></use></svg>
+            </button>
+          </section>
+        </aside>
+      </div>
+
+      <!-- 3. Chat: header, messages, message box, and the member list -->
+      <main class="chat">
+        <header class="chat-header">
+          <button class="icon-button menu-button" type="button" id="menu-button" aria-label="Open channels">
+            <svg class="icon"><use href="assets/icons.svg#menu"></use></svg>
+          </button>
+          <svg class="icon chat-header-icon"><use href="assets/icons.svg#hash"></use></svg>
+          <h2 class="chat-title" id="chat-title">general</h2>
+          <p class="chat-topic" id="chat-topic">Chat about anything frontend: HTML, CSS, JavaScript, React.</p>
+          <div class="chat-toolbar">
+            <button class="icon-button" type="button" aria-label="Notification Settings">
+              <svg class="icon"><use href="assets/icons.svg#bell"></use></svg>
+            </button>
+            <button class="icon-button" type="button" aria-label="Pinned Messages">
+              <svg class="icon"><use href="assets/icons.svg#pin"></use></svg>
+            </button>
+            <button class="icon-button" type="button" id="members-button" aria-label="Member List" aria-pressed="true">
+              <svg class="icon"><use href="assets/icons.svg#members"></use></svg>
+            </button>
+            <label class="search">
+              <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+              <svg class="icon"><use href="assets/icons.svg#search"></use></svg>
+            </label>
+            <button class="icon-button" type="button" aria-label="Inbox">
+              <svg class="icon"><use href="assets/icons.svg#inbox"></use></svg>
+            </button>
+            <button class="icon-button" type="button" aria-label="Help">
+              <svg class="icon"><use href="assets/icons.svg#help"></use></svg>
+            </button>
+          </div>
+        </header>
+
+        <div class="chat-body">
+          <section class="chat-main" aria-label="Messages">
+            <ol class="message-list scroller" id="message-list">
+              <!-- Older messages, so there's enough to scroll -->
+              <li class="date-divider" role="separator"><span>October 11, 2026</span></li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">P</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Priya</button>
+                    <time class="message-time" datetime="2026-10-11T09:12:00Z">10/11/2026 9:12 AM</time>
+                  </h3>
+                  <div class="message-content">Morning everyone ☀️ Reminder: the <strong>weekly code review</strong> thread opens at noon.</div>
+                </div>
+              </li>
+              <li class="message">
+                <div class="message-gutter"><time class="message-hover-time" datetime="2026-10-11T09:13:10Z">9:13 AM</time></div>
+                <div class="message-body">
+                  <div class="message-content">Post a link to your repo and say what kind of feedback you want.</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">L</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Leo</button>
+                    <time class="message-time" datetime="2026-10-11T09:30:00Z">10/11/2026 9:30 AM</time>
+                  </h3>
+                  <div class="message-content">Quick question: what's the difference between <code>let</code> and <code>const</code>?</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">A</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Ava</button>
+                    <time class="message-time" datetime="2026-10-11T09:32:00Z">10/11/2026 9:32 AM</time>
+                  </h3>
+                  <div class="message-content"><code>const</code> means the <em>variable</em> can't be reassigned. The object it points to can still change.</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">L</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Leo</button>
+                    <time class="message-time" datetime="2026-10-11T09:35:00Z">10/11/2026 9:35 AM</time>
+                  </h3>
+                  <div class="message-content">ohhh that makes sense, thanks!</div>
+                </div>
+              </li>
+
+              <li class="date-divider" role="separator"><span>October 12, 2026</span></li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">M</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Maya</button>
+                    <time class="message-time" datetime="2026-10-12T14:03:00Z">10/12/2026 2:03 PM</time>
+                  </h3>
+                  <div class="message-content">Finished the hover animation for the server icons: the circle morphs into a rounded square. Way more satisfying than I expected.</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">R</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Ravi</button>
+                    <time class="message-time" datetime="2026-10-12T14:05:00Z">10/12/2026 2:05 PM</time>
+                  </h3>
+                  <div class="message-content">how did you animate border-radius? I thought you couldn't transition that</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">M</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Maya</button>
+                    <time class="message-time" datetime="2026-10-12T14:06:30Z">10/12/2026 2:06 PM</time>
+                  </h3>
+                  <div class="message-content">You can! <code>transition: border-radius 0.2s ease</code> works fine.</div>
+                </div>
+              </li>
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">N</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Noah</button>
+                    <time class="message-time" datetime="2026-10-12T14:20:00Z">10/12/2026 2:20 PM</time>
+                  </h3>
+                  <div class="message-content">Bookmarking the docs for later: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition">https://developer.mozilla.org/en-US/docs/Web/CSS/transition</a></div>
+                </div>
+              </li>
+              <!-- End of the older messages -->
+
+              <li class="date-divider" role="separator"><span>October 13, 2026</span></li>
+
+              <li class="message is-group-start is-mention">
+                <div class="message-gutter"><span class="avatar">A</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Ava</button>
+                    <time class="message-time" datetime="2026-10-13T10:15:00Z">Yesterday at 10:15 AM</time>
+                  </h3>
+                  <div class="message-content">Hey @Sam, how's the clone going? Did you get the grid layout working?</div>
+                </div>
+              </li>
+
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">S</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Sam</button>
+                    <time class="message-time" datetime="2026-10-13T10:22:00Z">Yesterday at 10:22 AM</time>
+                  </h3>
+                  <div class="message-content">Getting there! The four columns line up now. Scrolling each column on its own was the tricky part.</div>
+                </div>
+              </li>
+
+              <li class="message">
+                <div class="message-gutter"><time class="message-hover-time" datetime="2026-10-13T10:23:00Z">10:23 AM</time></div>
+                <div class="message-body">
+                  <div class="message-content"><code>min-height: 0</code> saved me 😅</div>
+                </div>
+              </li>
+
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">P</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Priya</button>
+                    <time class="message-time" datetime="2026-10-13T10:25:00Z">Yesterday at 10:25 AM</time>
+                  </h3>
+                  <div class="message-content">Classic. Flex and grid children default to <code>min-height: auto</code>, so they refuse to shrink below their content.</div>
+                </div>
+              </li>
+
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">Z</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Zoe</button>
+                    <time class="message-time" datetime="2026-10-13T11:02:00Z">Yesterday at 11:02 AM</time>
+                  </h3>
+                  <div class="message-content">anyone up for game night on friday? 🎲</div>
+                </div>
+              </li>
+
+              <li class="message is-group-start">
+                <div class="message-gutter"><span class="avatar">O</span></div>
+                <div class="message-body">
+                  <h3 class="message-header">
+                    <button class="message-author" type="button">Omar</button>
+                    <time class="message-time" datetime="2026-10-13T11:03:00Z">Yesterday at 11:03 AM</time>
+                  </h3>
+                  <div class="message-content"><em>always</em></div>
+                </div>
+              </li>
+
+              <li class="message">
+                <div class="message-gutter"><time class="message-hover-time" datetime="2026-10-13T11:03:20Z">11:03 AM</time></div>
+                <div class="message-body">
+                  <div class="message-content">brb, lunch</div>
+                </div>
+              </li>
+            </ol>
+
+            <form class="composer" id="composer">
+              <button class="icon-button composer-button" type="button" aria-label="Upload a file">
+                <svg class="icon"><use href="assets/icons.svg#plus"></use></svg>
+              </button>
+              <textarea class="composer-input" id="composer-input" rows="1" placeholder="Message #general" aria-label="Message"></textarea>
+              <button class="icon-button composer-button" type="button" aria-label="Choose an emoji">
+                <svg class="icon"><use href="assets/icons.svg#emoji"></use></svg>
+              </button>
+            </form>
+          </section>
+
+          <aside class="member-list scroller" id="member-list" aria-label="Members">
+            <h3 class="member-group-title">Admin — 1</h3>
+            <button class="member" type="button">
+              <span class="avatar status-online">A<span class="status-dot"></span></span>
+              <span class="member-names">
+                <span class="member-name">Ava</span>
+                <span class="member-status-text">Refactoring everything</span>
+              </span>
+            </button>
+
+            <h3 class="member-group-title">Online — 4</h3>
+            <button class="member" type="button">
+              <span class="avatar status-idle">L<span class="status-dot"></span></span>
+              <span class="member-names"><span class="member-name">Leo</span></span>
+            </button>
+            <button class="member" type="button">
+              <span class="avatar status-online">N<span class="status-dot"></span></span>
+              <span class="member-names"><span class="member-name">Noah</span></span>
+            </button>
+            <button class="member" type="button">
+              <span class="avatar status-online">R<span class="status-dot"></span></span>
+              <span class="member-names"><span class="member-name">Ravi</span></span>
+            </button>
+            <button class="member" type="button">
+              <span class="avatar status-online">S<span class="status-dot"></span></span>
+              <span class="member-names">
+                <span class="member-name">Sam</span>
+                <span class="member-status-text">Learning frontend 🚀</span>
+              </span>
+            </button>
+
+            <h3 class="member-group-title">Offline — 2</h3>
+            <button class="member is-offline" type="button">
+              <span class="avatar status-offline">K<span class="status-dot"></span></span>
+              <span class="member-names"><span class="member-name">Kenji</span></span>
+            </button>
+            <button class="member is-offline" type="button">
+              <span class="avatar status-offline">N<span class="status-dot"></span></span>
+              <span class="member-names"><span class="member-name">Nora</span></span>
+            </button>
+          </aside>
+        </div>
+      </main>
+    </div>
+
+    <!-- The dark overlay behind the drawer on small screens -->
+    <div class="drawer-backdrop" id="drawer-backdrop"></div>
+  </body>
+</html>

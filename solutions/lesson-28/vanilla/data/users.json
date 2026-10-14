@@ -1,0 +1,18 @@
+[
+  { "id": "u-me", "displayName": "Sam", "username": "sam.codes", "avatarColor": "#3b82f6", "status": "online", "customStatus": "Learning frontend 🚀", "bio": "Building a chat app one lesson at a time." },
+  { "id": "u-ava", "displayName": "Ava", "username": "ava.dev", "avatarColor": "#e8590c", "status": "online", "customStatus": "Refactoring everything", "bio": "Frontend dev. CSS grid enthusiast. Ask me about layouts!" },
+  { "id": "u-leo", "displayName": "Leo", "username": "leo_codes", "avatarColor": "#2f9e44", "status": "idle", "customStatus": "", "bio": "Backend person learning the front of the stack." },
+  { "id": "u-maya", "displayName": "Maya", "username": "maya.makes", "avatarColor": "#ae3ec9", "status": "dnd", "customStatus": "Deep focus 🎧", "bio": "Designer who codes. Pixel pusher." },
+  { "id": "u-noah", "displayName": "Noah", "username": "noahtakesnotes", "avatarColor": "#1098ad", "status": "online", "customStatus": "", "bio": "Always taking notes." },
+  { "id": "u-priya", "displayName": "Priya", "username": "priya.p", "avatarColor": "#d6336c", "status": "online", "customStatus": "Mentoring today", "bio": "Senior engineer. Happy to review your code." },
+  { "id": "u-kenji", "displayName": "Kenji", "username": "kenji42", "avatarColor": "#f59f00", "status": "offline", "customStatus": "", "bio": "Hiker, sketcher, occasional coder." },
+  { "id": "u-zoe", "displayName": "Zoe", "username": "zoe.zz", "avatarColor": "#7048e8", "status": "online", "customStatus": "", "bio": "Board games and bad puns." },
+  { "id": "u-omar", "displayName": "Omar", "username": "omar.builds", "avatarColor": "#5c940d", "status": "idle", "customStatus": "Lunch 🌯", "bio": "I build things, sometimes on purpose." },
+  { "id": "u-lina", "displayName": "Lina", "username": "lina.draws", "avatarColor": "#e64980", "status": "online", "customStatus": "", "bio": "Daily sketch streak: 214 days." },
+  { "id": "u-mateo", "displayName": "Mateo", "username": "mateo.m", "avatarColor": "#0b7285", "status": "offline", "customStatus": "", "bio": "Trail runner." },
+  { "id": "u-ivy", "displayName": "Ivy", "username": "ivy.reads", "avatarColor": "#495057", "status": "dnd", "customStatus": "Exams 📚", "bio": "Studying computer science." },
+  { "id": "u-theo", "displayName": "Theo", "username": "theo.plays", "avatarColor": "#c92a2a", "status": "online", "customStatus": "", "bio": "Game night host." },
+  { "id": "u-nora", "displayName": "Nora", "username": "nora.n", "avatarColor": "#087f5b", "status": "offline", "customStatus": "", "bio": "Lurker. Hi!" },
+  { "id": "u-ravi", "displayName": "Ravi", "username": "ravi.r", "avatarColor": "#364fc7", "status": "online", "customStatus": "", "bio": "Learning JavaScript after years of Python." },
+  { "id": "u-bot", "displayName": "Helper Bot", "username": "helper-bot", "avatarColor": "#868e96", "status": "online", "customStatus": "Type /help", "bio": "A friendly (fake) bot.", "bot": true }
+]

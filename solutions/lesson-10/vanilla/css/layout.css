@@ -1,0 +1,47 @@
+/* The big pieces of the page and how they fit together. */
+
+/* The app fills the whole window: [server rail + channel sidebar] [chat] */
+.app {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Server rail and channel sidebar side by side */
+.nav-drawer {
+  display: flex;
+  min-height: 0;
+}
+
+/* The chat area: a header row on top, everything else below */
+.chat {
+  display: grid;
+  grid-template-rows: var(--header-height) 1fr;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Below the header: messages on the left, member list on the right */
+.chat-body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  min-height: 0;
+}
+
+/* Messages fill the space, the composer sits at the bottom */
+.chat-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Grid and flex children refuse to shrink below their content unless
+   min-height is 0. Without this, the lists would push the page taller
+   than the window instead of scrolling. */
+.channel-list,
+.message-list {
+  flex: 1;
+  min-height: 0;
+}

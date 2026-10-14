@@ -1,0 +1,195 @@
+/* The chat area: header, message feed and composer. */
+
+.chat {
+  background-color: var(--bg-primary);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--header-height);
+  padding: 0 8px 0 16px;
+  box-shadow: var(--header-shadow);
+}
+
+.chat-header-icon {
+  color: var(--gray);
+}
+
+.chat-title {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-topic {
+  flex: 1;
+  padding-left: 12px;
+  margin-left: 4px;
+  border-left: 1px solid var(--divider);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Pushes the toolbar to the right end of the header */
+.chat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 144px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+  font-size: 14px;
+  transition: width 0.25s ease;
+}
+
+/* The search box grows while you type in it */
+.search-input:focus {
+  width: 240px;
+  outline: none;
+}
+
+.search .icon {
+  width: 16px;
+  height: 16px;
+  margin-left: -24px;
+  color: var(--text-muted);
+}
+
+/* ---------- Message feed ---------- */
+
+.message-list {
+  padding-bottom: 24px;
+}
+
+.date-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 16px 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* The lines on both sides of the date are pseudo-elements */
+.date-divider::before,
+.date-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--divider);
+}
+
+.date-divider span {
+  padding: 0 4px;
+}
+
+/* Avatar (or time) on the left, the message on the right */
+.message {
+  display: flex;
+  gap: 16px;
+  padding: 2px 48px 2px 16px;
+}
+
+.message:hover {
+  background-color: var(--bg-message-hover);
+}
+
+/* The first message of a group gets some space above it */
+.message.is-group-start {
+  margin-top: 17px;
+}
+
+.message-gutter {
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.message-body {
+  flex: 1;
+}
+
+.message-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.message-author {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+
+.message-author:hover {
+  text-decoration: underline;
+}
+
+.message-time {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400; /* the <h3> around the time would make it bold */
+}
+
+/* Follow-up messages show their time only while you hover them */
+.message-hover-time {
+  display: block;
+  width: 56px;
+  margin-left: -16px;
+  visibility: hidden;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 22px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.message:hover .message-hover-time {
+  visibility: visible;
+}
+
+.message-content {
+  color: var(--text-normal);
+}
+
+/* ---------- Composer ---------- */
+
+.composer {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin: 0 16px 24px;
+  padding: 0 8px;
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+}
+
+.composer-button {
+  margin-top: 6px;
+}
+
+.composer-input {
+  flex: 1;
+  min-height: 44px;
+  padding: 11px 8px;
+  resize: none;
+}
+
+.composer-input:focus {
+  outline: none;
+}
+
+.composer-input::placeholder {
+  color: var(--text-faint);
+}

@@ -1,0 +1,59 @@
+/* Changes for narrower windows.
+   This file is loaded last, so its rules win over the other files. */
+
+/* ---------- Medium windows: the member list floats over the chat ---------- */
+
+@media (max-width: 1000px) {
+  .member-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .search {
+    display: none;
+  }
+}
+
+/* ---------- Small windows: the server rail and sidebar become a drawer ---------- */
+
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  /* Pushed off the left edge until .app gets the is-nav-open class */
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .app.is-nav-open .nav-drawer {
+    transform: translateX(0);
+  }
+
+  /* "+" means: the element right after .app */
+  .app.is-nav-open + .drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 15;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .menu-button {
+    display: flex;
+  }
+
+  .chat-topic {
+    display: none;
+  }
+}

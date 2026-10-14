@@ -1,0 +1,6 @@
+node_modules/
+.verify-build/
+site/.vitepress/cache/
+site/.vitepress/dist/
+site/public/demos/
+.DS_Store

@@ -1,0 +1,79 @@
+/* Things that float above the app (for now: the emoji picker). */
+
+/* ---------- Popovers ----------
+   Elements with the popover attribute are placed in the browser's "top layer".
+   By default the browser centers them; we position them ourselves instead. */
+
+[popover] {
+  inset: auto;
+  margin: 0;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ---------- Emoji picker ---------- */
+
+.emoji-picker {
+  display: none;
+  flex-direction: column;
+  width: 340px;
+  height: 360px;
+  border-radius: var(--radius);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+}
+
+/* The browser adds :popover-open while the popover is showing */
+.emoji-picker:popover-open {
+  display: flex;
+}
+
+.emoji-search {
+  margin: 12px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+}
+
+.emoji-search:focus {
+  outline: none;
+}
+
+.emoji-grid {
+  flex: 1;
+  min-height: 0;
+  padding: 0 8px 8px 12px;
+  overflow-y: auto;
+}
+
+.emoji-category {
+  margin: 8px 0 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* 8 equal columns */
+.emoji-options {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.emoji-option {
+  height: 36px;
+  border-radius: var(--radius-small);
+  font-size: 22px;
+}
+
+.emoji-option:hover {
+  background-color: var(--bg-hover);
+}
+
+.emoji-empty {
+  padding: 24px;
+  color: var(--text-muted);
+  text-align: center;
+}

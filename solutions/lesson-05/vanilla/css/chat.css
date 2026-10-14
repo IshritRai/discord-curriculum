@@ -1,0 +1,92 @@
+/* The chat area: header, message feed and composer. */
+
+.chat {
+  background-color: var(--bg-primary);
+}
+
+.chat-header {
+  height: var(--header-height);
+  padding: 0 8px 0 16px;
+  box-shadow: var(--header-shadow);
+}
+
+.chat-title {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-topic {
+  padding-left: 12px;
+  margin-left: 4px;
+  border-left: 1px solid var(--divider);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.search-input {
+  width: 144px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+  font-size: 14px;
+}
+
+/* ---------- Message feed ---------- */
+
+.message-list {
+  padding-bottom: 24px;
+}
+
+.date-divider {
+  margin: 24px 16px 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.message {
+  padding: 2px 48px 2px 16px;
+}
+
+/* The first message of a group gets some space above it */
+.message.is-group-start {
+  margin-top: 17px;
+}
+
+.message-gutter {
+  width: 40px;
+}
+
+.message-author {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+
+.message-time,
+.message-hover-time {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400; /* the <h3> around the time would make it bold */
+}
+
+.message-content {
+  color: var(--text-normal);
+}
+
+/* ---------- Composer ---------- */
+
+.composer {
+  margin: 0 16px 24px;
+  padding: 0 8px;
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+}
+
+.composer-input {
+  min-height: 44px;
+  padding: 11px 8px;
+  resize: none;
+}

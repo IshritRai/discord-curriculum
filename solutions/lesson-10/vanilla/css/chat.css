@@ -1,0 +1,234 @@
+/* The chat area: header, message feed and composer. */
+
+.chat {
+  background-color: var(--bg-primary);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  height: var(--header-height);
+  padding: 0 8px 0 16px;
+  box-shadow: var(--header-shadow);
+  z-index: 1; /* keeps the header's shadow on top of the messages */
+}
+
+.chat-header-icon {
+  color: var(--gray);
+}
+
+.chat-title {
+  color: var(--text-strong);
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.chat-topic {
+  flex: 1;
+  min-width: 0;
+  padding-left: 12px;
+  margin-left: 4px;
+  border-left: 1px solid var(--divider);
+  color: var(--text-muted);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Pushes the toolbar to the right end of the header */
+.chat-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 144px;
+  height: 24px;
+  padding: 0 28px 0 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+  font-size: 14px;
+  transition: width 0.25s ease;
+}
+
+/* The search box grows while you type in it */
+.search-input:focus {
+  width: 240px;
+  outline: none;
+}
+
+/* The magnifying glass sits inside the search box */
+.search .icon {
+  position: absolute;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none; /* clicks go through it to the input */
+}
+
+/* ---------- Message feed ---------- */
+
+.message-list {
+  padding-bottom: 24px;
+  overflow-y: auto;
+}
+
+/* The chat's scrollbar is wider, with a visible track like the real app */
+.message-list.scroller::-webkit-scrollbar {
+  width: 16px;
+}
+
+.message-list.scroller::-webkit-scrollbar-thumb {
+  border: 4px solid var(--bg-primary);
+  border-radius: 8px;
+}
+
+.message-list.scroller::-webkit-scrollbar-track {
+  margin-bottom: 8px;
+  border: 4px solid var(--bg-primary);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+}
+
+.date-divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 16px 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* The lines on both sides of the date are pseudo-elements */
+.date-divider::before,
+.date-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--divider);
+}
+
+.date-divider span {
+  padding: 0 4px;
+}
+
+/* Avatar (or time) on the left, the message on the right */
+.message {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 2px 48px 2px 16px;
+}
+
+.message:hover {
+  background-color: var(--bg-message-hover);
+}
+
+/* Messages that mention you */
+.message.is-mention {
+  background-color: var(--mention-bg);
+  box-shadow: inset 2px 0 0 var(--mention-border);
+}
+
+/* The first message of a group gets some space above it */
+.message.is-group-start {
+  margin-top: 17px;
+}
+
+.message-gutter {
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.message-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.message-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.message-author {
+  color: var(--text-strong);
+  font-weight: 500;
+}
+
+.message-author:hover {
+  text-decoration: underline;
+}
+
+.message-time {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 400; /* the <h3> around the time would make it bold */
+}
+
+/* Follow-up messages show their time only while you hover them */
+.message-hover-time {
+  display: block;
+  width: 56px;
+  margin-left: -16px;
+  visibility: hidden;
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 22px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.message:hover .message-hover-time {
+  visibility: visible;
+}
+
+.message-content {
+  color: var(--text-normal);
+  white-space: pre-wrap;    /* keep line breaks in messages */
+  overflow-wrap: anywhere;  /* break very long words and links */
+}
+
+/* ---------- Composer ---------- */
+
+.composer {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  margin: 0 16px 24px;
+  padding: 0 8px;
+  border-radius: var(--radius);
+  background-color: var(--bg-input);
+}
+
+.composer-button {
+  margin-top: 6px;
+}
+
+.composer-input {
+  flex: 1;
+  min-height: 44px;
+  padding: 11px 8px;
+  resize: none;
+}
+
+.composer-input:focus {
+  outline: none;
+}
+
+.composer-input::placeholder {
+  color: var(--text-faint);
+}

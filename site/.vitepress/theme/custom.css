@@ -1,0 +1,435 @@
+/* ---------- Site palette ---------- */
+:root {
+  --vp-c-brand-1: #2f7d6d;
+  --vp-c-brand-2: #3a8f7e;
+  --vp-c-brand-3: #2f7d6d;
+  --vp-c-brand-soft: rgba(47, 125, 109, 0.14);
+  --course-good: #1f9d55;
+  --course-bad: #d64545;
+  --course-starter: #b7791f;
+  --course-starter-soft: rgba(183, 121, 31, 0.1);
+}
+.dark {
+  --vp-c-brand-1: #5cc8b0;
+  --vp-c-brand-2: #47b39b;
+  --vp-c-brand-3: #2f7d6d;
+  --vp-c-brand-soft: rgba(92, 200, 176, 0.16);
+  --course-good: #48c774;
+  --course-bad: #ff6b6b;
+  --course-starter: #f0b44c;
+  --course-starter-soft: rgba(240, 180, 76, 0.1);
+}
+
+/* Slightly larger body text: easier to read next to an editor. */
+.vp-doc p,
+.vp-doc li {
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+/* ---------- Code blocks ----------
+   Copy buttons are hidden everywhere except inside starter-code boxes:
+   code you are meant to type has no copy button on purpose. */
+.vp-doc div[class*='language-'] > button.copy {
+  display: none;
+}
+.vp-doc .starter div[class*='language-'] > button.copy {
+  display: block;
+}
+
+.code-file {
+  margin: 16px 0;
+}
+.code-file-name {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px 8px 0 0;
+  background: var(--vp-code-block-bg);
+  color: var(--vp-c-text-2);
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+.code-file > div[class*='language-'] {
+  margin-top: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+/* ---------- Starter code ---------- */
+.vp-doc .custom-block.starter {
+  border: 1px dashed var(--course-starter);
+  background: var(--course-starter-soft);
+}
+.vp-doc .custom-block.starter .custom-block-title {
+  color: var(--course-starter);
+}
+.vp-doc .starter-note {
+  margin: 4px 0 8px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+/* ---------- Reveal solution ---------- */
+.vp-doc details.solution {
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  border-radius: 8px;
+  padding: 0 16px;
+}
+.vp-doc details.solution > summary {
+  cursor: pointer;
+  padding: 10px 0;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+}
+.vp-doc details.solution[open] > summary {
+  border-bottom: 1px solid var(--vp-c-divider);
+  margin-bottom: 8px;
+}
+
+/* ---------- Lesson header / footer ---------- */
+.lesson-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+.lesson-chip {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+.lesson-chip.optional {
+  background: var(--course-starter-soft);
+  color: var(--course-starter);
+}
+.lesson-chip.done {
+  background: rgba(72, 199, 116, 0.15);
+  color: var(--course-good);
+}
+.lesson-footer {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+.lesson-footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  align-items: center;
+}
+.complete-button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: var(--vp-c-brand-3);
+  color: #fff;
+  font-weight: 600;
+}
+.complete-button.done {
+  background: transparent;
+  color: var(--course-good);
+  border: 1px solid var(--course-good);
+}
+.quiz-score {
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+.solution-path {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+.solution-path a {
+  margin-left: 6px;
+}
+.hint {
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+}
+
+/* ---------- Sidebar ---------- */
+.lesson-num {
+  display: inline-block;
+  min-width: 1.6em;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+.optional-tag {
+  font-size: 11px;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--course-starter);
+  color: var(--course-starter);
+}
+.VPSidebar a.link.is-done .text::after {
+  content: ' ✓';
+  color: var(--course-good);
+  font-weight: 700;
+}
+.sidebar-progress {
+  padding: 16px 0 8px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+.sidebar-progress-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.sidebar-progress-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--vp-c-divider);
+  overflow: hidden;
+}
+.sidebar-progress-bar > div {
+  height: 100%;
+  background: var(--course-good);
+  transition: width 0.3s;
+}
+
+/* ---------- Quiz ---------- */
+.quiz {
+  margin: 24px 0;
+  padding: 16px 20px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+.quiz-label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-2);
+}
+.quiz-badge {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+}
+.quiz-badge.good {
+  color: var(--course-good);
+  border: 1px solid var(--course-good);
+}
+.quiz-badge.ok {
+  color: var(--vp-c-text-2);
+  border: 1px solid var(--vp-c-divider);
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+}
+.quiz-option {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  transition: border-color 0.15s;
+}
+.quiz-option:hover {
+  border-color: var(--vp-c-brand-1);
+}
+.quiz-option.selected {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 0 0 1px var(--vp-c-brand-1);
+}
+.quiz-option.right {
+  border-color: var(--course-good);
+  box-shadow: 0 0 0 1px var(--course-good);
+}
+.quiz-option.wrong {
+  border-color: var(--course-bad);
+  box-shadow: 0 0 0 1px var(--course-bad);
+}
+.quiz-option.dim {
+  opacity: 0.6;
+}
+.quiz-letter {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--vp-c-default-soft);
+  margin-top: 4px;
+}
+.quiz-option-body p {
+  margin: 0 !important;
+}
+.quiz-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.quiz-button {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: var(--vp-c-brand-3);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+}
+.quiz-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.quiz-button.secondary {
+  background: transparent;
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-divider);
+}
+.quiz-result {
+  font-weight: 700;
+  color: var(--course-bad);
+}
+.quiz.is-correct .quiz-result {
+  color: var(--course-good);
+}
+.quiz-explanation {
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg);
+  border-radius: 0 8px 8px 0;
+}
+.quiz-explanation > p:first-of-type {
+  margin-top: 4px;
+}
+
+/* ---------- Concepts ---------- */
+.concept-list {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+  margin: 16px 0;
+}
+.concept-list-title {
+  margin: 0 0 6px !important;
+  font-size: 13px !important;
+  color: var(--vp-c-text-2);
+}
+.concept-list ul {
+  margin: 0 !important;
+}
+.concept-tokens code {
+  margin: 0 4px 4px 0;
+  font-size: 12px !important;
+}
+.concept-tokens {
+  margin-left: 6px;
+}
+.concept-search {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+}
+.concept-count {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+
+/* ---------- Progress page ---------- */
+.progress-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+.progress-phase ul {
+  list-style: none;
+  padding-left: 0 !important;
+}
+.progress-phase li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin: 2px 0 !important;
+}
+.progress-phase li.done a {
+  color: var(--vp-c-text-2);
+}
+.progress-check {
+  width: 1.2em;
+  color: var(--course-good);
+  font-weight: 700;
+}
+.progress-quiz {
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+}
+.progress-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 24px;
+}
+.progress-tools button,
+.file-button {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-divider);
+  font-size: 14px;
+  cursor: pointer;
+}
+.file-button input {
+  display: none;
+}
+.progress-tools .danger {
+  color: var(--course-bad);
+  border-color: var(--course-bad);
+}
+
+/* ---------- Diagrams & screenshots ---------- */
+.mermaid-diagram {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.vp-doc img.screenshot {
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+.diagram {
+  margin: 20px auto;
+  max-width: 640px;
+}
+.diagram svg {
+  width: 100%;
+  height: auto;
+}
+.diagram figcaption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}

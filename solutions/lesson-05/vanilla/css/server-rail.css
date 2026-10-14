@@ -1,0 +1,40 @@
+/* The column of server icons on the far left. */
+
+.server-rail {
+  width: var(--rail-width);
+  padding: 12px 0;
+  background-color: var(--bg-tertiary);
+}
+
+.server-item {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.server-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--bg-primary);
+  color: var(--text-normal);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.server-button.is-emoji {
+  font-size: 24px;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+}
+
+/* The thin line under the home button */
+.server-separator {
+  width: 32px;
+  height: 2px;
+  margin: 0 auto 8px;
+  border-radius: 1px;
+  background-color: var(--divider);
+}

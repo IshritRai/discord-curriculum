@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- Placeholder logo: a speech bubble with three dots. Replace this file to rebrand. -->
+  <path d="M10 12a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v13a6 6 0 0 1-6 6H22l-8 7v-7h2a6 6 0 0 1-6-6z" fill="#ffffff" stroke="#1e1f22" stroke-width="2" stroke-linejoin="round"/>
+  <circle cx="18" cy="18.5" r="2.5" fill="#1e1f22"/>
+  <circle cx="24" cy="18.5" r="2.5" fill="#1e1f22"/>
+  <circle cx="30" cy="18.5" r="2.5" fill="#1e1f22"/>
+</svg>
