@@ -1,0 +1,31 @@
+{
+  "lines": [
+    "has anyone tried the CSS `:has()` selector yet?",
+    "lol",
+    "brb, getting coffee ☕",
+    "that's a great point",
+    "TIL `Array.prototype.at(-1)` gives you the last item",
+    "**hot take:** tabs > spaces",
+    "I just fixed a bug by deleting code. Best feeling.",
+    "anyone else's cat sit on the keyboard during meetings? 🐈",
+    "pushing to GitHub now 🚀",
+    "*finally* got flexbox to center that div",
+    "what's everyone working on today?",
+    "this channel is my favorite place on the internet",
+    "ok but have you tried turning it off and on again",
+    "🎉🎉🎉",
+    "yep, same here"
+  ],
+  "mentionLines": [
+    "@{me} what do you think?",
+    "@{me} nice work on the clone!",
+    "hey @{me}, got a minute to look at my code?"
+  ],
+  "replies": [
+    "good question, let me think 🤔",
+    "agreed!",
+    "haha true",
+    "oh nice, thanks for sharing",
+    "that's so cool 😎"
+  ]
+}

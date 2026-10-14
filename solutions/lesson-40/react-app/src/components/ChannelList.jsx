@@ -1,9 +1,9 @@
+import { useNavigate } from 'react-router';
 import { useApp } from '../state/AppContext.jsx';
 import { CURRENT_USER_ID, getUser } from '../state/selectors.js';
 import { classNames } from '../lib/classNames.js';
 import { Avatar } from './Avatar.jsx';
 import { Icon } from './Icon.jsx';
-import { useNavigate } from 'react-router';
 
 // People connected to a voice channel (including you, if you joined it).
 function useVoiceUserIds(channel) {
@@ -43,7 +43,7 @@ function ChannelItem({ channel, serverId, isSelected }) {
   }
 
   function handleContextMenu(event) {
-    event.preventDefault();
+    event.preventDefault(); // don't show the browser's own menu
     dispatch({ type: 'openMenu', menu: { kind: 'channel', id: channel.id, x: event.clientX, y: event.clientY } });
   }
 

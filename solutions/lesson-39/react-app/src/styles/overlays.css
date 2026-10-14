@@ -1,0 +1,304 @@
+/* Things that float above the app: tooltips, menus, the emoji picker and modals. */
+
+/* ---------- Tooltip ---------- */
+
+.tooltip {
+  position: fixed;
+  z-index: 100;
+  max-width: 200px;
+  padding: 6px 10px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-floating);
+  color: var(--text-normal);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+  pointer-events: none;
+}
+
+/* ---------- Popovers ----------
+   Elements with the popover attribute are placed in the browser's "top layer".
+   By default the browser centers them; we position them ourselves instead. */
+
+[popover] {
+  inset: auto;
+  margin: 0;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* ---------- Context menu ---------- */
+
+.context-menu {
+  min-width: 188px;
+  padding: 6px 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-floating);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 32px;
+  margin: 2px 0;
+  padding: 6px 8px;
+  border-radius: 2px;
+  color: var(--text-normal);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.menu-item .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.menu-item:hover,
+.menu-item:focus-visible {
+  background-color: var(--brand-accent);
+  color: white;
+  outline: none;
+}
+
+.menu-item.danger {
+  color: var(--red);
+}
+
+.menu-item.danger:hover,
+.menu-item.danger:focus-visible {
+  background-color: var(--red);
+  color: white;
+}
+
+.menu-separator {
+  height: 1px;
+  margin: 4px;
+  background-color: var(--divider);
+}
+
+/* ---------- Emoji picker ---------- */
+
+.emoji-picker {
+  display: none;
+  flex-direction: column;
+  width: 340px;
+  height: 360px;
+  border-radius: var(--radius);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.24);
+}
+
+/* The browser adds :popover-open while the popover is showing */
+.emoji-picker:popover-open {
+  display: flex;
+}
+
+.emoji-search {
+  margin: 12px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+}
+
+.emoji-search:focus {
+  outline: none;
+}
+
+.emoji-grid {
+  flex: 1;
+  min-height: 0;
+  padding: 0 8px 8px 12px;
+  overflow-y: auto;
+}
+
+.emoji-category {
+  margin: 8px 0 4px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* 8 equal columns */
+.emoji-options {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.emoji-option {
+  height: 36px;
+  border-radius: var(--radius-small);
+  font-size: 22px;
+}
+
+.emoji-option:hover {
+  background-color: var(--bg-hover);
+}
+
+.emoji-empty {
+  padding: 24px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ---------- Modals (<dialog>) ---------- */
+
+.modal {
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--bg-modal);
+  color: var(--text-normal);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* The dark layer behind a modal */
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 16px 0;
+}
+
+.modal-title {
+  color: var(--text-strong);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.modal-text {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.field-input {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-tertiary);
+}
+
+.field-input:focus {
+  outline: 2px solid var(--brand-accent);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -16px;
+  padding: 16px;
+  background-color: var(--bg-secondary);
+}
+
+.delete-preview {
+  margin: 0;
+  padding: 12px;
+  border-radius: var(--radius-small);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 0 0 1px var(--bg-tertiary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- User profile modal ---------- */
+
+.profile-modal {
+  position: relative;
+  width: 340px;
+  overflow: hidden;
+  --status-ring: var(--bg-modal);
+}
+
+.profile-banner {
+  height: 60px;
+  background-color: var(--avatar-color, var(--gray));
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 16px;
+  font-size: 32px;
+  box-shadow: 0 0 0 6px var(--bg-modal);
+}
+
+.profile-avatar .status-dot {
+  width: 22px;
+  height: 22px;
+  border-width: 4px;
+}
+
+.profile-body {
+  margin: 12px 16px 16px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background-color: var(--bg-tertiary);
+}
+
+.profile-name {
+  color: var(--text-strong);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.profile-username {
+  color: var(--text-normal);
+  font-size: 14px;
+}
+
+.profile-custom-status {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.profile-heading {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--divider);
+  color: var(--text-strong);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.profile-bio,
+.profile-role {
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+}

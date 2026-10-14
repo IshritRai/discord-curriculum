@@ -97,7 +97,11 @@ async function verifyLesson(browser, baseUrl, lesson) {
   const app = lesson.app
   let url
   if (app === 'react') {
-    await buildReact(n)
+    try {
+      await buildReact(n)
+    } catch (error) {
+      return { n, results: [], problems: [`vite build failed: ${error.message.split('\n').slice(0, 4).join(' ')}`] }
+    }
     url = `${baseUrl}/build/lesson-${pad(n)}/index.html`
   } else {
     url = `${baseUrl}/solutions/lesson-${pad(n)}/vanilla/index.html`

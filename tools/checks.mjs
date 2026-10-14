@@ -13,6 +13,16 @@ const count = (page, selector) => page.$$eval(selector, (els) => els.length)
 const text = (page, selector) => page.$eval(selector, (el) => el.textContent.trim())
 const visibleCount = (page, selector) => page.$$eval(selector, (els) => els.filter((el) => el.getClientRects().length > 0).length)
 
+// Polls until check() returns true (React may finish updating a moment after a click).
+async function eventually(check, timeout = 2000) {
+  const start = Date.now()
+  while (Date.now() - start < timeout) {
+    if (await check()) return true
+    await new Promise((resolve) => setTimeout(resolve, 50))
+  }
+  return check()
+}
+
 async function sendMessage(page, message) {
   await page.click('#composer-input')
   await page.keyboard.type(message)
@@ -184,8 +194,8 @@ export const checks = [
     react: 34,
     async run(page, { assert }) {
       await page.click('#server-list .server-item:nth-child(2) .server-button')
-      const active = await page.$$eval('#server-list .server-item', (items) => items.findIndex((i) => i.classList.contains('is-active')))
-      assert(active === 1, 'clicking a server should make it the active one')
+      const activeIndex = () => page.$$eval('#server-list .server-item', (items) => items.findIndex((i) => i.classList.contains('is-active')))
+      assert(await eventually(async () => (await activeIndex()) === 1), 'clicking a server should make it the active one')
     },
   },
   {
@@ -245,8 +255,8 @@ export const checks = [
     react: 34,
     async run(page, { assert }) {
       await page.click('.channel-item:nth-child(2) .channel-button')
-      const name = await text(page, '.channel-item.is-selected .channel-name')
-      assert((await text(page, '#chat-title')) === name, 'the chat header should show the selected channel')
+      const name = await text(page, '.channel-item:nth-child(2) .channel-name')
+      assert(await eventually(async () => (await text(page, '#chat-title')) === name), 'the chat header should show the selected channel')
     },
   },
   {
@@ -255,9 +265,22 @@ export const checks = [
     react: 36,
     async run(page, { assert }) {
       await page.click('#server-list .server-item:nth-child(3) .server-button')
+      await page.waitForTimeout(300)
       await page.reload({ waitUntil: 'networkidle' })
       const active = await page.$$eval('#server-list .server-item', (items) => items.findIndex((i) => i.classList.contains('is-active')))
       assert(active === 2, 'the selected server should be remembered after a reload')
+    },
+  },
+  {
+    id: 'routing',
+    react: 37,
+    async run(page, { assert }) {
+      await page.click('#server-list .server-item:nth-child(2) .server-button')
+      assert(await eventually(async () => /#\/channels\/s-pixel\/c-px-/.test(page.url())), `the URL should show the server and channel, got ${page.url()}`)
+      await page.goBack()
+      assert(await eventually(async () => (await text(page, '#server-name')) === 'Frontend Friends'), 'the back button should go back to the previous server')
+      await page.goto(page.url().replace(/#.*$/, '#/channels/s-study/c-sg-general'))
+      assert(await eventually(async () => (await text(page, '#server-name')) === 'Study Group'), 'opening a channel URL directly should show that channel')
     },
   },
   {
@@ -282,7 +305,8 @@ export const checks = [
       assert(badge === '2', `Study Group should show 2 mentions, got ${badge}`)
       await page.click('#server-list .server-item:nth-child(4) .server-button')
       await page.click('.channel-item.is-unread .channel-button')
-      assert((await count(page, '#server-list .server-item:nth-child(4) .mention-badge')) === 0, 'reading the channel should clear the mention badge')
+      const cleared = await eventually(async () => (await count(page, '#server-list .server-item:nth-child(4) .mention-badge')) === 0)
+      assert(cleared, 'reading the channel should clear the mention badge')
       assert((await count(page, '.channel-item svg use[href$="#speaker"]')) >= 1, 'voice channels should have a speaker icon')
     },
   },
@@ -294,8 +318,15 @@ export const checks = [
       assert((await count(page, '.date-divider')) >= 2, 'expected date dividers')
       assert((await count(page, '.message:not(.is-group-start)')) >= 3, 'consecutive messages by the same author should be grouped')
       assert((await count(page, '.message-time')) >= 3, 'expected timestamps')
-      const atBottom = await page.$eval('.message-list', (el) => el.scrollHeight - el.scrollTop - el.clientHeight < 5)
-      assert(atBottom, 'the feed should start scrolled to the newest message')
+    },
+  },
+  {
+    id: 'feed-starts-at-bottom',
+    vanilla: 20,
+    react: 36,
+    async run(page, { assert }) {
+      const atBottom = () => page.$eval('.message-list', (el) => el.scrollHeight - el.scrollTop - el.clientHeight < 5)
+      assert(await eventually(atBottom), 'the feed should start scrolled to the newest message')
     },
   },
   {
@@ -401,9 +432,9 @@ export const checks = [
       assert(await page.isVisible('#create-server-dialog'), 'the + button should open the create-server dialog')
       await page.fill('#create-server-dialog input[name="serverName"]', 'My Test Server')
       await page.click('#create-server-dialog button[type="submit"]')
-      assert(!(await page.isVisible('#create-server-dialog')), 'creating should close the dialog')
+      assert(await eventually(async () => !(await page.isVisible('#create-server-dialog'))), 'creating should close the dialog')
       assert((await count(page, '#server-list .server-item')) === 6, 'a new server should appear')
-      assert((await text(page, '#server-name')) === 'My Test Server', 'the new server should be selected')
+      assert(await eventually(async () => (await text(page, '#server-name')) === 'My Test Server'), 'the new server should be selected')
       await page.click('.member')
       assert(await page.isVisible('#profile-dialog'), 'clicking a member should open their profile')
       await page.keyboard.press('Escape')

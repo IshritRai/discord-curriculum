@@ -18,6 +18,7 @@ export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialData, createInitialState);
 
   // Timers need the *latest* state, not the state from when they were started.
+  // A ref is a box whose .current value survives re-renders without causing one.
   const stateRef = useRef(state);
   useEffect(() => {
     stateRef.current = state;
@@ -32,7 +33,7 @@ export function AppProvider({ children }) {
   return <AppContext value={value}>{children}</AppContext>;
 }
 
-// Every component gets the state and dispatch with: const { state, dispatch } = useApp();
+// Any component gets the state and dispatch with: const { state, dispatch } = useApp();
 export function useApp() {
   return useContext(AppContext);
 }

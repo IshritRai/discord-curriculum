@@ -1,0 +1,62 @@
+# Builds the React app and publishes both versions of the chat app to GitHub Pages.
+# It runs every time you push to the main branch (or when you start it by hand
+# from the Actions tab).
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Allow this workflow to publish to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v7
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: react-app/package-lock.json
+
+      - name: Build the React app
+        working-directory: react-app
+        run: |
+          npm ci
+          npm run build
+
+      - name: Put both versions in one folder
+        run: |
+          mkdir _site
+          cp index.html _site/
+          cp -r vanilla _site/vanilla
+          cp -r react-app/dist _site/react-app
+
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload the folder
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+      - name: Publish it
+        id: deployment
+        uses: actions/deploy-pages@v5

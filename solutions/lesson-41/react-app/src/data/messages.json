@@ -1,0 +1,434 @@
+{
+  "c-ff-general": [
+    {
+      "id": "m1",
+      "authorId": "u-priya",
+      "content": "Morning everyone ☀️ Reminder: the **weekly code review** thread opens at noon.",
+      "timestamp": "2026-10-11T09:12:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m2",
+      "authorId": "u-priya",
+      "content": "Post a link to your repo and say what kind of feedback you want.",
+      "timestamp": "2026-10-11T09:13:10Z",
+      "reactions": []
+    },
+    {
+      "id": "m3",
+      "authorId": "u-leo",
+      "content": "Quick question: what's the difference between `let` and `const`?",
+      "timestamp": "2026-10-11T09:30:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m4",
+      "authorId": "u-ava",
+      "content": "`const` means the *variable* can't be reassigned. The object it points to can still change:",
+      "timestamp": "2026-10-11T09:32:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m5",
+      "authorId": "u-ava",
+      "content": "```\nconst user = { name: \"Leo\" };\nuser.name = \"Leo 2\"; // fine\nuser = {};           // TypeError!\n```",
+      "timestamp": "2026-10-11T09:32:40Z",
+      "reactions": []
+    },
+    {
+      "id": "m6",
+      "authorId": "u-leo",
+      "content": "ohhh that makes sense, thanks!",
+      "timestamp": "2026-10-11T09:35:00Z",
+      "reactions": [
+        {
+          "emoji": "🙏",
+          "userIds": [
+            "u-ava"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m7",
+      "authorId": "u-maya",
+      "content": "Finished the hover animation for the server icons: the circle morphs into a rounded square. Way more satisfying than I expected.",
+      "timestamp": "2026-10-12T14:03:00Z",
+      "reactions": [
+        {
+          "emoji": "🔥",
+          "userIds": [
+            "u-ava",
+            "u-priya",
+            "u-me"
+          ]
+        },
+        {
+          "emoji": "😍",
+          "userIds": [
+            "u-zoe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m8",
+      "authorId": "u-ravi",
+      "content": "how did you animate border-radius? I thought you couldn't transition that",
+      "timestamp": "2026-10-12T14:05:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m9",
+      "authorId": "u-maya",
+      "content": "You can! `transition: border-radius 0.2s ease` works fine.",
+      "timestamp": "2026-10-12T14:06:30Z",
+      "reactions": []
+    },
+    {
+      "id": "m10",
+      "authorId": "u-noah",
+      "content": "Bookmarking the docs for later: https://developer.mozilla.org/en-US/docs/Web/CSS/transition",
+      "timestamp": "2026-10-12T14:20:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m11",
+      "authorId": "u-ava",
+      "content": "Hey @Sam, how's the clone going? Did you get the grid layout working?",
+      "timestamp": "2026-10-13T10:15:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m12",
+      "authorId": "u-me",
+      "content": "Getting there! The **four columns** line up now. Scrolling each column on its own was the tricky part.",
+      "timestamp": "2026-10-13T10:22:00Z",
+      "editedAt": "2026-10-13T10:24:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m13",
+      "authorId": "u-me",
+      "content": "`min-height: 0` saved me 😅",
+      "timestamp": "2026-10-13T10:23:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m14",
+      "authorId": "u-priya",
+      "content": "Classic. Flex and grid children default to `min-height: auto`, so they refuse to shrink below their content.",
+      "timestamp": "2026-10-13T10:25:00Z",
+      "reactions": [
+        {
+          "emoji": "💯",
+          "userIds": [
+            "u-ava",
+            "u-me",
+            "u-leo",
+            "u-ravi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m15",
+      "authorId": "u-bot",
+      "content": "📌 Tip of the day: press **Shift + Enter** to add a new line without sending.",
+      "timestamp": "2026-10-13T10:40:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m16",
+      "authorId": "u-zoe",
+      "content": "anyone up for game night on friday? 🎲",
+      "timestamp": "2026-10-13T11:02:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m17",
+      "authorId": "u-omar",
+      "content": "_always_",
+      "timestamp": "2026-10-13T11:03:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m18",
+      "authorId": "u-omar",
+      "content": "brb, lunch",
+      "timestamp": "2026-10-13T11:03:20Z",
+      "reactions": []
+    }
+  ],
+  "c-ff-welcome": [
+    {
+      "id": "m19",
+      "authorId": "u-bot",
+      "content": "Welcome to **Frontend Friends**! 👋\nRead #announcements, then introduce yourself here.",
+      "timestamp": "2026-10-01T08:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m20",
+      "authorId": "u-ravi",
+      "content": "Hi! I'm Ravi. Years of Python, brand new to JavaScript.",
+      "timestamp": "2026-10-02T17:41:00Z",
+      "reactions": [
+        {
+          "emoji": "👋",
+          "userIds": [
+            "u-ava",
+            "u-priya"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m21",
+      "authorId": "u-me",
+      "content": "Hey all, I'm Sam. I'm building a chat app clone to learn HTML, CSS and JS.",
+      "timestamp": "2026-10-03T12:10:00Z",
+      "reactions": [
+        {
+          "emoji": "👋",
+          "userIds": [
+            "u-ava",
+            "u-ravi",
+            "u-priya"
+          ]
+        },
+        {
+          "emoji": "🚀",
+          "userIds": [
+            "u-maya"
+          ]
+        }
+      ]
+    }
+  ],
+  "c-ff-announcements": [
+    {
+      "id": "m22",
+      "authorId": "u-ava",
+      "content": "**Code review Saturdays** are back! Post your repo link in #general and a mentor will take a look.",
+      "timestamp": "2026-10-09T16:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m23",
+      "authorId": "u-ava",
+      "content": "New channel: #showcase. Show us what you built! 🎉",
+      "timestamp": "2026-10-13T09:00:00Z",
+      "reactions": [
+        {
+          "emoji": "🎉",
+          "userIds": [
+            "u-priya",
+            "u-maya",
+            "u-noah"
+          ]
+        }
+      ]
+    }
+  ],
+  "c-ff-help": [
+    {
+      "id": "m24",
+      "authorId": "u-ravi",
+      "content": "Why does this log `undefined`?\n```\nfunction double(n) {\n  n * 2;\n}\nconsole.log(double(4));\n```",
+      "timestamp": "2026-10-13T15:20:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m25",
+      "authorId": "u-priya",
+      "content": "The function never *returns* anything. Add `return n * 2;`. In JavaScript a function without `return` gives back `undefined`.",
+      "timestamp": "2026-10-13T15:24:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m26",
+      "authorId": "u-ravi",
+      "content": "aaah. Python spoiled me with lambdas 😅 @Sam you had this exact bug last week, right?",
+      "timestamp": "2026-10-13T15:25:00Z",
+      "reactions": []
+    }
+  ],
+  "c-ff-showcase": [
+    {
+      "id": "m27",
+      "authorId": "u-maya",
+      "content": "My portfolio is finally live: https://example.com/maya — feedback welcome!",
+      "timestamp": "2026-10-13T18:30:00Z",
+      "reactions": [
+        {
+          "emoji": "🔥",
+          "userIds": [
+            "u-ava"
+          ]
+        },
+        {
+          "emoji": "👏",
+          "userIds": [
+            "u-priya",
+            "u-noah"
+          ]
+        }
+      ]
+    }
+  ],
+  "c-ff-offtopic": [
+    {
+      "id": "m28",
+      "authorId": "u-zoe",
+      "content": "my cat just walked across my keyboard and committed to main 🐈",
+      "timestamp": "2026-10-12T20:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m29",
+      "authorId": "u-leo",
+      "content": "ship it",
+      "timestamp": "2026-10-12T20:01:00Z",
+      "reactions": [
+        {
+          "emoji": "😂",
+          "userIds": [
+            "u-zoe",
+            "u-omar",
+            "u-me"
+          ]
+        }
+      ]
+    }
+  ],
+  "c-px-general": [
+    {
+      "id": "m30",
+      "authorId": "u-lina",
+      "content": "Theme for this week: **autumn** 🍂",
+      "timestamp": "2026-10-10T11:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m31",
+      "authorId": "u-maya",
+      "content": "ooh I'm in",
+      "timestamp": "2026-10-10T11:30:00Z",
+      "reactions": []
+    }
+  ],
+  "c-px-sketch": [
+    {
+      "id": "m32",
+      "authorId": "u-lina",
+      "content": "Day 214: a tiny pixel fox 🦊",
+      "timestamp": "2026-10-13T07:45:00Z",
+      "reactions": [
+        {
+          "emoji": "😍",
+          "userIds": [
+            "u-maya",
+            "u-zoe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m33",
+      "authorId": "u-kenji",
+      "content": "Day 12: mountain silhouette at sunset. Only 4 colors!",
+      "timestamp": "2026-10-13T08:10:00Z",
+      "reactions": []
+    }
+  ],
+  "c-hk-general": [
+    {
+      "id": "m34",
+      "authorId": "u-mateo",
+      "content": "Trail was muddy but worth it. Bring *real* boots next time 😄",
+      "timestamp": "2026-10-11T07:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m35",
+      "authorId": "u-omar",
+      "content": "my sneakers have entered the chat",
+      "timestamp": "2026-10-11T07:20:00Z",
+      "reactions": []
+    }
+  ],
+  "c-hk-trips": [
+    {
+      "id": "m36",
+      "authorId": "u-mateo",
+      "content": "Saturday: Ridge Loop, 12 km, meet at 8:00 at the north parking lot.",
+      "timestamp": "2026-10-12T19:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m37",
+      "authorId": "u-noah",
+      "content": "count me in!",
+      "timestamp": "2026-10-12T19:05:00Z",
+      "reactions": []
+    }
+  ],
+  "c-sg-general": [
+    {
+      "id": "m38",
+      "authorId": "u-ivy",
+      "content": "pomodoro session in Library at 7? 🍅",
+      "timestamp": "2026-10-12T21:00:00Z",
+      "reactions": []
+    }
+  ],
+  "c-sg-homework": [
+    {
+      "id": "m39",
+      "authorId": "u-ivy",
+      "content": "@Sam do you remember which lecture covered recursion?",
+      "timestamp": "2026-10-13T16:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m40",
+      "authorId": "u-ravi",
+      "content": "Lecture 6 I think. @Sam can you confirm?",
+      "timestamp": "2026-10-13T16:05:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m41",
+      "authorId": "u-priya",
+      "content": "Lecture 6, yes. Slides are in the course drive.",
+      "timestamp": "2026-10-13T16:10:00Z",
+      "reactions": []
+    }
+  ],
+  "c-gn-general": [
+    {
+      "id": "m42",
+      "authorId": "u-theo",
+      "content": "This week: **Codenames** then something chaotic. Votes?",
+      "timestamp": "2026-10-13T17:00:00Z",
+      "reactions": []
+    },
+    {
+      "id": "m43",
+      "authorId": "u-zoe",
+      "content": "chaotic = Exploding Kittens 🙋",
+      "timestamp": "2026-10-13T17:02:00Z",
+      "reactions": []
+    }
+  ],
+  "c-gn-lfg": [
+    {
+      "id": "m44",
+      "authorId": "u-leo",
+      "content": "need 1 more for a co-op run tonight",
+      "timestamp": "2026-10-12T22:00:00Z",
+      "reactions": []
+    }
+  ]
+}

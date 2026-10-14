@@ -309,6 +309,7 @@ function App() {
                   <svg className="icon"><use href="icons.svg#emoji" /></svg>
                 </button>
               </form>
+              <p className="typing-indicator" id="typing-indicator" aria-live="polite"></p>
             </section>
   
             <aside className="member-list scroller" id="member-list" aria-label="Members">

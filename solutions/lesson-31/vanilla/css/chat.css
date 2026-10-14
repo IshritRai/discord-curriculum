@@ -389,7 +389,7 @@
   display: flex;
   align-items: flex-start;
   gap: 4px;
-  margin: 0 16px 24px;
+  margin: 0 16px; /* the typing indicator below it adds the space at the bottom */
   padding: 0 8px;
   border-radius: var(--radius);
   background-color: var(--bg-input);

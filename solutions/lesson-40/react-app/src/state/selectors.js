@@ -1,4 +1,5 @@
-// Small functions that look things up in the state. They never change anything.
+// Small functions that look things up in the app's data. They never change anything.
+
 
 export const CURRENT_USER_ID = 'u-me';
 
@@ -6,12 +7,9 @@ export function getUser(state, userId) {
   return state.users.find((user) => user.id === userId);
 }
 
+// All channels of a server, without the categories around them.
 export function getChannels(server) {
   return server.categories.flatMap((category) => category.channels);
-}
-
-export function findServer(state, serverId) {
-  return state.servers.find((server) => server.id === serverId);
 }
 
 export function findChannel(state, channelId) {
@@ -26,6 +24,10 @@ export function findChannel(state, channelId) {
 
 export function findServerOfChannel(state, channelId) {
   return state.servers.find((server) => getChannels(server).some((c) => c.id === channelId));
+}
+
+export function findServer(state, serverId) {
+  return state.servers.find((server) => server.id === serverId);
 }
 
 // The channel to open for a server: the last one you looked at, or its first text channel.

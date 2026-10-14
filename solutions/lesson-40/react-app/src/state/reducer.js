@@ -1,11 +1,13 @@
 // The reducer: ONE pure function that takes the current state and an action,
 // and returns the next state. It never changes the old state — it builds a new one.
-// (Random ids and timestamps are made by the caller, because a reducer must give
-// the same result every time it's called with the same input.)
+// (Random ids and timestamps are made by the caller: a reducer must give the
+// same result every time it's called with the same input.)
 
 import { loadSaved } from './storage.js';
 import { CURRENT_USER_ID, findChannel, findServerOfChannel, getChannels } from './selectors.js';
+import { updateChannel, updateMessage, toggleInList } from './updates.js';
 
+// Builds the first state: from localStorage if something was saved, otherwise from the JSON files.
 export function createInitialState(data) {
   const saved = loadSaved();
   return {
@@ -21,50 +23,23 @@ export function createInitialState(data) {
     chatter: data.chatter,
 
     // Temporary UI state (not saved)
-    viewingChannelId: null, // the channel on screen (the URL is the real source; see App.jsx)
+    viewingChannelId: null, // the channel on screen (the URL decides it; see App.jsx)
     showMembers: !window.matchMedia('(max-width: 1000px)').matches,
     navOpen: false,
+    drafts: {}, // channel id → unsent text in the composer
     editingMessageId: null,
-    typing: null,
+    typing: null, // { channelId, userId } while someone is "typing"
     voice: { channelId: null, muted: false, deafened: false },
     speakingUserIds: [],
-    picker: null, // { target, rect } while the emoji picker is open
+    picker: null, // { onPick, rect } while the emoji picker is open
     menu: null, // { kind, id, x, y } while a context menu is open
     dialog: null, // { kind: 'createServer' | 'profile' | 'delete', id }
   };
 }
 
-// ---------- Helpers that copy-and-change nested data ----------
-
-// Returns new servers where one channel has some fields changed.
-function updateChannel(servers, channelId, changes) {
-  return servers.map((server) => ({
-    ...server,
-    categories: server.categories.map((category) => ({
-      ...category,
-      channels: category.channels.map((channel) => (channel.id === channelId ? { ...channel, ...changes } : channel)),
-    })),
-  }));
-}
-
-// Returns new messages where one message is replaced by update(message).
-function updateMessage(messages, messageId, update) {
-  const result = {};
-  for (const [channelId, list] of Object.entries(messages)) {
-    result[channelId] = list.map((message) => (message.id === messageId ? update(message) : message));
-  }
-  return result;
-}
-
-function toggleInList(list, item) {
-  return list.includes(item) ? list.filter((x) => x !== item) : [...list, item];
-}
-
-// ---------- The reducer ----------
-
 export function reducer(state, action) {
   switch (action.type) {
-    // ----- Navigation -----
+    // The URL changed to /channels/:serverId/:channelId (see App.jsx)
     case 'channelOpened': {
       const { serverId, channelId } = action;
       return {
@@ -92,7 +67,6 @@ export function reducer(state, action) {
       return { ...state, servers };
     }
 
-    // ----- Messages -----
     case 'sendMessage': {
       const { message, channelId, mentionsMe } = action;
       const list = state.messages[channelId] ?? [];
@@ -100,18 +74,20 @@ export function reducer(state, action) {
       // A message from someone else in a channel you're not looking at
       if (message.authorId !== CURRENT_USER_ID && channelId !== state.viewingChannelId) {
         const channel = findChannel(state, channelId);
-        servers = updateChannel(servers, channelId, {
-          unread: true,
-          mentions: channel.mentions + (mentionsMe ? 1 : 0),
-        });
+        servers = updateChannel(servers, channelId, { unread: true, mentions: channel.mentions + (mentionsMe ? 1 : 0) });
       }
       return {
         ...state,
         servers,
         messages: { ...state.messages, [channelId]: [...list, message] },
+        // Whoever was "typing" this message is done typing
         typing: state.typing && state.typing.userId === message.authorId ? null : state.typing,
       };
     }
+    case 'setTyping':
+      return { ...state, typing: action.typing };
+    case 'setDraft':
+      return { ...state, drafts: { ...state.drafts, [action.channelId]: action.text } };
     case 'startEditing':
       return { ...state, editingMessageId: action.messageId };
     case 'cancelEditing':
@@ -131,6 +107,7 @@ export function reducer(state, action) {
       }
       return { ...state, messages, editingMessageId: null, dialog: null };
     }
+
     case 'toggleReaction':
       return {
         ...state,
@@ -147,16 +124,15 @@ export function reducer(state, action) {
           return { ...message, reactions };
         }),
       };
-    case 'setTyping':
-      return { ...state, typing: action.typing };
 
     // ----- Servers -----
     case 'createServer':
       return { ...state, servers: [...state.servers, action.server], dialog: null };
     case 'leaveServer': {
       if (state.servers.length === 1) {
-        return state;
+        return state; // keep at least one server
       }
+      // Leaving the server you're talking in also disconnects you from voice
       const voiceServer = state.voice.channelId && findServerOfChannel(state, state.voice.channelId);
       const leavingVoice = voiceServer && voiceServer.id === action.serverId;
       return {
@@ -188,11 +164,13 @@ export function reducer(state, action) {
     case 'setSpeaking':
       return { ...state, speakingUserIds: action.userIds };
 
-    // ----- Overlays -----
+    // ----- The emoji picker -----
     case 'openPicker':
-      return { ...state, picker: { target: action.target, rect: action.rect } };
+      return { ...state, picker: { onPick: action.onPick, rect: action.rect } };
     case 'closePicker':
       return { ...state, picker: null };
+
+    // ----- Context menus and dialogs -----
     case 'openMenu':
       return { ...state, menu: action.menu };
     case 'closeMenu':
