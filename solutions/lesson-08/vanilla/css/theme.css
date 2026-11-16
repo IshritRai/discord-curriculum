@@ -3,7 +3,7 @@
    so changing the theme means changing this file only. */
 
 :root {
-  /* Brand accent color (Lesson 16 moves this into js/brand.js) */
+  /* Brand accent color (Lesson 17 moves this into js/brand.js) */
   --brand-accent: #0f7b6c;
 
   /* Backgrounds, from darkest to lightest */

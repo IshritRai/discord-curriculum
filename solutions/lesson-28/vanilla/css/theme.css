@@ -10,6 +10,8 @@
   --bg-secondary: #2b2d31;     /* channel sidebar, member list */
   --bg-primary: #313338;       /* chat area */
   --bg-input: #383a40;         /* message composer */
+  --bg-modal: #313338;         /* dialogs */
+  --bg-floating: #111214;      /* tooltips and menus */
 
   /* Interactive backgrounds (hover / selected) */
   --bg-hover: rgba(78, 80, 88, 0.3);

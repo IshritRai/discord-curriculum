@@ -90,10 +90,6 @@ The new CSS uses a variable `--bg-floating` (very dark grey, used by tooltips an
   --bg-floating: #111214;      /* tooltips and menus */
 ```
 
-::: warning Check this step against your own copy
-The lesson's reference solution may not define `--bg-floating` (or Lesson 26's `--bg-modal`) yet. Without them, `var(--bg-floating)` has no value and menus and tooltips would have no background at all. If you compare your files with the reference, keep your line.
-:::
-
 ::: solution
 ```css [vanilla/css/theme.css]
   --bg-input: #383a40;         /* message composer */

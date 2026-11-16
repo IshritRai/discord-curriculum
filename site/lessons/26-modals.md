@@ -129,10 +129,6 @@ The modal CSS below uses a variable named `--bg-modal`. Add it to `vanilla/css/t
 
 (Same colour as `--bg-primary`.) If you skip this, `var(--bg-modal)` has no value and the dialogs have no background at all, so the page shows through them.
 
-::: warning Check this step against your own copy
-The lesson's reference solution may not contain this line yet. If you compare your files with the reference solution, a missing `--bg-modal` there is a bug in the reference, not in your code: keep the line.
-:::
-
 ::: solution
 ```css [vanilla/css/theme.css]
   --bg-input: #383a40;         /* message composer */

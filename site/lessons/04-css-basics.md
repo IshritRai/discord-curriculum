@@ -198,10 +198,6 @@ The comments after the values are optional, but the notes help you later. One co
 
 Nothing changes in the browser yet, because no rule *uses* these variables yet and the file isn't linked.
 
-::: info
-The comment above `--brand-accent` in the finished file names a different lesson number than Lesson 17, where the brand configuration is actually built. It's only a comment, so it has no effect either way.
-:::
-
 ### Step 2 — Link theme.css and write base.css
 
 Open `vanilla/index.html`. Inside `<head>`, **after** the favicon `<link>`, add the first two stylesheet links. Order matters here: the theme comes first.
