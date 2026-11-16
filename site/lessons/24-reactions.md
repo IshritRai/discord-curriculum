@@ -1,6 +1,6 @@
 ---
 lesson: 24
-title: Emoji picker & reactions
+title: "Emoji picker & reactions"
 ---
 
 # Lesson 24 — Emoji picker & reactions

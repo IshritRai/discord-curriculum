@@ -1,6 +1,6 @@
 ---
 lesson: 28
-title: Timers — typing indicator & fake messages
+title: "Timers — typing indicator & fake messages"
 ---
 
 # Lesson 28 — Timers: typing indicator & fake messages

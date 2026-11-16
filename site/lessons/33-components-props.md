@@ -1,6 +1,6 @@
 ---
 lesson: 33
-title: Components, props, lists & keys
+title: "Components, props, lists & keys"
 ---
 
 # Lesson 33 — Components, props, lists & keys

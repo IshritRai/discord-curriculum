@@ -1,6 +1,6 @@
 ---
 lesson: 36
-title: Effects & refs
+title: "Effects & refs"
 ---
 
 # Lesson 36 — Effects & refs

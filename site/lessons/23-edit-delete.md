@@ -1,6 +1,6 @@
 ---
 lesson: 23
-title: Editing & deleting your messages
+title: "Editing & deleting your messages"
 ---
 
 # Lesson 23 — Editing & deleting your messages

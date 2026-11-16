@@ -1,6 +1,6 @@
 ---
 lesson: 16
-title: State, rendering & localStorage
+title: "State, rendering & localStorage"
 ---
 
 # Lesson 16 — State, rendering & localStorage

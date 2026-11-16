@@ -1,6 +1,6 @@
 ---
 lesson: 2
-title: Elements, attributes & nesting
+title: "Elements, attributes & nesting"
 ---
 
 # Lesson 02 — Elements, attributes & nesting

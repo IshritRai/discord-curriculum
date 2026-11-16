@@ -1,6 +1,6 @@
 ---
 lesson: 13
-title: The DOM: find and change elements
+title: "The DOM: find and change elements"
 ---
 
 # Lesson 13 — The DOM: find and change elements

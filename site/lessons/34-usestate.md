@@ -1,6 +1,6 @@
 ---
 lesson: 34
-title: State & events with useState
+title: "State & events with useState"
 ---
 
 # Lesson 34 — State & events with useState

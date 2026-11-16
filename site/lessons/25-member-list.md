@@ -1,6 +1,6 @@
 ---
 lesson: 25
-title: Member list — roles & online status
+title: "Member list — roles & online status"
 ---
 
 # Lesson 25 — Member list: roles & online status

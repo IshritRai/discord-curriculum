@@ -1,6 +1,6 @@
 ---
 lesson: 39
-title: Modals, context menus & tooltips
+title: "Modals, context menus & tooltips"
 ---
 
 # Lesson 39 — Modals, context menus & tooltips

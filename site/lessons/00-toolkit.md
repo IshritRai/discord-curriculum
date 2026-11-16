@@ -1,6 +1,6 @@
 ---
 lesson: 0
-title: Your toolkit & how the web works
+title: "Your toolkit & how the web works"
 ---
 
 # Lesson 00 — Your toolkit & how the web works

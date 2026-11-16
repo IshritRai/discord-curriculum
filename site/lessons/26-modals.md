@@ -1,6 +1,6 @@
 ---
 lesson: 26
-title: Modals with <dialog>
+title: "Modals with <dialog>"
 ---
 
 # Lesson 26 — Modals with `<dialog>`

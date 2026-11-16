@@ -1,6 +1,6 @@
 ---
 lesson: 38
-title: Reactions, emoji picker & member list
+title: "Reactions, emoji picker & member list"
 ---
 
 # Lesson 38 — Reactions, emoji picker & member list

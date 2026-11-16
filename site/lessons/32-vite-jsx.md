@@ -1,6 +1,6 @@
 ---
 lesson: 32
-title: Node, npm, Vite & JSX
+title: "Node, npm, Vite & JSX"
 ---
 
 # Lesson 32 — Node, npm, Vite & JSX

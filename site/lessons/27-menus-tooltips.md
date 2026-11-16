@@ -1,6 +1,6 @@
 ---
 lesson: 27
-title: Context menus & tooltips
+title: "Context menus & tooltips"
 ---
 
 # Lesson 27 — Context menus & tooltips

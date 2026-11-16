@@ -1,6 +1,6 @@
 ---
 lesson: 17
-title: Modules & the brand config
+title: "Modules & the brand config"
 ---
 
 # Lesson 17 — Modules & the brand config

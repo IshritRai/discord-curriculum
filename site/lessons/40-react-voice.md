@@ -1,6 +1,6 @@
 ---
 lesson: 40
-title: Voice UI & custom hooks
+title: "Voice UI & custom hooks"
 ---
 
 # Lesson 40 — Voice UI & custom hooks

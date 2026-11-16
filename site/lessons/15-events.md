@@ -1,6 +1,6 @@
 ---
 lesson: 15
-title: Events & event delegation
+title: "Events & event delegation"
 ---
 
 # Lesson 15 — Events & event delegation
