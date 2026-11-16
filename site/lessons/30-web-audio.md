@@ -394,7 +394,7 @@ The prompt text, the indicator and the place to change a decision (usually the i
 ### Step 6 — Prove that nothing leaves your computer
 
 1. Open DevTools → **Network**. Click the **Clear** button (the circle with a line), then tick the checkbox and talk for a few seconds. No new requests appear (you may see nothing at all).
-2. Open `mic.js` and search it (<kbd>Cmd</kbd>+<kbd>F</kbd>) for `fetch`. The only matches are none in the code itself: the file never sends anything. The only thing it hands back to the app is `true` or `false`.
+2. Open `mic.js` and search it (<Keys mac="Cmd+F" win="Ctrl+F" />) for `fetch`. The only matches are none in the code itself: the file never sends anything. The only thing it hands back to the app is `true` or `false`.
 
 The Network panel only shows what *this page* sends over the network. Seeing it stay quiet while the mic is on is solid evidence that your audio isn't being sent. The measurements stay in memory in the tab and vanish when you stop.
 

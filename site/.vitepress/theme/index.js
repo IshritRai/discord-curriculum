@@ -7,6 +7,8 @@ import Mermaid from './components/Mermaid.vue'
 import ConceptList from './components/ConceptList.vue'
 import ConceptIndex from './components/ConceptIndex.vue'
 import ProgressDashboard from './components/ProgressDashboard.vue'
+import Keys from './components/Keys.vue'
+import Os from './components/Os.vue'
 import './custom.css'
 
 export default {
@@ -20,5 +22,7 @@ export default {
     app.component('ConceptList', ConceptList)
     app.component('ConceptIndex', ConceptIndex)
     app.component('ProgressDashboard', ProgressDashboard)
+    app.component('Keys', Keys)
+    app.component('Os', Os)
   },
 }

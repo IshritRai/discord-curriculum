@@ -235,7 +235,7 @@ Save. The page turns dark, with light text in a different typeface. The buttons 
 
 Add the rule for buttons and fields from the concepts section, **below** the `body` rule. Then add two small rules: links get the theme's link colour, and `code` uses the monospace font at 85% of its surroundings.
 
-Look at the page after you save: the buttons are now flat text with no grey background. If you comment out `font: inherit` (select it and press <kbd>Cmd</kbd>+<kbd>/</kbd>), the button font changes back; then undo.
+Look at the page after you save: the buttons are now flat text with no grey background. If you comment out `font: inherit` (select it and press <Keys mac="Cmd+/" win="Ctrl+/" />), the button font changes back; then undo.
 
 ::: solution
 <<< @/../solutions/lesson-04/vanilla/css/base.css [vanilla/css/base.css]
@@ -377,7 +377,7 @@ DevTools layout and labels change between Chrome versions. If something doesn't 
 
 **`.channel-item .is-unread` does nothing.** The space made it a descendant selector: it looks for `.is-unread` *inside* `.channel-item`. The class is on the `.channel-item` itself, so it needs to be `.channel-item.is-unread` with no space.
 
-**You edited a file but the browser shows the old version.** The CSS may be cached. Hard reload with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>, and check that the file is saved.
+**You edited a file but the browser shows the old version.** The CSS may be cached. Hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />, and check that the file is saved.
 
 ## 📝 Quiz
 

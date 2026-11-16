@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApp } from '../state/AppContext.jsx';
 import { CURRENT_USER_ID, findChannel, findServerOfChannel } from '../state/selectors.js';
 import { useMicSpeaking } from '../hooks/useMicSpeaking.js';
@@ -10,6 +10,15 @@ export function VoicePanel() {
   const [micOn, setMicOn] = useState(false);
   const [micError, setMicError] = useState(false);
   const channelId = state.voice.channelId;
+  const muted = state.voice.muted;
+
+  // The mic may only stay on while you are connected and not muted,
+  // however you got disconnected (button, Leave Server, deafen...).
+  useEffect(() => {
+    if (channelId === null || muted) {
+      setMicOn(false);
+    }
+  }, [channelId, muted]);
 
   useMicSpeaking(
     micOn && channelId !== null,
@@ -53,7 +62,13 @@ export function VoicePanel() {
           {channel && `${channel.name} / ${server.name}`}
         </p>
         <label className="mic-toggle">
-          <input type="checkbox" id="mic-toggle" checked={micOn} onChange={(event) => setMicOn(event.target.checked)} />
+          <input
+            type="checkbox"
+            id="mic-toggle"
+            checked={micOn}
+            disabled={muted}
+            onChange={(event) => setMicOn(event.target.checked)}
+          />
           <span>{micLabel}</span>
         </label>
       </div>

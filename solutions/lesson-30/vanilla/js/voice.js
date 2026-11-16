@@ -65,6 +65,15 @@ function turnMicOff() {
   setMySpeaking(false);
 }
 
+// Runs after every render. The mic may only stay on while you are connected
+// and not muted, however you got disconnected (button, Leave Server, deafen...).
+export function syncMic() {
+  if (micToggle.checked && (state.voice.channelId === null || state.voice.muted)) {
+    turnMicOff();
+    micToggleText.textContent = 'Light up when I talk (uses my mic)';
+  }
+}
+
 export function setupVoice() {
   disconnectButton.addEventListener('click', () => {
     turnMicOff();
@@ -74,6 +83,11 @@ export function setupVoice() {
   micToggle.addEventListener('change', async () => {
     if (!micToggle.checked) {
       turnMicOff();
+      return;
+    }
+    if (state.voice.muted) {
+      micToggle.checked = false;
+      micToggleText.textContent = 'Unmute first, then turn this on';
       return;
     }
     try {

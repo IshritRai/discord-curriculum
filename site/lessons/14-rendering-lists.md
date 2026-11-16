@@ -405,7 +405,7 @@ Add the member code. A server's `members` only contain user ids, so `renderMembe
 
 `createMember` builds a `<button class="member">` with the avatar (using your `avatar` helper with a status dot) and the names. The status text is only added if the user has a `customStatus`: an empty string is "falsy", so `if (user.customStatus)` skips it. Offline users get the class `is-offline`.
 
-The heading says `Members — 13 (10 online)`. The em dash `—` is a plain character; on macOS type it with <kbd>Option</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd>.
+The heading says `Members — 13 (10 online)`. The em dash `—` is a plain character; copy it from the code block rather than typing it (a normal hyphen `-` also works).
 
 ::: solution
 ```js [vanilla/js/app.js]

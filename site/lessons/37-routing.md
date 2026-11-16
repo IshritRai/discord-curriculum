@@ -604,7 +604,7 @@ function ServerItem({ server, isActive }) {
 - [ ] Open `http://localhost:5173/` (your port may differ): the address changes by itself to something like `…/#/channels/s-frontend/c-ff-general`.
 - [ ] Click another channel: the address bar changes and the chat changes. Click the browser's **Back** button: you return to the previous channel.
 - [ ] Click a different server, then click back on the first one: it opens the channel you last used there, not necessarily the first.
-- [ ] Reload the page (<kbd>Cmd</kbd>+<kbd>R</kbd>) while in a non-default channel: you stay in that channel.
+- [ ] Reload the page (<Keys mac="Cmd+R" win="Ctrl+R" />) while in a non-default channel: you stay in that channel.
 - [ ] Type `#/channels/nope/nothing` after the `localhost:5173/` in the address bar and press <kbd>Enter</kbd>: you are redirected to a real channel.
 - [ ] Clicking a voice channel (🔊 Lounge) does nothing yet.
 - [ ] No red errors in the Console. DevTools → **Application** → **Local Storage** → the saved JSON no longer has an `activeServerId` field after you click around once.

@@ -142,7 +142,7 @@ All of today's work is in `vanilla/index.html`. Keep the `<head>` exactly as it 
 The finished file is about 230 lines, mostly repetition. You'll type the first item of each list yourself and **paste** the repeated items. Don't try to memorise the repetition; focus on the pattern.
 
 ::: tip Typing emoji
-Some servers use emoji as icons. On a Mac, press <kbd>Ctrl</kbd>+<kbd>Cmd</kbd>+<kbd>Space</kbd> to open the emoji picker, or copy them from the pasted code.
+Some servers use emoji as icons. To type an emoji yourself, <Os mac="press Ctrl+Cmd+Space to open the emoji picker" windows="press the Windows key and the period key together to open the emoji picker" linux="use your desktop's emoji picker if it has one" />, or simply copy them from the pasted code.
 :::
 
 ### Step 1 — Plan the three top-level regions
@@ -770,7 +770,7 @@ Do these three quick experiments in the browser. They show what the effort bough
 - [ ] The page shows lists of buttons for servers and channels, a big **Frontend Friends** heading, a user panel with Mute / Deafen / Settings, a **general** heading, **Pins** and **Members** buttons with a search box, a numbered list of messages, a message box, and the member names.
 - [ ] Pressing <kbd>Tab</kbd> moves the focus ring through every button, the search field and the message box.
 - [ ] In DevTools → **Elements**, the structure is `div.app` → `nav.server-rail`, `aside.channel-sidebar`, `main.chat`.
-- [ ] Each `id` appears **once** in the file. Use <kbd>Cmd</kbd>+<kbd>F</kbd> in the Elements panel to search for `id="message-list"` and check you get one match.
+- [ ] Each `id` appears **once** in the file. Use <Keys mac="Cmd+F" win="Ctrl+F" /> in the Elements panel to search for `id="message-list"` and check you get one match.
 - [ ] No red errors in the **Console**.
 - [ ] In DevTools → **Elements**, the Mute button's tag shows `aria-label="Mute"`.
 
@@ -780,7 +780,7 @@ Do these three quick experiments in the browser. They show what the effort bough
 
 **The `<li>`s don't line up like a list.** A list item must be directly inside a `<ul>` or `<ol>`. Check that you haven't wrapped an `<li>` in a `<div>`, and that every `<li>` sits directly inside its `<ul>` or `<ol>`.
 
-**The same `id` is used twice.** You may have pasted a block twice. IDs must be unique. Search the file with <kbd>Cmd</kbd>+<kbd>F</kbd> for `id="` and check that every one is different.
+**The same `id` is used twice.** You may have pasted a block twice. IDs must be unique. Search the file with <Keys mac="Cmd+F" win="Ctrl+F" /> for `id="` and check that every one is different.
 
 **You wrote `class="server-item" is-active`.** Both names must be inside **one** pair of quotes: `class="server-item is-active"`.
 

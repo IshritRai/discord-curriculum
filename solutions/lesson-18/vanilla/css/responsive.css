@@ -25,7 +25,9 @@
     grid-template-columns: 1fr;
   }
 
-  /* Pushed off the left edge until .app gets the is-nav-open class */
+  /* Pushed off the left edge until .app gets the is-nav-open class.
+     visibility: hidden also keeps the keyboard (Tab) out of the closed drawer.
+     The 0.25s delay on visibility lets the slide-out finish before it hides. */
   .nav-drawer {
     position: fixed;
     top: 0;
@@ -33,11 +35,14 @@
     left: 0;
     z-index: 20;
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
   }
 
   .app.is-nav-open .nav-drawer {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.25s ease;
   }
 
   /* "+" means: the element right after .app */

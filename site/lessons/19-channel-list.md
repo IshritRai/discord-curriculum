@@ -491,7 +491,7 @@ To get the unread badges back, delete the key `chat-clone-state-v1` in DevTools 
 
 **Nothing shows for voice users.** `voice.css` isn't linked in `index.html`, or the path is wrong. Check the Network panel for a 404.
 
-**The old rule still hides channels after you removed it.** Hard-reload (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>); the browser may have cached the old CSS.
+**The old rule still hides channels after you removed it.** Hard-reload (<Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />); the browser may have cached the old CSS.
 
 ## 📝 Quiz
 

@@ -87,7 +87,7 @@ Browsers keep `localStorage` separately for each **origin** (scheme + host + por
 
 ### Hard reload
 
-Browsers cache files so pages load faster. After you deploy a change, you may still see the old version. A **hard reload** (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> in Chrome) fetches everything again. If you have DevTools open, you can also tick **Disable cache** in the Network panel while testing.
+Browsers cache files so pages load faster. After you deploy a change, you may still see the old version. A **hard reload** (<Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" /> in Chrome) fetches everything again. If you have DevTools open, you can also tick **Disable cache** in the Network panel while testing.
 
 ## 🛠️ Build it
 
@@ -188,7 +188,7 @@ After a minute or two, reload the **Pages** settings page. GitHub shows the addr
 1. Open `https://YOUR-USERNAME.github.io/chat-clone/` in Chrome. You should see your landing page. Click the link, or go directly to `https://YOUR-USERNAME.github.io/chat-clone/vanilla/`.
 2. The app should load with all the servers, channels and messages. Click around, send a message, open the emoji picker.
 3. Look at the address bar: it starts with `https://` and has a padlock (Chrome may show a settings icon instead).
-4. Open DevTools → **Network**, tick **Disable cache** and do a hard reload (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>). Find `users.json` and `main.js` in the list: both should have status **200** and their address starts with `https://YOUR-USERNAME.github.io/chat-clone/vanilla/`.
+4. Open DevTools → **Network**, tick **Disable cache** and do a hard reload (<Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />). Find `users.json` and `main.js` in the list: both should have status **200** and their address starts with `https://YOUR-USERNAME.github.io/chat-clone/vanilla/`.
 5. Open the **Console**: there should be no red errors.
 6. Open the address on your phone. Notice that your layout from Lesson 11 adapts to the narrow screen.
 
@@ -225,7 +225,7 @@ Undo the joke if you like (change the heading back, commit and push again).
 
 **The landing page works but `vanilla/` is blank.** Open DevTools → Console and Network. A red `404` next to a file means a path or filename is wrong. GitHub's servers treat upper and lower case as different (`Avatar.svg` and `avatar.svg` are different files), while your Mac usually doesn't. Make the names in your code match the file names exactly, including capitals.
 
-**My new changes don't show up.** Wait a little: GitHub's docs say it can take up to 10 minutes. Then hard-reload (<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>). Also check that you really pushed (`git status` should say "Your branch is up to date with 'origin/main'").
+**My new changes don't show up.** Wait a little: GitHub's docs say it can take up to 10 minutes. Then hard-reload (<Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />). Also check that you really pushed (`git status` should say "Your branch is up to date with 'origin/main'").
 
 **The app loads but it's empty or my messages are gone.** The deployed site is a different origin from Live Server, so it has its own `localStorage` (see *New concepts*). It starts fresh from the JSON files. Nothing is wrong.
 

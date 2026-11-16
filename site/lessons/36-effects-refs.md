@@ -840,7 +840,7 @@ function MessageEditor({ message }) {
 ## ✅ Checkpoint
 
 - [ ] No red errors in the **Console**.
-- [ ] Send a message, then reload the page (<kbd>Cmd</kbd>+<kbd>R</kbd>): your message is still there. In DevTools → **Application** → **Local Storage**, a key named `chat-clone-state-v1` exists.
+- [ ] Send a message, then reload the page (<Keys mac="Cmd+R" win="Ctrl+R" />): your message is still there. In DevTools → **Application** → **Local Storage**, a key named `chat-clone-state-v1` exists.
 - [ ] Within about 30 seconds, "someone is typing…" appears under the composer, then their message arrives. After you send a message there's a good chance someone replies within a few seconds.
 - [ ] Switch to another channel while a message arrives in a channel you're not looking at: a badge or a bold name shows up.
 - [ ] Scroll up in the message list: new messages do *not* pull you down. Scroll to the bottom: they follow again.

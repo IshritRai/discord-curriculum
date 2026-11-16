@@ -35,7 +35,15 @@ export default defineConfig({
   lastUpdated: false,
   cleanUrls: false,
   srcExclude: ['README.md'],
-  head: [['link', { rel: 'icon', href: `${process.env.SITE_BASE || '/'}favicon.svg` }]],
+  head: [
+    ['link', { rel: 'icon', href: `${process.env.SITE_BASE || '/'}favicon.svg` }],
+    // Pick the reader's operating system before the page is painted (avoids a flash of the wrong OS).
+    [
+      'script',
+      {},
+      `(function(){try{var saved=localStorage.getItem('course-os');var p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||'';var detected=/mac|iphone|ipad/i.test(p)?'mac':/win/i.test(p)?'windows':'linux';document.documentElement.dataset.os=(saved==='mac'||saved==='windows'||saved==='linux')?saved:detected}catch(e){document.documentElement.dataset.os='mac'}})()`,
+    ],
+  ],
   themeConfig: {
     logo: '/favicon.svg',
     nav: [

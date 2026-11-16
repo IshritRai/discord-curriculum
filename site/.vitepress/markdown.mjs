@@ -4,6 +4,8 @@
 //                            with a note that Lesson 21 explains it.
 //   ::: starter           → same box, for files you never need to understand (assets, data).
 //   ::: solution          → collapsed "Reveal solution" block.
+//   ::: os windows linux  → content shown only to readers who picked Windows or Linux
+//                            in the site's OS switcher (names: mac, windows, linux).
 //   ::: quiz              → interactive multiple-choice question (see below).
 //   ```js [js/main.js]    → code block with a file name shown above it.
 //   ```mermaid            → diagram rendered in the browser by Mermaid.
@@ -51,6 +53,20 @@ export function courseMarkdown(md) {
       const label = token.info.trim().slice('solution'.length).trim()
       const summary = label ? `Reveal solution — ${md.utils.escapeHtml(label)}` : 'Reveal solution'
       return `<details class="solution custom-block"><summary>${summary}</summary>\n`
+    },
+  })
+
+  // 2b. Operating-system specific blocks.
+  const OS_NAMES = { mac: 'macOS', windows: 'Windows', linux: 'Linux' }
+  md.use(container, 'os', {
+    validate: (params) => /^os(\s+(mac|windows|linux))+\s*$/.test(params.trim()),
+    render(tokens, idx) {
+      const token = tokens[idx]
+      if (token.nesting !== 1) return '</div>\n'
+      const names = token.info.trim().split(/\s+/).slice(1)
+      const classes = names.map((n) => `for-${n}`).join(' ')
+      const label = names.map((n) => OS_NAMES[n]).join(' / ')
+      return `<div class="os-block ${classes}" data-os-label="${label}">\n`
     },
   })
 

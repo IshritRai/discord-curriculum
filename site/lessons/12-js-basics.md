@@ -273,7 +273,7 @@ Put one line in `vanilla/js/app.js`:
 console.log('Hello from app.js!');
 ```
 
-Open the page with Live Server, open DevTools (<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>) and click the **Console** tab. You should see `Hello from app.js!`, with `app.js:1` on the right: the file and line that printed it.
+Open the page with Live Server, open DevTools (<Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />) and click the **Console** tab. You should see `Hello from app.js!`, with `app.js:1` on the right: the file and line that printed it.
 
 Seeing nothing? Look at the **Network** tab and reload: both `data.js` and `app.js` should have status `200`. A `404` means the path in `src` doesn't match where you put the file.
 
@@ -306,7 +306,7 @@ const currentUser = {
 
 Add this to the end of `data.js`, below `currentUser`. It's an **array of objects**: one object per server. `iconIsEmoji` tells us whether `icon` is an emoji or two letters.
 
-On macOS you can type emoji with <kbd>Ctrl</kbd>+<kbd>Cmd</kbd>+<kbd>Space</kbd>.
+To type an emoji, <Os mac="press Ctrl+Cmd+Space to open the emoji picker" windows="press the Windows key and the period key together" linux="use your desktop's emoji picker if it has one" />, or copy one from the code.
 
 ::: solution
 ```js [vanilla/js/data.js]

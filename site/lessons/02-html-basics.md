@@ -195,7 +195,7 @@ Open `vanilla/index.html`. Change the `<title>` to `Hubbub`, and add the viewpor
 ```
 :::
 
-Save. The browser tab now says **Hubbub**. The favicon may take a reload to appear, because browsers cache it. If it doesn't show, hard reload with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>.
+Save. The browser tab now says **Hubbub**. The favicon may take a reload to appear, because browsers cache it. If it doesn't show, hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />.
 
 ### Step 3 — Replace the body: logo and title
 
@@ -482,7 +482,7 @@ Compare your file with the complete version below. Every line should match, incl
 
 ### Step 9 — Explore in DevTools
 
-Open DevTools (<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>) and go to **Elements**.
+Open DevTools (<Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />) and go to **Elements**.
 
 1. Expand `<body>` and then `<ol>`. Find the nesting you typed.
 2. Find Priya's message. The Elements panel shows `&lt;p&gt;` as `<p>` text: the browser turned the entity into the character.

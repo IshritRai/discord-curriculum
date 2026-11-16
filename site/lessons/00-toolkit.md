@@ -196,13 +196,13 @@ Now change the text of the `<h1>` in VS Code, for example to `Hello, Hubbub!`. W
 
 ### Step 6 — Look inside with DevTools
 
-Every browser has built-in **developer tools** (DevTools). You'll use them in every lesson. In Chrome, open them with <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd>, or right-click the page and choose **Inspect**.
+Every browser has built-in **developer tools** (DevTools). You'll use them in every lesson. In Chrome, open them with <Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />, or right-click the page and choose **Inspect**.
 
 1. **Elements panel**: shows the page as a tree of elements. Click the small triangles to open `<html>`, then `<body>`. Hover over `<h1>`: the heading lights up on the page.
-2. **Edit live**: double-click the text inside the `<h1>` in the Elements panel, type something else and press <kbd>Enter</kbd>. The page changes. Now reload (<kbd>Cmd</kbd>+<kbd>R</kbd>): your change is gone. DevTools edits the page *in memory only*; your file is unchanged.
+2. **Edit live**: double-click the text inside the `<h1>` in the Elements panel, type something else and press <kbd>Enter</kbd>. The page changes. Now reload (<Keys mac="Cmd+R" win="Ctrl+R" />): your change is gone. DevTools edits the page *in memory only*; your file is unchanged.
 3. **Network panel**: click the **Network** tab and reload. You'll see a row for `index.html` with **Status 200** (meaning "OK") and **Type document**. That's the request and response from the diagram above.
 4. **Console panel**: click **Console**. It's empty for now. In later lessons this is where errors and your JavaScript messages show up.
-5. **Page source**: press <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>U</kbd>. A new tab shows the exact text the server sent. Compare it with the Elements tree: it's the same structure.
+5. **Page source**: press <Keys mac="Cmd+Option+U" win="Ctrl+U" />. A new tab shows the exact text the server sent. Compare it with the Elements tree: it's the same structure.
 
 <!-- no-solution: exploring DevTools, nothing to type -->
 
@@ -225,7 +225,7 @@ You're done when all of these are true:
 
 **"Cannot GET /vanilla/index.html" or a 404.** VS Code has the wrong folder open. Open `chat-clone` itself (Step 3), then start Live Server again.
 
-**Changes don't show up.** The file isn't saved (a white dot on the tab means unsaved). Turn on **File → Auto Save**. If the page still doesn't update, do a hard reload with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>.
+**Changes don't show up.** The file isn't saved (a white dot on the tab means unsaved). Turn on **File → Auto Save**. If the page still doesn't update, do a hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />.
 
 **Port 5500 is already in use.** Another Live Server is still running, maybe from another VS Code window. Click **Port: 5500** in VS Code's bottom status bar to stop it, then start it again.
 

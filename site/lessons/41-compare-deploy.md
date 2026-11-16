@@ -467,7 +467,7 @@ Menu names such as **Settings → Pages → Build and deployment → Source** we
 
 **The page works on your computer but the vanilla version is missing online.** The `cp -r vanilla _site/vanilla` step expects a `vanilla` folder at the project root; check the folder name and spelling.
 
-**The site is out of date after a deploy.** The browser kept the old files. Do a hard reload with <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>, as in Lesson 31.
+**The site is out of date after a deploy.** The browser kept the old files. Do a hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />, as in Lesson 31.
 
 ## 📝 Quiz
 

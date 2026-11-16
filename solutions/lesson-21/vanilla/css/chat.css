@@ -71,7 +71,6 @@
 /* The search box grows while you type in it */
 .search-input:focus {
   width: 240px;
-  outline: none;
 }
 
 /* The magnifying glass sits inside the search box */
@@ -309,10 +308,6 @@
   min-height: 44px;
   padding: 11px 8px;
   resize: none;
-}
-
-.composer-input:focus {
-  outline: none;
 }
 
 .composer-input::placeholder {

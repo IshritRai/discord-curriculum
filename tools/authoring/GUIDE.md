@@ -41,3 +41,31 @@ node tools/check-concepts.mjs --lesson N     # must say "no ledger violations"
 node tools/render-check.mjs site/lessons/NN-slug.md   # must pass
 ```
 Then check by hand: every changed file in the snapshot diff is covered by a step; every step's code matches the snapshot. Report any snapshot problem and any doubt about a fact you could not verify.
+
+## Cross-platform rules (macOS, Windows, Linux)
+
+The course must work for macOS, Windows and Linux learners. The site has an OS switcher (top bar, "I use macOS / Windows / Linux"), and three ways to write OS-specific content:
+
+- **Shortcuts:** `<Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />` (`win` applies to Windows and Linux; add `linux="..."` only if they differ). Never write a bare `<kbd>Cmd</kbd>` shortcut. Keys that are the same everywhere (`<kbd>Enter</kbd>`, `<kbd>Esc</kbd>`, `<kbd>Tab</kbd>`, `<kbd>Shift</kbd>`) stay plain `<kbd>`.
+- **Words:** `<Os mac="Finder" windows="File Explorer" linux="your file manager" />`.
+- **Blocks** (steps, commands, screenshots of menus): a container naming one or more of `mac`, `windows`, `linux`:
+
+  ````md
+  ::: os mac
+  ...only macOS readers see this...
+  :::
+
+  ::: os windows linux
+  ...Windows and Linux readers see this...
+  :::
+  ````
+
+  (Code blocks inside work normally and are checked by the ledger.)
+
+**Terminal rule (keeps every command identical everywhere):** all `sh` code blocks in lessons are **bash** commands. macOS: the Terminal app or VS Code's terminal (zsh accepts them). Linux: any terminal. **Windows: use Git Bash**, which is installed together with Git for Windows, selected as VS Code's terminal (VS Code's command **Terminal: Select Default Profile**; VS Code's default shell on Windows is PowerShell, so the learner must switch). Do **not** write PowerShell or cmd commands. Lesson 00/01 explain this once; later lessons may remind in one sentence ("in your Git Bash / Terminal").
+
+**Installing things:** per-OS install steps go in `::: os` blocks and link to the official page for the exact current instructions (Git: git-scm.com; VS Code: code.visualstudio.com; Chrome; Node.js: nodejs.org; GitHub CLI: cli.github.com and its Linux install docs). For Linux give the Debian/Ubuntu (`apt`) and Fedora (`dnf`) forms only where you verified them, and say other distributions differ. **Node version:** Vite 8 needs Node 20.19+ or 22.12+ (check vite.dev). Linux package-manager Node can be older, so tell Linux learners to check `node --version` and point to nodejs.org's own options if it is too old. Homebrew (`brew`) is macOS-only.
+
+**Other differences to cover where they appear:** DevTools shortcuts (Chrome docs: open DevTools `F12` or `Ctrl+Shift+I`; Console `Ctrl+Shift+J`; Elements/Inspect `Ctrl+Shift+C`; device toolbar `Ctrl+Shift+M`; hard reload `Ctrl+Shift+R` or `Ctrl+F5`; Mac equivalents use Cmd and Option), "Finder / File Explorer / Files", `.DS_Store` (macOS only; keep it in .gitignore for everyone but say why), VS Code menu location (macOS: top-of-screen menu bar; Windows/Linux: the window's menu bar), Chrome on Linux (Chrome or Chromium), Git line-ending warnings on Windows ("LF will be replaced by CRLF": harmless, explain, verify against Git docs), file-path separators in the editor vs Git Bash, `~` meaning the user's home folder.
+
+Verify every OS-specific claim on the official docs before writing it, and mark anything you could not verify in a `::: warning` (tool screens change). Never invent menu names, installer options or package names.

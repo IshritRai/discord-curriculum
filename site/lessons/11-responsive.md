@@ -90,7 +90,7 @@ Put the normal (wide) rules in the usual files and only the *differences* in the
 
 ### Testing in DevTools: the device toolbar
 
-Chrome DevTools can simulate other screen sizes. Click the **device toolbar** icon at the top-left of the DevTools panel (a phone-and-tablet symbol), or use the keyboard shortcut <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>. The page now sits in a frame; drag its edges, or type a width and height in the boxes above it. Chrome can also show colored bars for your media queries above the page: click one to jump to that width. (Shortcuts and icons may differ a little between versions.)
+Chrome DevTools can simulate other screen sizes. Click the **device toolbar** icon at the top-left of the DevTools panel (a phone-and-tablet symbol), or use the keyboard shortcut <Keys mac="Cmd+Shift+M" win="Ctrl+Shift+M" />. The page now sits in a frame; drag its edges, or type a width and height in the boxes above it. Chrome can also show colored bars for your media queries above the page: click one to jump to that width. (Shortcuts and icons may differ a little between versions.)
 
 ### `position: fixed`
 

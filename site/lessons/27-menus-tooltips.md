@@ -76,7 +76,7 @@ Which events? `mouseover` bubbles (Lesson 15), so a single listener on `document
 
 ### Resetting and reloading
 
-`localStorage.removeItem(key)` deletes one saved entry. `location.reload()` reloads the page, like pressing <kbd>Cmd</kbd>+<kbd>R</kbd>. "Reset Demo Data" combines them: remove what we saved, then reload, and the app starts again from the JSON files. ([`location.reload`](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload), [`removeItem`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem))
+`localStorage.removeItem(key)` deletes one saved entry. `location.reload()` reloads the page, like pressing <Keys mac="Cmd+R" win="Ctrl+R" />. "Reset Demo Data" combines them: remove what we saved, then reload, and the app starts again from the JSON files. ([`location.reload`](https://developer.mozilla.org/en-US/docs/Web/API/Location/reload), [`removeItem`](https://developer.mozilla.org/en-US/docs/Web/API/Storage/removeItem))
 
 ## 🛠️ Build it
 

@@ -271,7 +271,7 @@ npm run dev
   ➜  Network: use --host to expose
 ```
 
-(Version number and timing will differ.) Hold <kbd>Cmd</kbd> and click the `Local` address, or open `http://localhost:5173/` in Chrome. You'll see Vite's starter page with a counter button. Click it a few times: it already works, because it's a React component. We'll replace it.
+(Version number and timing will differ.) Hold <Keys mac="Cmd" win="Ctrl" /> and click the `Local` address, or open `http://localhost:5173/` in Chrome. You'll see Vite's starter page with a counter button. Click it a few times: it already works, because it's a React component. We'll replace it.
 
 To stop the server later press <kbd>Ctrl</kbd>+<kbd>C</kbd> in that terminal. Leave it running for now. Open a **second terminal** in VS Code (the **+** button in the terminal panel) for other commands.
 

@@ -155,6 +155,7 @@ export const checks = [
       await page.waitForTimeout(400)
       const drawer = await page.$eval('.nav-drawer', (el) => el.getBoundingClientRect().toJSON())
       assert(drawer.right <= 1, 'on narrow screens the channel drawer should be off-screen')
+      assert((await css(page, '.nav-drawer', 'visibility')) === 'hidden', 'the closed drawer should be hidden from the keyboard (visibility: hidden)')
       assert((await css(page, '.menu-button', 'display')) !== 'none', 'the menu button should be visible on narrow screens')
     },
   },
@@ -536,6 +537,10 @@ export const checks = [
         lit = (await count(page, '.user-panel-profile.is-speaking')) === 1
       }
       assert(lit, 'your avatar should light up from the (fake) microphone')
+      await page.click('#mute-button')
+      assert(await eventually(async () => !(await page.isChecked('#mic-toggle'))), 'muting should turn the mic off')
+      await page.click('#mute-button')
+      await page.check('#mic-toggle')
       await page.click('#disconnect-button')
       assert(!(await page.isChecked('#mic-toggle')), 'disconnecting should turn the mic off')
     },

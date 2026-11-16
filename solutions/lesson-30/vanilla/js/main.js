@@ -14,7 +14,7 @@ import { setupModals } from './modals.js';
 import { setupMenus } from './menus.js';
 import { setupTooltips, hideTooltip } from './tooltips.js';
 import { renderTyping, startSimulation } from './simulation.js';
-import { renderSpeaking, startSpeakingSimulation, setupVoice } from './voice.js';
+import { renderSpeaking, startSpeakingSimulation, setupVoice, syncMic } from './voice.js';
 import { setupLayout } from './layout.js';
 
 // Draws the whole screen from the current state.
@@ -26,6 +26,7 @@ function render() {
   renderUserPanel();
   renderTyping();
   renderSpeaking();
+  syncMic();
   hideTooltip();
 }
 

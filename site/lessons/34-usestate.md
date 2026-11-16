@@ -758,7 +758,7 @@ export default App;
 ### Step 8 — Test everything, and break it on purpose
 
 1. **Members:** click the people icon in the header. The member list disappears, and the button's pressed look goes off. Click again.
-2. **Drawer:** make the browser window narrower than about 760 px (or use Chrome's DevTools device toolbar: <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>). The server rail and sidebar hide, and a menu button appears. Click it: the drawer slides in. Click the dark backdrop, or choose a channel: it closes.
+2. **Drawer:** make the browser window narrower than about 760 px (or use Chrome's DevTools device toolbar: <Keys mac="Cmd+Shift+M" win="Ctrl+Shift+M" />). The server rail and sidebar hide, and a menu button appears. Click it: the drawer slides in. Click the dark backdrop, or choose a channel: it closes.
 3. **Messages:** type `hello **world**` and press <kbd>Enter</kbd>. Your message appears with the bold text. Press <kbd>Shift</kbd>+<kbd>Enter</kbd>: a new line, no send. An empty or all-space message isn't sent. Switch channels and back: the message is still there (state lives in `App`), but reload the page and it's gone.
 4. **Experiment A, stale state.** In `toggleCategory`, add `console.log(collapsedCategoryIds);` before `setCollapsedCategoryIds(...)`. Collapse a category and check the Console: it prints the value from *before* the click (`[]`). That's the snapshot rule. Remove the line.
 5. **Experiment B, mutation.** Temporarily change `toggleCategory` to:
