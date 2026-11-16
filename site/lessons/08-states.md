@@ -52,7 +52,7 @@ An element has **focus** when it's the one that will receive keyboard input. You
 Browsers already draw a default focus ring. Hubbub replaces it with its own, in the brand color. The golden rule:
 
 ::: warning Never remove a focus outline without replacing it
-Writing `outline: none` on a button or link makes your page unusable by keyboard: you can't see where you are. If you change the focus style, give it a visible new one. In this lesson there are exactly two places where the outline is removed: the search box and the message box, and both are text fields that show focus another way (the search box grows, and a text field always shows a blinking caret). Treat these as exceptions, not a habit.
+Writing `outline: none` on a button, link or text field makes your page hard or impossible to use by keyboard: you can't see where you are. If you change the focus style, give it a visible new one. Hubbub never removes the outline: the global `:focus-visible` rule you write in Step 2 gives every focusable element, including the search box and the message box, the same brand-colored ring.
 :::
 
 ### Attribute selectors
@@ -342,7 +342,7 @@ Hover over `help`: its name is bold and white (unread), but the background still
 
 In `vanilla/css/chat.css` there are five groups of changes.
 
-**Search box.** Add `transition: width 0.25s ease` to `.search-input`, then a `.search-input:focus` rule right after it. Clicking into the box makes it grow to 240px; the transition animates the growth. It also turns off the focus outline, because the width change already shows where you are.
+**Search box.** Add `transition: width 0.25s ease` to `.search-input`, then a `.search-input:focus` rule right after it. Clicking into the box makes it grow to 240px; the transition animates the growth. The focus ring from your global `:focus-visible` rule still appears around the box, because you don't remove the outline.
 
 **Date divider.** Replace `justify-content: center` in `.date-divider` with `align-items: center`. Then add the lines. `::before` and `::after` are two flex items on either side of the `<span>`, each with `flex: 1` so they share the free space, and `height: 1px` makes them a thin line. A small padding around the date keeps the lines from touching it.
 
@@ -361,7 +361,6 @@ In `vanilla/css/chat.css` there are five groups of changes.
 /* The search box grows while you type in it */
 .search-input:focus {
   width: 240px;
-  outline: none;
 }
 
 .date-divider {
@@ -437,22 +436,14 @@ In `vanilla/css/chat.css` there are five groups of changes.
 ```
 :::
 
-**Composer.** At the end of the file, remove the outline from the text area (the caret and the message box itself make it obvious where you're typing) and make the placeholder text a little fainter:
+**Composer.** At the end of the file, make the placeholder text of the message box a little fainter. The text area keeps the default focus ring from your global `:focus-visible` rule, so you don't need a `:focus` rule here:
 
 ::: solution
 ```css [vanilla/css/chat.css]
-.composer-input:focus {
-  outline: none;
-}
-
 .composer-input::placeholder {
   color: var(--text-faint);
 }
 ```
-:::
-
-::: info A better focus style for the composer
-Removing the outline here leaves only the caret as a signal. A more complete design would give the whole rounded message box a visible ring whenever something inside it is focused. CSS has a pseudo-class for that, which you'll meet in a later lesson. For this lesson we follow the snapshot.
 :::
 
 ### Step 7 — The member list
@@ -501,7 +492,7 @@ Some states are hard to inspect, because moving the mouse to DevTools ends the h
 - [ ] Hovering a server button turns it into a rounded square in the brand color, with a short animation. `FF` is always in that shape.
 - [ ] Hovering channels, members, the user profile, the server header, icon buttons and messages gives each a background change. `general` stays highlighted all the time.
 - [ ] Pressing <kbd>Tab</kbd> shows a 2px ring on every button you reach.
-- [ ] Clicking the search box makes it grow wider smoothly. The members icon is brighter than the other toolbar icons.
+- [ ] Clicking the search box makes it grow wider smoothly, with the focus ring around it. Clicking into the message box also shows the ring. The members icon is brighter than the other toolbar icons.
 - [ ] The date divider has a line on each side of the date.
 - [ ] Hovering the follow-up message ("min-height: 0 saved me") shows "10:23 AM" at its left; moving away hides it. The text doesn't wrap onto two lines.
 - [ ] The offline members (Kenji, Nora) are faded and become solid on hover.

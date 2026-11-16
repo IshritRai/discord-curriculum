@@ -195,10 +195,10 @@ I counted lines in the reference snapshots with `wc -l` (the numbers include com
 
 | | Plain JS (`vanilla/`) | React (`react-app/src/`) |
 | --- | --- | --- |
-| JavaScript / JSX files | 22 files, 1,972 lines | 34 files (20 `.jsx`, 14 `.js`), 2,176 lines |
+| JavaScript / JSX files | 22 files, 1,987 lines | 34 files (20 `.jsx`, 14 `.js`), 2,191 lines |
 | HTML | `index.html`, 214 lines | `index.html`, 13 lines (the page is built by JSX) |
-| JavaScript + HTML together | 2,186 lines | 2,189 lines |
-| CSS | 10 files, 1,686 lines | the same 10 files, 1,686 lines |
+| JavaScript + HTML together | 2,201 lines | 2,204 lines |
+| CSS | 10 files, 1,680 lines | the same 10 files, 1,680 lines |
 | JSON data | 1,313 lines | the same 1,313 lines |
 
 React did **not** make this app shorter. The lines moved: the 214 lines of HTML in `index.html` became JSX inside components, and the "draw everything" code became components. React also gave us things the vanilla version never had (URLs, per-channel drafts), so the comparison isn't perfectly fair in either direction.
@@ -256,7 +256,7 @@ The file is `.github/workflows/deploy.yml` at the root of your project. It's wri
 - `on:` says when to run. `push: branches: [main]` means "every time someone pushes to the `main` branch". `workflow_dispatch:` adds a **Run workflow** button in the Actions tab, so you can also start it by hand. (GitHub's docs say this button appears only for workflows that use `workflow_dispatch`.)
 - `permissions:` lists what the workflow's temporary access token may do. `contents: read` lets it read your code. `pages: write` and `id-token: write` are what GitHub's docs say the deploy action needs. Everything not listed is not allowed.
 - `concurrency:` with `group: pages` and `cancel-in-progress: true` means only one deployment runs at a time: if you push twice quickly, the older run is cancelled in favor of the newer. (GitHub's docs: `cancel-in-progress: true` also cancels a currently running job in the same group.)
-- `jobs: deploy:` is the single job. `runs-on: ubuntu-latest` means "run it on a GitHub-hosted Linux machine".
+- `jobs: deploy:` is the single job. `runs-on: ubuntu-latest` means "run it on a GitHub-hosted Linux machine". It runs there whatever your own operating system is, so the workflow is identical for macOS, Windows and Linux learners.
 - `environment:` with `name: github-pages` and a `url:` ties the job to the Pages environment. The `url` line takes the address of the published site from the last step (`steps.deployment.outputs.page_url`) and shows it in the run, so you can click it.
 - Then the **steps**, run in order. A step is either `uses:` (run a ready-made **action** from GitHub) or `run:` (run shell commands, like in your terminal):
   1. **Get the code**: `actions/checkout` copies your repository onto the machine.
@@ -275,7 +275,7 @@ The `@v7`, `@v6` and `@v5` after each action name are version numbers. They matc
 
 ### Step 1 — Count your own code
 
-Open the terminal in the project root (`chat-clone`). `cat` prints files one after another, `|` (pipe) passes the output of one command to the next, and `wc -l` counts lines. `find` lists files; `xargs cat` gives that list to `cat`.
+Open the terminal in the project root (`chat-clone`). `cat` prints files one after another, `|` (pipe) passes the output of one command to the next, and `wc -l` counts lines. `find` lists files; `xargs cat` gives that list to `cat`. These are bash commands: they work as written in macOS and Linux terminals and in Git Bash on Windows (Git for Windows ships common Unix tools; if `find` complains about its arguments, make sure you are in Git Bash and not PowerShell or cmd, which have a different `find`).
 
 ```sh
 cat vanilla/js/*.js | wc -l
@@ -291,11 +291,11 @@ Write the five numbers in a table like the one in Part 1. They won't match mine 
 On the reference project, the commands print:
 
 ```text
-1972
-1686
+1987
+1680
      214 vanilla/index.html
-2176
-1686
+2191
+1680
 ```
 
 The exact spacing of the `wc` output differs between systems.

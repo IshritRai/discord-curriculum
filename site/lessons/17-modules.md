@@ -829,7 +829,7 @@ In `vanilla/index.html`, make two changes in the `<head>`:
 1. The title is now set by JavaScript, so give it a placeholder that makes it obvious if the script didn't run: `<title>Loading…</title>`. Add a comment above it.
 2. Replace the three `<script ... defer>` lines (and the comment above them) with the single module script.
 
-Then **delete `vanilla/js/app.js`**: every line of it has a new home. (Right-click the file in the Explorer and choose Delete.)
+Then **delete `vanilla/js/app.js`**: every line of it has a new home. (Right-click the file in VS Code's Explorer panel and choose Delete. On a Mac trackpad, right-click means a secondary click, usually a two-finger click. You can also select the file and press <Keys mac="Cmd+Backspace" win="Delete" />.)
 
 ::: solution
 ```html [vanilla/index.html]

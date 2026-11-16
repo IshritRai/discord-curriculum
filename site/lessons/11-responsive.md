@@ -116,6 +116,32 @@ You know `relative` and `absolute` from Lesson 09. **`position: fixed`** is like
 
 Add `transition: transform 0.25s ease` (Lesson 08) and a change of class animates it as a slide.
 
+### Hiding the closed drawer from the keyboard: `visibility` and a transition delay
+
+A drawer pushed off-screen with `transform` is invisible, but it is still *there*. Press <kbd>Tab</kbd> and the focus would walk into buttons you cannot see. You met `visibility: hidden` in Lesson 08: the element keeps its space and, according to [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/visibility), "cannot receive focus", so <kbd>Tab</kbd> skips it. Setting `visibility: hidden` on the closed drawer fixes that.
+
+But `visibility` flips instantly, so a plain change would make the drawer vanish at once instead of sliding out. The fix is a **transition delay**: an optional extra time in the `transition` shorthand, after the duration and the timing function. [`transition-delay`](https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay) says how long to wait before the transition starts.
+
+```css
+transition: transform 0.25s ease, visibility 0s linear 0.25s;
+```
+
+Read the second part as: animate `visibility`, taking `0s` (it is a switch, not a fade), with `linear` timing, but wait `0.25s` first. During that wait `visibility` keeps its old value, `visible`, so the drawer stays seen while `transform` slides it away. When the slide ends, `visibility` flips to `hidden`.
+
+The delay only matters when closing. When the drawer opens, the `.is-nav-open` rule has its own `transition: transform 0.25s ease` with no delay for `visibility`, so it becomes visible immediately and slides in. A transition uses the declaration of the *new* state (as you saw in Lesson 08).
+
+```text
+Closing (time runs left to right)
+  0s                          0.25s
+  transform:  |-- slides out --|
+  visibility: visible ........| hidden   (flips after the delay)
+
+Opening
+  0s                          0.25s
+  visibility: visible now
+  transform:  |-- slides in  --|
+```
+
 ### The drawer technique
 
 Put the ideas together:
@@ -270,8 +296,8 @@ Save and drag your window narrower than 1000px: the member list lifts out of the
 Add the second media query to `responsive.css`, after the first. Inside it:
 
 - `.app` goes back to one column (`grid-template-columns: 1fr`): `.nav-drawer` is about to leave the layout, so the chat should have the full width.
-- `.nav-drawer` becomes `position: fixed` and sticks to the left edge, with `top: 0` and `bottom: 0` to fill the window height. `z-index: 20` puts it on top. `transform: translateX(-100%)` pushes it off the left edge. `transition: transform 0.25s ease` animates the change.
-- `.app.is-nav-open .nav-drawer` resets the transform to `translateX(0)`. This is a descendant selector: "a `.nav-drawer` inside an `.app` that has `is-nav-open`".
+- `.nav-drawer` becomes `position: fixed` and sticks to the left edge, with `top: 0` and `bottom: 0` to fill the window height. `z-index: 20` puts it on top. `transform: translateX(-100%)` pushes it off the left edge. `visibility: hidden` keeps the keyboard out of the closed drawer. `transition: transform 0.25s ease, visibility 0s linear 0.25s` animates the slide and delays the hiding by 0.25s, so the slide-out finishes first.
+- `.app.is-nav-open .nav-drawer` resets the transform to `translateX(0)`, sets `visibility: visible` and a transition of only `transform 0.25s ease`, so opening shows the drawer immediately. This is a descendant selector: "a `.nav-drawer` inside an `.app` that has `is-nav-open`".
 - `.app.is-nav-open + .drawer-backdrop` shows the backdrop: `display: block`, `position: fixed`, `inset: 0` (covers everything), `z-index: 15` and a semi-transparent black background.
 - `.menu-button` is shown again (`display: flex`, which is what `.icon-button` uses).
 - `.chat-topic` is hidden to leave room for the toolbar icons.
@@ -285,7 +311,9 @@ Add the second media query to `responsive.css`, after the first. Inside it:
     grid-template-columns: 1fr;
   }
 
-  /* Pushed off the left edge until .app gets the is-nav-open class */
+  /* Pushed off the left edge until .app gets the is-nav-open class.
+     visibility: hidden also keeps the keyboard (Tab) out of the closed drawer.
+     The 0.25s delay on visibility lets the slide-out finish before it hides. */
   .nav-drawer {
     position: fixed;
     top: 0;
@@ -293,11 +321,14 @@ Add the second media query to `responsive.css`, after the first. Inside it:
     left: 0;
     z-index: 20;
     transform: translateX(-100%);
-    transition: transform 0.25s ease;
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0s linear 0.25s;
   }
 
   .app.is-nav-open .nav-drawer {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.25s ease;
   }
 
   /* "+" means: the element right after .app */
@@ -335,6 +366,7 @@ Add the second media query to `responsive.css`, after the first. Inside it:
 - [ ] Between about 761px and 1000px: the member list floats over the chat with a shadow; the search box is hidden; the rail and sidebar are still visible.
 - [ ] At 760px and below: the rail and sidebar are gone, a hamburger button sits at the left of the header and the topic is hidden.
 - [ ] Adding `is-nav-open` to `<div class="app">` in DevTools slides the drawer in with an animation and darkens the page. Removing it slides the drawer out.
+- [ ] With the drawer closed (narrow window, no `is-nav-open`), pressing <kbd>Tab</kbd> never moves the focus ring into the hidden sidebar. In DevTools, the closed `.nav-drawer` shows `visibility: hidden` in the Styles pane.
 - [ ] At 400px wide there's no horizontal scrollbar, and the message box is at the bottom.
 - [ ] DevTools → **Network**: `responsive.css` loads with status **200**, and the **Console** shows no errors.
 
@@ -354,7 +386,7 @@ Add the second media query to `responsive.css`, after the first. Inside it:
 
 **Everything looks tiny on a real phone.** The `viewport` meta tag is missing or typed wrong in the `<head>`. It must be exactly `<meta name="viewport" content="width=device-width, initial-scale=1">`.
 
-**A known gap.** The drawer is hidden visually, but its buttons are still reachable with the <kbd>Tab</kbd> key, so a keyboard user can tab into things they can't see. This course doesn't fix that, so be aware of it if you build a drawer for a real project.
+**The drawer vanishes instantly when it closes, with no slide-out.** The closed rule is missing the delay: it must say `transition: transform 0.25s ease, visibility 0s linear 0.25s`. Without the `0.25s` delay on `visibility`, the drawer is hidden before it has moved.
 
 ## 📝 Quiz
 

@@ -13,7 +13,7 @@ The app always fits the window exactly. The channel list, the chat messages and 
 
 ![The Hubbub layout filling the window: the chat shows messages from October 11 and October 12 with the last message partly hidden behind the message box at the bottom, the user panel shows "Learning fr..." cut with an ellipsis, and the sidebar and member list sit in their own columns.](/screenshots/lesson-10.png){.screenshot}
 
-In the screenshot the chat is scrolled to the top, so you see the oldest messages, and the user panel's status text ends with "…". Scrollbars are not visible there. Whether you see them depends on your system: macOS often hides scrollbars until you scroll (or uses thin overlay bars), depending on the "Show scroll bars" setting in System Settings. Scroll with the trackpad or mouse wheel over a column and check.
+In the screenshot the chat is scrolled to the top, so you see the oldest messages, and the user panel's status text ends with "…". Scrollbars are not visible there. Whether you see them depends on your system. On Windows and Linux, Chrome normally draws classic scrollbars that are always visible whenever content overflows. macOS can hide them until you scroll (see the box in the next section). Scroll with the mouse wheel or trackpad over a column and check what you get.
 
 ## 🧠 New concepts
 
@@ -152,8 +152,16 @@ Read it as "if the browser does **not** know `::-webkit-scrollbar`, use the stan
 
 The class `scroller` is just a name of ours: any scroll area that should get the custom look carries it in the HTML.
 
-::: info Scrollbars on macOS
-On a Mac, the system setting "Show scroll bars" (Automatic, When scrolling, Always) decides whether classic scrollbars appear, and the default hides them until you scroll. Whether custom `::-webkit-scrollbar` styling shows up in each mode can vary, so don't be surprised if you only see the bars while scrolling. If you want to always see them, change the macOS setting to **Always**. We haven't tested every browser and macOS combination.
+::: info Are my scrollbars always visible?
+::: os mac
+On a Mac, the system setting "Show scroll bars" (Automatic, When scrolling, Always) decides whether classic scrollbars appear, and the default hides them until you scroll. Whether custom `::-webkit-scrollbar` styling shows up in each mode can vary, so don't be surprised if you only see the bars while scrolling. If you want to always see them, change the macOS setting to **Always**.
+:::
+
+::: os windows linux
+On Windows and Linux, Chrome normally shows classic scrollbars that stay visible whenever content overflows, so you will see the custom 8px bars right away. Some systems and Chrome versions use thin overlay scrollbars that only appear when you scroll or hover, so if you don't see them, scroll over the column first.
+:::
+
+We haven't tested every browser and operating system combination.
 :::
 
 ## 🛠️ Build it
@@ -646,7 +654,7 @@ Two files.
 
 **No `…` appears on long text.** All three properties are required: `white-space: nowrap`, `overflow: hidden` and `text-overflow: ellipsis`. Also check that the element can actually become narrower than its text: flex items may need `min-width: 0`.
 
-**The scrollbar styling has no effect.** Check the element has the `scroller` class. In Chrome, don't also set `scrollbar-width` or `scrollbar-color` on it: they override the webkit styling. On macOS, check the "Show scroll bars" setting.
+**The scrollbar styling has no effect.** Check the element has the `scroller` class. In Chrome, don't also set `scrollbar-width` or `scrollbar-color` on it: they override the webkit styling. On a Mac, check the "Show scroll bars" setting; on Windows and Linux, scroll over the element, because some systems only show overlay bars while you scroll.
 
 **Messages look strangely spaced after adding `pre-wrap`.** The spaces and line breaks inside `.message-content` in the HTML are now visible. Keep the text on a single line directly between the tags: `<div class="message-content">text</div>`.
 

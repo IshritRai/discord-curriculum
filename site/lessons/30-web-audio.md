@@ -10,7 +10,7 @@ In Lesson 29 everyone's "speaking" ring was random. In this **optional** lesson 
 ::: danger Privacy first: what this lesson does and does not do
 - **The sound stays on this device.** The code measures loudness many times a second and throws each measurement away.
 - **Nothing is recorded, saved, played back or sent anywhere.** There is no `fetch`, no WebSocket and no file writing in the code. You will verify this yourself with the Network panel.
-- **The mic is off until you tick a checkbox and approve the browser's permission prompt.** Unticking the box (or clicking Disconnect) switches it off again.
+- **The mic is off until you tick a checkbox and approve the browser's permission prompt.** It switches off again when you untick the box, click Disconnect, mute, deafen or leave the server. (Step 4 explains how.)
 - If you'd rather not use your microphone at all, don't tick the box. The rest of the app works exactly as in Lesson 29.
 :::
 
@@ -30,6 +30,8 @@ A web page that could listen to your microphone without asking would be a spying
 
 1. **Secure context.** The page must be loaded over `https://`, or from a "potentially trustworthy" local address. MDN's page on [secure contexts](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) lists `localhost` and the `127.0.0.0/8` range (which includes `127.0.0.1`, the address Live Server uses) as trustworthy. So your Live Server page works. A plain `http://` page on someone else's server would not: there, `navigator.mediaDevices` is `undefined`. Your GitHub Pages site from Lesson 31 is HTTPS, so it works there too.
 2. **User permission.** The first time a page asks, the browser shows a prompt ("Allow this site to use your microphone?"). The page can't answer it. You can say yes or no, and you can change your mind later in the browser's site settings.
+
+There is a third layer outside the browser: your **operating system** can also block the microphone for individual apps, including your browser. If it does, the site permission alone won't help (see Common mistakes).
 
 Most browsers also show an indicator (for example an icon on the tab or in the address bar) while a page is using the microphone. The exact look differs by browser and version.
 
@@ -292,10 +294,12 @@ Edit `vanilla/js/voice.js` in five places:
 1. Import `startMic` and `stopMic` from `./mic.js`.
 2. Look up `#mic-toggle` and `#mic-toggle-text` at the top.
 3. Add the exported `setMySpeaking(isSpeaking)`. It removes you from `speakingUserIds`, and puts you back only if you asked to be speaking **and** you are connected **and** not muted.
-4. In the simulation, keep your own id if it was already in `speakingUserIds` (the simulation rebuilds the list from scratch every 400 ms; without this it would erase your ring).
-5. Add `turnMicOff()`, and replace `setupVoice` so that Disconnect turns the mic off first, and ticking the box calls `startMic` inside `try`/`catch`.
+4. In the simulation, keep your own id if it was already in `speakingUserIds` and you are connected and not muted (the simulation rebuilds the list from scratch every 400 ms; without this it would erase your ring).
+5. Add `turnMicOff()` and an exported `syncMic()`, and replace `setupVoice` so that Disconnect turns the mic off first, ticking the box while muted is refused, and otherwise ticking the box calls `startMic` inside `try`/`catch`.
 
-`startMic(setMySpeaking)` passes our function as the callback. If the user blocks the mic, the `await` throws, we log a warning, untick the box and explain in the label.
+(The next step wires `syncMic` into `main.js`.) `syncMic()` is the safety net. `render()` runs after every state change (Lesson 16), so calling `syncMic()` there means: whenever the app redraws and you are **disconnected or muted**, the mic is switched off. That covers every way of leaving or muting (the mute button, deafen, Disconnect, **Leave Server** from the right-click menu) without each of them having to know about the mic.
+
+`startMic(setMySpeaking)` passes our function as the callback. If the user blocks the mic, the `await` throws, we log a warning, untick the box and explain in the label. If you are muted when you tick the box, the box unticks itself and the label says `Unmute first, then turn this on`.
 
 ::: solution
 ```js [vanilla/js/voice.js]
@@ -347,6 +351,15 @@ function turnMicOff() {
   setMySpeaking(false);
 }
 
+// Runs after every render. The mic may only stay on while you are connected
+// and not muted, however you got disconnected (button, Leave Server, deafen...).
+export function syncMic() {
+  if (micToggle.checked && (state.voice.channelId === null || state.voice.muted)) {
+    turnMicOff();
+    micToggleText.textContent = 'Light up when I talk (uses my mic)';
+  }
+}
+
 export function setupVoice() {
   disconnectButton.addEventListener('click', () => {
     turnMicOff();
@@ -356,6 +369,11 @@ export function setupVoice() {
   micToggle.addEventListener('change', async () => {
     if (!micToggle.checked) {
       turnMicOff();
+      return;
+    }
+    if (state.voice.muted) {
+      micToggle.checked = false;
+      micToggleText.textContent = 'Unmute first, then turn this on';
       return;
     }
     try {
@@ -377,36 +395,56 @@ The `setMySpeaking` snippet goes just above `startSpeakingSimulation`. The last 
 That `...` copies every item of `others` into a new list, then adds your id at the end. In Python: `[*others, CURRENT_USER_ID]`. You'll use the same idea on objects in Lesson 34.
 :::
 
-### Step 5 — Try it
+### Step 5 — Call `syncMic` from `main.js`
+
+In `vanilla/js/main.js`, add `syncMic` to the import from `./voice.js`, and call `syncMic();` in `render()` right after `renderSpeaking();`.
+
+::: solution
+```js [vanilla/js/main.js]
+import { renderSpeaking, startSpeakingSimulation, setupVoice, syncMic } from './voice.js';
+```
+
+```js [vanilla/js/main.js]
+function render() {
+  // ...the other render calls stay as they are...
+  renderUserPanel();
+  renderTyping();
+  renderSpeaking();
+  syncMic();
+  hideTooltip();
+}
+```
+:::
+
+### Step 6 — Try it
 
 1. Reload the page and click **Lounge** to connect.
 2. Tick **Light up when I talk (uses my mic)**. The browser asks for permission. Allow it. The label changes to `Using my mic (stays on this device)`.
 3. Talk, clap or tap your desk. Your avatar gets a green ring in two places and loses it about a third of a second after you stop.
-4. Click the microphone button to mute: the ring stops lighting. Un-mute and it works again.
-5. Untick the checkbox, or click **Disconnect**. The browser's microphone indicator should go away. If you see no indicator on your browser, you can check the site settings.
+4. Click the microphone button to mute. The checkbox unticks itself, the ring stops and the browser's microphone indicator goes away: muting turns the mic off. Un-mute, then tick the box again (it asks again only if the browser doesn't remember your choice).
+5. While muted, try ticking the box: it refuses and says `Unmute first, then turn this on`.
+6. With the mic on, right-click the server icon, choose **Leave Server**, and check that the indicator goes away. If you only have one server, **Reset Demo Data** in the settings-cog menu brings back the others. Disconnect and deafen also switch the mic off.
+7. Untick the checkbox when you're done. If you see no indicator on your browser, check the site settings.
 
 ::: warning Permission prompts differ between browsers
 The prompt text, the indicator and the place to change a decision (usually the icon at the left of the address bar, then site settings) differ by browser and version. If you clicked **Block** by mistake, reset the site's microphone permission there and reload.
+
+In Chrome, Chrome's help says: **More** (three dots) → **Settings** → **Privacy and security** → **Site settings** → **Microphone**, then allow the site under "Not allowed to use your camera or microphone" or delete its exception. For one site you can also use the icon to the left of the web address ("View site information") → **Site settings**. See [Chrome Help: Use your camera and microphone](https://support.google.com/chrome/answer/2693767).
 :::
 
 <!-- no-solution: trying out the feature, nothing to type -->
 
-### Step 6 — Prove that nothing leaves your computer
+### Step 7 — Prove that nothing leaves your computer
 
 1. Open DevTools → **Network**. Click the **Clear** button (the circle with a line), then tick the checkbox and talk for a few seconds. No new requests appear (you may see nothing at all).
-2. Open `mic.js` and search it (<Keys mac="Cmd+F" win="Ctrl+F" />) for `fetch`. The only matches are none in the code itself: the file never sends anything. The only thing it hands back to the app is `true` or `false`.
+2. Open `mic.js` and search it (<Keys mac="Cmd+F" win="Ctrl+F" />) for `fetch`. You will find no matches in the code: the file never sends anything. The only thing it hands back to the app is `true` or `false`.
 
 The Network panel only shows what *this page* sends over the network. Seeing it stay quiet while the mic is on is solid evidence that your audio isn't being sent. The measurements stay in memory in the tab and vanish when you stop.
 
 <!-- no-solution: checking DevTools, nothing to type -->
 
-::: warning Privacy limits to know about
-Two honest notes about this lesson's code, so you can judge it for yourself:
-
-- **Muting only hides your ring.** The mic stays open (and the browser's indicator stays on) until you untick the box or click **Disconnect**. The mute button changes what the app shows, not what the browser listens to.
-- **Leaving a server while connected** (right-click a server, then **Leave Server**) disconnects you from voice but doesn't call `turnMicOff()`. Untick the box first if you want the mic off.
-
-A production app would turn the mic off in both cases. They'd be good exercises once you know the code.
+::: tip How the mic is kept safe
+The mic is only ever on while you are connected **and** not muted. `syncMic()` enforces that after every render, and the checkbox refuses to start while you're muted. That is why muting, deafening, Disconnect and **Leave Server** all stop the mic, even though only Disconnect calls `turnMicOff()` directly.
 :::
 
 ## ✅ Checkpoint
@@ -414,8 +452,9 @@ A production app would turn the mic off in both cases. They'd be good exercises 
 - [ ] When you aren't connected to a voice channel, the checkbox is not visible. When you are, it is.
 - [ ] Ticking the box makes the browser ask for permission (the first time). Nothing is asked before you tick it.
 - [ ] While you talk, your ring lights up in the channel list and in the user panel, and goes off shortly after you stop.
-- [ ] Muting stops your ring from lighting up.
-- [ ] Unticking the box (or clicking Disconnect) removes the browser's microphone indicator.
+- [ ] Muting unticks the box, stops your ring and removes the browser's microphone indicator. While muted, ticking the box is refused with `Unmute first, then turn this on`.
+- [ ] With the mic on, **Leave Server** (right-click a server icon), Disconnect and deafen each untick the box and remove the indicator.
+- [ ] Unticking the box removes the browser's microphone indicator.
 - [ ] If you click **Block** instead, the box unticks itself, the label says **Mic blocked: check the browser permission**, and the Console shows a warning starting with `Microphone not available:`.
 - [ ] DevTools → **Network** shows no new requests while the mic is on.
 
@@ -423,11 +462,33 @@ A production app would turn the mic off in both cases. They'd be good exercises 
 
 **Nothing happens when I tick the box, and the Console shows a `TypeError` about `getUserMedia` (in Chrome the text is like `Cannot read properties of undefined (reading 'getUserMedia')`).** `navigator.mediaDevices` is `undefined`, which MDN says happens when the page isn't a secure context. Open the app at `http://127.0.0.1:5500/…` (Live Server) or `http://localhost:…`, not at your computer's network address like `http://192.168.x.x:5500`, and not over plain `http://` on another host.
 
-**The checkbox unticks itself and says "Mic blocked".** You clicked **Block**, or the browser or operating system has the microphone disabled for it. Reset the permission in the browser's site settings (and, on macOS, check System Settings → Privacy & Security → Microphone for your browser), then try again.
+**The checkbox unticks itself and says "Mic blocked".** You clicked **Block**, or the browser or operating system has the microphone disabled for it. Reset the permission in the browser's site settings (Chrome: **Settings** → **Privacy and security** → **Site settings** → **Microphone**). Also check the operating system, which can block the mic for your whole browser:
+
+::: os mac
+System Settings → Privacy & Security → Microphone, and make sure your browser is switched on. macOS may ask you to quit and reopen the browser.
+:::
+
+::: os windows
+Settings → Privacy (Windows 11: Privacy & security) → Microphone: make sure microphone access is on for your browser (the page may list desktop apps separately; Chrome is a desktop app).
+:::
+
+::: os linux
+This varies by distribution and desktop, and there is often no per-app switch. Check your system sound settings: the right input device selected, and not muted.
+:::
+
+::: warning Operating-system menus not verified
+Chrome's help only says to choose **Open settings** in the browser's dialog and turn on **Microphone**, and links to Apple's and Microsoft's articles. The exact menu names above (taken from the usual macOS and Windows layouts) change between OS versions, and Chrome's help does not cover Linux. If a menu differs, search your system settings for "microphone".
+:::
+
+Then try again.
 
 **The permission is granted but the ring never lights up.** Try making a louder sound. If the ring still doesn't light, lower `LOUDNESS_THRESHOLD` (for example to `0.01`). If it still doesn't, the `AudioContext` may be paused by the browser's autoplay rules (MDN describes this for sites that haven't had a user interaction); I haven't tested every browser. Reloading and ticking the box again is the first thing to try.
 
 **The ring is always on, or flickers on with background noise.** The threshold is too low for your room. Raise `LOUDNESS_THRESHOLD`, for example to `0.05`.
+
+**I tick the box but it unticks itself with `Unmute first, then turn this on`.** You are muted. Click the mute button to un-mute, then tick the box again.
+
+**The mic turns off by itself.** That's `syncMic()` at work: the mic only stays on while you are connected and not muted.
 
 **My ring flashes on then immediately disappears.** The simulation in `voice.js` rebuilds `speakingUserIds` every 400 ms. Check that you added the "keep your own id" lines (Step 4, part 4).
 

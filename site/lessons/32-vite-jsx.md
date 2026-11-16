@@ -216,13 +216,37 @@ node -v
 npm -v
 ```
 
-If both print version numbers (Node should be 20.19 or newer, or 22.12 or newer, according to Vite's guide), skip to Step 2. If you see `command not found`:
+Run these in VS Code's terminal (on Windows that must be **Git Bash**, as set up in Lesson 00; on macOS and Linux your normal terminal). If both print version numbers, and Node is **20.19 or newer, or 22.12 or newer** (that's what [Vite's guide](https://vite.dev/guide/) says Vite requires), skip to Step 2. If you see `command not found` (or a version that is too old), install Node.js:
 
-1. Go to [nodejs.org/en/download](https://nodejs.org/en/download) in your browser.
-2. Choose the **LTS** version (Long-Term Support: the stable one) and download the macOS installer. Open it and follow the installer.
-3. **Quit and reopen the terminal** (or VS Code), then run `node -v` and `npm -v` again.
+::: os mac
+1. Go to [nodejs.org/en/download](https://nodejs.org/en/download) and choose the **LTS** version (Long-Term Support: the stable one).
+2. Download the macOS installer, open it and follow the steps. If you already use Homebrew, `brew install node` also works.
+:::
 
-The Node website's download page has changed its layout before, and it now offers other ways to install (such as package managers). An installer from nodejs.org is the simplest choice for this course. If you already use Homebrew, `brew install node` also works. Ask for help if you're unsure which to pick.
+::: os windows
+1. Go to [nodejs.org/en/download](https://nodejs.org/en/download) and choose the **LTS** version (Long-Term Support: the stable one).
+2. Download the Windows installer (the Node.js site recommends the `.msi` installer for system-wide installs), open it and follow the steps.
+:::
+
+::: os linux
+1. Go to [nodejs.org/en/download](https://nodejs.org/en/download) and choose the **LTS** version. The page offers several ways to install on Linux; follow the instructions it shows for your system. A page about installing through package managers is at [nodejs.org/en/download/package-manager](https://nodejs.org/en/download/package-manager).
+2. Your distribution's own package manager (`apt`, `dnf`, ...) may also offer a `nodejs` package. **Be careful: distribution-packaged Node can be too old** for Vite. Always check the result with `node --version`.
+:::
+
+Then **quit and reopen the terminal** (or VS Code) and check again. The installation worked if `node --version` prints `v20.19` or higher (or `v22.12` or higher) and `npm --version` prints a number:
+
+```sh
+node --version
+npm --version
+```
+
+If Node is still too old, install a newer one from nodejs.org instead of the distribution's package. After that, `npm create vite@latest` and `npm install` behave the same in every terminal and on every operating system.
+
+::: tip Why Git Bash for npm on Windows
+The commands in this course are written for bash. On Windows, Git Bash runs them as written. PowerShell has its own rules that can get in the way of npm (for example, its *execution policy* can block scripts), and Git Bash avoids that whole class of problems. Keep using Git Bash in VS Code.
+:::
+
+The Node website's download page has changed its layout before, so read what it shows today. An installer from nodejs.org is the simplest choice for this course. Ask for help if you're unsure which to pick.
 
 <!-- no-solution: installing a program, nothing to type in the project -->
 
@@ -271,7 +295,7 @@ npm run dev
   ➜  Network: use --host to expose
 ```
 
-(Version number and timing will differ.) Hold <Keys mac="Cmd" win="Ctrl" /> and click the `Local` address, or open `http://localhost:5173/` in Chrome. You'll see Vite's starter page with a counter button. Click it a few times: it already works, because it's a React component. We'll replace it.
+(Version number and timing will differ.) Hold <Keys mac="Cmd" win="Ctrl" /> and click the `Local` address, or open `http://localhost:5173/` in Chrome. (On Windows, a Windows Defender Firewall prompt may appear the first time a server starts. The server only needs to be reached from your own computer, so you can cancel the prompt or allow it on private networks only; if the page doesn't load, try allowing it.) You'll see Vite's starter page with a counter button. Click it a few times: it already works, because it's a React component. We'll replace it.
 
 To stop the server later press <kbd>Ctrl</kbd>+<kbd>C</kbd> in that terminal. Leave it running for now. Open a **second terminal** in VS Code (the **+** button in the terminal panel) for other commands.
 
@@ -290,14 +314,14 @@ Spend a minute reading what the template gave you:
 - `src/App.jsx`: the starter component (counter, logos).
 - `package.json`: see `"scripts"`, `"dependencies"` (`react`, `react-dom`) and `"devDependencies"` (`vite` and more).
 
-Now remove what we don't need. We keep `src/App.jsx` and `src/main.jsx`, and delete the template's own CSS and images. In the second terminal (in `~/code/chat-clone/react-app`):
+Now remove what we don't need. We keep `src/App.jsx` and `src/main.jsx`, and delete the template's own CSS and images. In the second terminal (in the `react-app` folder):
 
 ```sh
 rm src/App.css src/index.css public/favicon.svg
 rm -r src/assets
 ```
 
-`rm` removes files, and `rm -r` removes a folder and everything in it. There is no trash bin and no undo, so check the paths first. The template also ships `public/icons.svg` (its own icons); we'll overwrite that file in the next step.
+`rm` removes files, and `rm -r` removes a folder and everything in it. (On Windows, these Unix-style commands work in Git Bash: Git for Windows includes a set of common Unix tools. I could not confirm the full list from its website, but `rm`, `cp` and `cat` are part of it in practice; if one is missing, use File Explorer to delete or copy the files instead.) There is no trash bin and no undo, so check the paths first. The template also ships `public/icons.svg` (its own icons); we'll overwrite that file in the next step.
 
 The browser will show an error now, since `App.jsx` imports the deleted files. That's expected.
 

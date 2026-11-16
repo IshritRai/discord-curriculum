@@ -244,10 +244,6 @@ Create `vanilla/css/overlays.css`. It starts with the popover reset and the pick
   background-color: var(--bg-tertiary);
 }
 
-.emoji-search:focus {
-  outline: none;
-}
-
 .emoji-grid {
   flex: 1;
   min-height: 0;

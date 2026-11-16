@@ -19,7 +19,7 @@ Right-clicking a message, server icon, channel, member or author name opens a cu
 
 ### The `contextmenu` event
 
-When you right-click (or press the menu key, or on macOS <kbd>Control</kbd>-click) the browser fires a `contextmenu` event and then shows its own menu. Calling `event.preventDefault()` in your handler tells the browser **not** to show its menu, so you can show yours instead:
+When you right-click (or press the context menu key) the browser fires a `contextmenu` event and then shows its own menu. On a Mac trackpad, "right-click" means a **secondary click** (a two-finger click, or <kbd>Control</kbd>-click, depending on your trackpad settings); I did not find the <kbd>Control</kbd>-click case in MDN, so if it does nothing in your browser, use the two-finger click or a mouse's right button. Calling `event.preventDefault()` in your handler tells the browser **not** to show its menu, so you can show yours instead:
 
 ```js
 list.addEventListener('contextmenu', (event) => {
@@ -33,7 +33,7 @@ list.addEventListener('contextmenu', (event) => {
 As in Lesson 15 we use **event delegation**: one `contextmenu` listener per area (server list, channel list, message list, member list), and `event.target.closest(...)` to find what was clicked.
 
 ::: info A detail about Firefox
-MDN notes that in Firefox, holding <kbd>Shift</kbd> while right-clicking shows the browser's own menu *without* firing a `contextmenu` event, so you can't cancel it. See [`contextmenu` on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event).
+MDN notes that in Firefox, holding <kbd>Shift</kbd> while right-clicking shows the browser's own menu *without* firing a `contextmenu` event, so you can't cancel it. (If you ever want the browser's normal menu back while testing, that is the Firefox way; I have not verified an equivalent in Chrome.) See [`contextmenu` on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event).
 :::
 
 ### Menus as data
@@ -617,7 +617,7 @@ import { setupTooltips, hideTooltip } from './tooltips.js';
 
 ### Step 11 — Try everything
 
-Hover the icons in every corner of the app; <kbd>Tab</kbd> to a button and see the tooltip appear on focus. Right-click a server, a channel, one of your messages, someone else's message, a name and a member. Right-click near the bottom-right of the window: the menu opens upward and leftward instead of falling off the screen. Use Copy Text, then paste into the composer. Click the cog and choose **Reset Demo Data**.
+Hover the icons in every corner of the app; <kbd>Tab</kbd> to a button and see the tooltip appear on focus. Right-click (on a Mac trackpad: secondary click) a server, a channel, one of your messages, someone else's message, a name and a member. Right-click near the bottom-right of the window: the menu opens upward and leftward instead of falling off the screen. Use Copy Text, then paste into the composer. Click the cog and choose **Reset Demo Data**.
 
 <!-- no-solution: trying the feature out, nothing to type -->
 

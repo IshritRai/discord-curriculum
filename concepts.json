@@ -114,7 +114,7 @@
     {"id":"react-router","lesson":37,"title":"Routing with React Router: HashRouter, Routes, Route, useParams, useNavigate, Navigate","tokens":["import:react-router:HashRouter","import:react-router:Routes","import:react-router:Route","import:react-router:useParams","import:react-router:useNavigate","import:react-router:Navigate"]},
     {"id":"react-popover","lesson":38,"title":"Fragments with keys, currentTarget, and the popover toggle event in React","tokens":["import:react:Fragment","js:member:currentTarget","jsx:attr:onToggle"]},
     {"id":"react-dialogs-menus","lesson":39,"title":"Dialogs, context menus and form attributes in JSX","tokens":["jsx:attr:onClose","jsx:attr:onContextMenu","jsx:attr:autoComplete","jsx:attr:maxLength"]},
-    {"id":"react-custom-hooks","lesson":40,"title":"Custom hooks, and clearing intervals","tokens":["js:global:clearInterval"]},
+    {"id":"react-custom-hooks","lesson":40,"title":"Custom hooks, clearing intervals, and the disabled attribute","tokens":["js:global:clearInterval","html:attr:disabled"]},
     {"id":"measure-code","lesson":41,"title":"Counting lines of code from the terminal","tokens":["sh:cat","sh:wc","sh:find","sh:xargs"]}
   ],
   "starterFiles": [{"pattern":"vanilla/assets/**","explainedIn":null},{"pattern":"react-app/public/**","explainedIn":null},{"pattern":"react-app/README.md","explainedIn":null},{"pattern":"react-app/package.json","explainedIn":null},{"pattern":"react-app/.gitignore","explainedIn":null},{"pattern":"react-app/.oxlintrc.json","explainedIn":null},{"pattern":".github/**","explainedIn":null}],

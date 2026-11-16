@@ -496,10 +496,6 @@ Notes on the CSS: `.message-actions` is `position: absolute` (Lesson 9) so it fl
   resize: none;
 }
 
-.edit-input:focus {
-  outline: none;
-}
-
 .edit-hint {
   margin: 4px 0;
   color: var(--text-normal);

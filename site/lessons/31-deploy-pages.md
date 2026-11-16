@@ -223,7 +223,7 @@ Undo the joke if you like (change the heading back, commit and push again).
 
 **The address shows a 404 page ("There isn't a GitHub Pages site here").** The site isn't published yet or isn't configured. Check **Settings → Pages**: source must be *Deploy from a branch* with `main` and `/ (root)` selected, and you must have pushed. Then wait a few minutes. A typo in the address (`chat-clone` vs your repository name) gives the same page.
 
-**The landing page works but `vanilla/` is blank.** Open DevTools → Console and Network. A red `404` next to a file means a path or filename is wrong. GitHub's servers treat upper and lower case as different (`Avatar.svg` and `avatar.svg` are different files), while your Mac usually doesn't. Make the names in your code match the file names exactly, including capitals.
+**The landing page works but `vanilla/` is blank.** Open DevTools → Console and Network. A red `404` next to a file means a path or filename is wrong. GitHub's servers treat upper and lower case as different (`Avatar.svg` and `avatar.svg` are different files), while your own computer usually doesn't: macOS and Windows normally ignore capitals in file names by default, Linux doesn't. (On Linux a mismatch shows up locally too.) Make the names in your code match the file names exactly, including capitals.
 
 **My new changes don't show up.** Wait a little: GitHub's docs say it can take up to 10 minutes. Then hard-reload (<Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />). Also check that you really pushed (`git status` should say "Your branch is up to date with 'origin/main'").
 

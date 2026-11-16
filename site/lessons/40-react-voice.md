@@ -63,9 +63,13 @@ Here `enabled` is the dependency: when it goes from `false` to `true`, `start()`
 
 `setInterval` calls a function every N milliseconds, until you `clearInterval(timerId)`. Like `setTimeout` and `clearTimeout` from Lesson 36, it must be cleared in the cleanup, or it keeps firing forever (and twice in development with StrictMode).
 
+### An effect that reacts to state, and `disabled`
+
+An effect isn't only for timers. `useEffect(() => { ... }, [channelId, muted])` runs after a render in which `channelId` or `muted` changed, so it can keep your own local state consistent with the shared state: "if I'm not connected or I'm muted, the mic must be off". The HTML attribute `disabled` (`disabled={muted}` in JSX) greys out a form control so the user can't change it.
+
 ### Components that are always rendered
 
-`VoicePanel` is **always rendered**; when you aren't connected, it just has the `hidden` attribute (`hidden={channelId === null}`). The alternative, returning `null` when disconnected, would also work. We keep it mounted because it owns the mic checkbox's state and the mic hook, and it is the one place that must turn the mic off when you disconnect.
+`VoicePanel` is **always rendered**; when you aren't connected, it just has the `hidden` attribute (`hidden={channelId === null}`). The alternative, returning `null` when disconnected, would also work. We keep it mounted because it owns the mic checkbox's state and the mic hook, and it is the one place that must turn the mic off when you disconnect, get disconnected by leaving the server, or mute.
 
 ### Why re-rendering everything every 400 ms is fine here
 
@@ -308,14 +312,16 @@ export function useMicSpeaking(enabled, onSpeakingChange, onError) {
 Create `components/VoicePanel.jsx`. It shows "Voice Connected", the channel and server names, a checkbox for the mic, and a Disconnect button.
 
 - `micOn` and `micError` are local state (`useState`, Lesson 34): they belong to this panel only.
+- An **effect that reacts to state**: `useEffect(() => { if (channelId === null || muted) setMicOn(false); }, [channelId, muted])`. Whenever you become disconnected or muted, *however that happened* (the Disconnect button, **Leave Server**, mute, deafen), the mic switches off. This is why we don't try to remember every place that could disconnect you: the panel watches the state and corrects itself.
 - `useMicSpeaking(micOn && channelId !== null, onSpeakingChange, onError)` is your custom hook. `onSpeakingChange` adds or removes you from `speakingUserIds` (reading the latest state with `getState()`, and only if you're connected and not muted).
 - `channel && ...`: `channelId` is `null` when disconnected, so the lookups are skipped (`null && x` gives `null`, and React renders nothing for it).
 - The section always renders, with `hidden={channelId === null}`.
+- The checkbox gets `disabled={muted}`: you can't turn the mic on while muted.
 - `disconnect()` turns the mic off and dispatches `leaveVoice`.
 
 ::: solution
 ```jsx [react-app/src/components/VoicePanel.jsx]
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useApp } from '../state/AppContext.jsx';
 import { CURRENT_USER_ID, findChannel, findServerOfChannel } from '../state/selectors.js';
 import { useMicSpeaking } from '../hooks/useMicSpeaking.js';
@@ -327,6 +333,15 @@ export function VoicePanel() {
   const [micOn, setMicOn] = useState(false);
   const [micError, setMicError] = useState(false);
   const channelId = state.voice.channelId;
+  const muted = state.voice.muted;
+
+  // The mic may only stay on while you are connected and not muted,
+  // however you got disconnected (button, Leave Server, deafen...).
+  useEffect(() => {
+    if (channelId === null || muted) {
+      setMicOn(false);
+    }
+  }, [channelId, muted]);
 
   useMicSpeaking(
     micOn && channelId !== null,
@@ -370,7 +385,13 @@ export function VoicePanel() {
           {channel && `${channel.name} / ${server.name}`}
         </p>
         <label className="mic-toggle">
-          <input type="checkbox" id="mic-toggle" checked={micOn} onChange={(event) => setMicOn(event.target.checked)} />
+          <input
+            type="checkbox"
+            id="mic-toggle"
+            checked={micOn}
+            disabled={muted}
+            onChange={(event) => setMicOn(event.target.checked)}
+          />
           <span>{micLabel}</span>
         </label>
       </div>
@@ -644,7 +665,8 @@ In `ContextMenu.jsx`, the `channel` branch of `useMenuItems` now offers **Join V
 - [ ] Click the microphone button: it changes to the muted icon and its label to **Unmute**; a small muted icon appears next to your name in the voice list. Click the headphones: both mute and deafen show. Click the microphone again: both are cleared.
 - [ ] Right-click a voice channel: the menu offers **Join Voice**.
 - [ ] Click Disconnect (the icon on the panel): the panel disappears and you leave the list.
-- [ ] Optional: connect, tick **Light up when I talk (uses my mic)**, allow the microphone, and talk: your ring lights up. Untick it or disconnect: the browser's recording indicator goes away.
+- [ ] Optional: connect, tick **Light up when I talk (uses my mic)**, allow the microphone, and talk: your ring lights up. Untick it, mute, deafen or disconnect (or leave the server you're connected to): the mic switches off and the browser's recording indicator goes away. While muted, the mic checkbox is disabled.
+- [ ] Optional: with the mic on, click the microphone button in the user panel: the checkbox unticks and becomes disabled (greyed out) until you unmute.
 - [ ] In DevTools → **Network**, nothing is sent while the mic is on (the sound stays in your browser).
 - [ ] Reload the page: you are disconnected (voice state isn't saved).
 

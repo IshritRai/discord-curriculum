@@ -111,7 +111,7 @@ The two colour properties you'll use most:
 | `letter-spacing` | space between letters | `0.02em` |
 | `text-transform` | changes case without retyping | `uppercase` |
 
-- `font-family` takes a list. The browser uses the first font your computer has. Names with spaces go in quotes. The list ends with a **generic family** like `sans-serif` as a last resort. `-apple-system` and `BlinkMacSystemFont` ask for the system font on Apple and Chrome, so the app looks native on your Mac.
+- `font-family` takes a list. The browser uses the first font your computer has. Names with spaces go in quotes. The list ends with a **generic family** like `sans-serif` as a last resort. `-apple-system` and `BlinkMacSystemFont` ask for the system font on Apple devices and in Chrome on macOS, so the app looks native there. `"Segoe UI"` is the Windows system font. If none of the earlier names exist, the browser moves on down the list.
 - **Units:** `px` is a pixel: a fixed size. `em` is *relative*: `1em` is the font size of the parent, so `0.85em` means "85% of the surrounding text". Use `px` for exact sizes, and `em` when something should scale with its surroundings.
 - A `line-height` with **no unit** (like `1.375`) means "1.375 times the element's own font size".
 
@@ -227,7 +227,11 @@ body {
 }
 ```
 
-Save. The page turns dark, with light text in a different typeface. The buttons stay grey, because they ignore inheritance. We'll fix that in the next step.
+Save. The page turns dark, with light text in a different typeface.
+
+::: info Your font may look different from the screenshots
+`--font-sans` lists `-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `"Inter"`, `"Noto Sans"`, `Helvetica`, `Arial`, then `sans-serif`. The browser picks the first one installed on your computer, so each system shows a different default: the Apple system font on a Mac, Segoe UI on Windows, and on Linux usually Inter or Noto Sans if installed, otherwise whatever `sans-serif` maps to. The screenshots in this course were taken on a Linux machine that has Inter. Letter shapes and line widths differ a little between fonts, so your text may wrap in slightly different places. That is normal. See [`font-family` on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
+::: The buttons stay grey, because they ignore inheritance. We'll fix that in the next step.
 
 <!-- no-solution: the complete base.css file comes in the next step -->
 
