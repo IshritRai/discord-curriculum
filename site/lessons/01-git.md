@@ -88,7 +88,7 @@ GitHub shows the formatted version of `README.md` under the file list. This cour
 
 ### .gitignore
 
-Some files should never be saved in a repository, such as junk your computer creates by itself. A file named `.gitignore` lists names Git should ignore. On macOS, Finder creates a file called `.DS_Store` in folders you open. You don't want it in your history, so you'll list it. Later lessons add folders like `node_modules` here too.
+Some files should never be saved in a repository, such as junk your computer creates by itself. A file named `.gitignore` lists names Git should ignore. On macOS, Finder creates a file called `.DS_Store` in folders you open. Windows and Linux don't create it, but you'll list it for everyone anyway: it's harmless, and it protects the repository if you ever work on a Mac or share it with someone who does. Later lessons add folders like `node_modules` here too.
 
 A line starting with `#` in `.gitignore` is a comment.
 
@@ -96,18 +96,40 @@ A line starting with `#` in `.gitignore` is a comment.
 
 ### Step 1 — Check that Git is installed
 
-Open the terminal in VS Code (**View → Terminal**) and type:
+Open the terminal in VS Code (<Keys mac="Ctrl+`" win="Ctrl+`" />, or **Terminal → New Terminal**). On Windows this must be **Git Bash**, as set up in Lesson 00, Step 2. Type:
 
 ```sh
 git --version
 ```
 
-If Git is installed you'll see a version line such as `git version 2.39.5 (Apple Git-154)`. The numbers will differ.
+If Git is installed you'll see a version line such as `git version 2.39.5 (Apple Git-154)` on a Mac, or a similar line ending in `.windows.1` on Windows. The numbers will differ.
 
-On a Mac that has never used Git, macOS may pop up a window offering to install the **Command Line Developer Tools**. Click **Install** and wait for it to finish (it can take several minutes), then run `git --version` again.
+::: os mac
+On a Mac that has never used Git, macOS may pop up a window offering to install the **Command Line Developer Tools**. Click **Install** and wait for it to finish (it can take several minutes), then run `git --version` again. The official [Git page for macOS](https://git-scm.com/install/mac) lists this route (the command `xcode-select --install`) and the Homebrew route (`brew install git`).
+:::
+
+::: os windows
+If `git` is not found, install **Git for Windows** from [git-scm.com/install/windows](https://git-scm.com/install/windows) (you may already have done this in Lesson 00). Then close and reopen VS Code and open a new terminal.
+:::
+
+::: os linux
+If `git` is not found, install it with your package manager. On Debian or Ubuntu:
+
+```sh
+sudo apt-get install git
+```
+
+On Fedora:
+
+```sh
+sudo dnf install git
+```
+
+Other distributions use other commands; the [Git page for Linux](https://git-scm.com/install/linux) lists them. `sudo` runs a command with administrator rights and asks for your password. Nothing shows while you type the password; that is normal. Then run `git --version` again.
+:::
 
 ::: warning Tool setup can change
-The exact wording of the macOS install window may differ. If no window appears and the command fails, search for "install Git on macOS" at [git-scm.com](https://git-scm.com/book/en/v2), which has current instructions.
+The exact wording of install windows and installer screens may differ, and I could not check them. If something doesn't match, follow the current instructions at [git-scm.com](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 :::
 
 <!-- no-solution: checking a tool, nothing to type into a file -->
@@ -156,7 +178,7 @@ Git answers with something like:
 Initialized empty Git repository in /Users/sam/code/chat-clone/.git/
 ```
 
-Check the path in that message. It must end in `chat-clone/.git/`. If it names your home folder, you ran `git init` in the wrong place (see Common mistakes).
+The start of the path depends on your system (for example `/home/sam/...` on Linux, or `C:/Users/sam/...` on Windows). Check the path in that message. It must end in `chat-clone/.git/`. If it names your home folder, you ran `git init` in the wrong place (see Common mistakes).
 
 ::: solution
 ```text
@@ -241,7 +263,7 @@ git commit -m "Add hello page"
 
 `-m` gives the commit **message**. Write messages in the imperative, like a command: "Add hello page", "Fix typo". Make them specific so your future self knows what happened.
 
-If Git opens a strange text editor instead (usually `vim`), you forgot `-m`. Press <kbd>Esc</kbd>, type `:q!` and press <kbd>Enter</kbd> to leave without committing, then try again.
+If Git opens a strange text editor instead (often `vim`), you forgot `-m`. Press <kbd>Esc</kbd>, type `:q!` and press <kbd>Enter</kbd> to leave without committing, then try again.
 
 ::: solution
 ```text
@@ -254,6 +276,10 @@ $ git commit -m "Add hello page"
 ```
 
 Your commit code and line counts will differ a little.
+:::
+
+::: warning Windows: "LF will be replaced by CRLF"
+On Windows, `git add` or `git status` may print a warning like `in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it`. It is a warning, not an error, and your commit still works. **LF** and **CRLF** are two ways to mark the end of a line in a text file: Unix-style systems use LF, and Windows traditionally uses CRLF. Git's documentation says that line endings are normalized to LF when a file is added to the repository, and that they may be converted back to CRLF when files are written to your folder, depending on your settings and platform. The warning tells you which conversion Git expects to make later. You can ignore it for this course. macOS and Linux learners normally don't see it.
 :::
 
 ### Step 7 — Read the history
@@ -309,13 +335,27 @@ GitHub redesigns this page now and then, so buttons may have moved or been renam
 
 ### Step 10 — Install the GitHub CLI and sign in
 
-The **GitHub CLI** (`gh`) is a command-line tool that logs you in to GitHub so `git push` works. If you use Homebrew (a popular Mac package installer), install it with:
+The **GitHub CLI** (`gh`) is a command-line tool that logs you in to GitHub so `git push` works. Install it for your system:
+
+::: os mac
+If you use Homebrew (a popular Mac package installer), install it with:
 
 ```sh
 brew install gh
 ```
 
-If you don't have Homebrew, download the installer from [cli.github.com](https://cli.github.com/) instead. Then sign in:
+If you don't have Homebrew, download an installer from the [GitHub CLI releases page](https://github.com/cli/cli/releases/latest) or follow [cli.github.com](https://cli.github.com/).
+:::
+
+::: os windows
+The GitHub CLI's Windows instructions give this command (`winget` is Windows' package manager): `winget install --id GitHub.cli --source winget`. Or download the `.msi` installer from the [GitHub CLI releases page](https://github.com/cli/cli/releases/latest). After installing, **close VS Code completely and open it again**, so the terminal can find `gh`; the GitHub CLI docs say a new terminal window is needed because the installer changes your PATH.
+:::
+
+::: os linux
+GitHub publishes official packages for Debian, Ubuntu, Fedora, RHEL, openSUSE and others. The setup is several commands that change by distribution, so follow the official [Linux install instructions](https://github.com/cli/cli/blob/trunk/docs/install_linux.md) instead of copying them from here. Avoid the Snap package, which those instructions discourage.
+:::
+
+Then, on every system, sign in:
 
 ```sh
 gh auth login
@@ -330,7 +370,7 @@ gh auth status
 It should say you are logged in to github.com.
 
 ::: warning Tool setup can change
-The questions and wording in `gh auth login` may differ in newer versions. Read each prompt and pick the closest option to those above. Remember: your GitHub password does *not* work for `git push` over HTTPS. Git needs a login created by `gh` (or a personal access token).
+The questions and wording in `gh auth login` may differ in newer versions. Read each prompt and pick the closest option to those above. Remember: your GitHub password does *not* work for `git push` over HTTPS. Git needs a login created by `gh` (or a personal access token). Sign-in works the same in Git Bash, macOS Terminal and Linux terminals, but on Windows and Linux the browser step may look different, and I could not check every screen.
 :::
 
 <!-- no-solution: installing and signing in; output differs per machine -->
@@ -380,6 +420,7 @@ If you made the extra README change, save and commit it now with the commands fr
 - [ ] `git --version` prints a version number.
 - [ ] `git config --global --list` shows your `user.name` and `user.email`.
 - [ ] `~/code/chat-clone` contains a hidden `.git` folder. Check with `ls -a`.
+- [ ] `gh auth status` says you are logged in to github.com.
 - [ ] `git log --oneline` shows a commit named **Add hello page**.
 - [ ] `git status` says `nothing to commit, working tree clean`.
 - [ ] Your repository page on GitHub lists `vanilla`, `README.md` and `.gitignore`, and shows the README text below.
@@ -390,6 +431,16 @@ If you made the extra README change, save and commit it now with the commands fr
 **You ran `git init` in your home folder (or in `code`) instead of `chat-clone`.** Git is now tracking far too much. Check the path in the `Initialized empty Git repository in ...` message. To undo it, delete the stray hidden `.git` folder in that wrong place (for example `rm -rf ~/.git`, only if you are sure it is the one you just created), then `cd` into the right folder and run `git init` again.
 
 **`git status` says `nothing to commit` but you changed a file.** You may have forgotten to save, or you are in a different folder. Run `pwd`.
+
+**Windows: you typed these commands in PowerShell, not Git Bash.** Switch VS Code's terminal profile to Git Bash (Lesson 00, Step 2). Also, `mkdir -p` and `~` are written for bash, so they may behave differently in PowerShell or Command Prompt.
+
+**Windows: `git` or `gh` "is not recognized" or "command not found" right after installing.** The terminal was opened before the install. Close VS Code, reopen it and open a new terminal.
+
+**Windows: "LF will be replaced by CRLF" warnings.** Harmless, see the warning after Step 6.
+
+**macOS: a window pops up asking to install developer tools when you run `git`.** That is the Command Line Developer Tools install. Click **Install**, wait, then run the command again.
+
+**Linux: `sudo apt-get install git` says "command not found" or `gh` isn't in your package list.** `apt-get` is for Debian and Ubuntu, `dnf` for Fedora; other distributions differ. For `gh`, use the official Linux install page linked in Step 10 rather than a random package, because community packages can be outdated.
 
 **You ran `git commit` but it says `no changes added to commit`.** You forgot `git add .` first. Stage the files, then commit again.
 

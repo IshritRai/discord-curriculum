@@ -3,7 +3,7 @@
     {"id":"html-document","lesson":0,"title":"The HTML document skeleton","tokens":["html:doctype","html:tag:html","html:tag:head","html:tag:body","html:tag:title","html:tag:meta","html:attr:charset","html:attr:lang"]},
     {"id":"html-heading-paragraph","lesson":0,"title":"Headings and paragraphs","tokens":["html:tag:h1","html:tag:p"]},
     {"id":"terminal-basics","lesson":0,"title":"Terminal basics: where am I, what's here, move, make a folder","tokens":["sh:pwd","sh:ls","sh:cd","sh:mkdir"]},
-    {"id":"git-setup","lesson":1,"title":"Installing and configuring Git","tokens":["sh:git","sh:git config"]},
+    {"id":"git-setup","lesson":1,"title":"Installing and configuring Git","tokens":["sh:git","sh:git config","sh:sudo","sh:apt-get","sh:dnf"]},
     {"id":"git-commits","lesson":1,"title":"Repositories, staging and commits","tokens":["sh:git init","sh:git status","sh:git add","sh:git commit","sh:git log","sh:git diff"]},
     {"id":"github-remote","lesson":1,"title":"GitHub remotes and pushing","tokens":["sh:git remote","sh:git branch","sh:git push","sh:gh","sh:gh auth","sh:brew install"]},
     {"id":"markdown-readme","lesson":1,"title":"Markdown (README files)","tokens":["md:syntax"]},
