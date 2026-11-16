@@ -230,8 +230,12 @@ body {
 Save. The page turns dark, with light text in a different typeface.
 
 ::: info Your font may look different from the screenshots
-`--font-sans` lists `-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `"Inter"`, `"Noto Sans"`, `Helvetica`, `Arial`, then `sans-serif`. The browser picks the first one installed on your computer, so each system shows a different default: the Apple system font on a Mac, Segoe UI on Windows, and on Linux usually Inter or Noto Sans if installed, otherwise whatever `sans-serif` maps to. The screenshots in this course were taken on a Linux machine that has Inter. Letter shapes and line widths differ a little between fonts, so your text may wrap in slightly different places. That is normal. See [`font-family` on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family)
-::: The buttons stay grey, because they ignore inheritance. We'll fix that in the next step.
+`--font-sans` lists `-apple-system`, `BlinkMacSystemFont`, `"Segoe UI"`, `"Inter"`, `"Noto Sans"`, `Helvetica`, `Arial`, then `sans-serif`. The browser picks the first one installed on your computer, so each system shows a different default: the Apple system font on a Mac, Segoe UI on Windows, and on Linux usually Inter or Noto Sans if installed, otherwise whatever `sans-serif` maps to. The screenshots in this course were taken on a Linux machine that has Inter. Letter shapes and line widths differ a little between fonts, so your text may wrap in slightly different places. That is normal.
+
+See [`font-family` on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-family).
+:::
+
+The buttons stay grey, because they ignore inheritance. We'll fix that in the next step.
 
 <!-- no-solution: the complete base.css file comes in the next step -->
 
