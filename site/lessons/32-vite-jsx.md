@@ -59,7 +59,7 @@ The `^` before a version number means "this version or a newer compatible one", 
 
 ### Vite: the development server
 
-React code uses **JSX**, which browsers can't read. Something has to convert it to plain JavaScript first. **Vite** (French for "quick", pronounced like "veet") is that tool, and it is also your development server. Its docs describe it as a build tool that provides a fast dev server and bundles code for production ([vite.dev/guide](https://vite.dev/guide/)).
+React code uses **JSX**, which browsers can't read. Something has to convert it to plain JavaScript first. **Vite** (French for "quick", pronounced like "veet") is that tool, and it is also your development server. Its docs describe it as a build tool with two main parts: a dev server with fast hot module replacement, and a build command that bundles your code for production ([vite.dev/guide](https://vite.dev/guide/)).
 
 Compare it with Live Server:
 
@@ -111,7 +111,7 @@ createRoot(document.getElementById('root')).render(
 ```
 
 - `createRoot(element)` tells React "you are in charge of everything inside this element" ([createRoot on react.dev](https://react.dev/reference/react-dom/client/createRoot)). You call it once. `.render(...)` says what to draw there.
-- `<StrictMode>` is a wrapper that adds extra checks while you develop, for example it runs some of your code twice to expose mistakes. It has no visible effect and does nothing in the production build ([StrictMode on react.dev](https://react.dev/reference/react/StrictMode)). Keep it.
+- `<StrictMode>` is a wrapper that adds extra checks while you develop, for example it re-runs your components an extra time while developing to expose mistakes. It has no visible effect, and its extra checks only apply during development ([StrictMode on react.dev](https://react.dev/reference/react/StrictMode)). Keep it.
 - `<App />` is your first **component**, which comes next.
 - `import App from './App.jsx'` is a **default import**: no curly braces, because the other file used `export default`. (Named imports with braces, like `{ createRoot }`, you know from Lesson 17.)
 - `import { StrictMode } from 'react'` has no `./`: a bare name means "from the installed package", here `react` in `node_modules`.
@@ -239,7 +239,7 @@ npm create vite@latest react-app -- --template react
 - `react-app` is the folder to make. That folder name matters: this course uses `react-app` from now on.
 - The `--` separates npm's own options from the options meant for the tool; `--template react` picks the plain-JavaScript React template.
 
-It may ask a few questions. With the options above I got these (yours may differ):
+It may ask a few questions. Going by the source of `create-vite` 9.3.4 (the version I checked; I haven't watched the prompts live), with the options above it asks these two (yours may differ):
 
 1. **Which linter to use?** (A *linter* is a tool that points out likely mistakes in your code.) Choose **Oxlint**, the first option.
 2. **Install with npm and start now?** Choose **No**, so you can do the steps yourself and see what each does.
@@ -457,6 +457,8 @@ While pasting, notice the differences from HTML:
 <<< @/../solutions/lesson-32/react-app/src/App.jsx [react-app/src/App.jsx]
 :::
 
+<!-- no-solution: the pasted starter code above is the full file -->
+
 The page should now match the screenshot at the top. The server-rail buttons, the channels and the member list are all just static JSX; the next lessons replace this repetitive markup with components and real data.
 
 ### Step 10 — Watch hot reloading, and check Git ignores `node_modules`
@@ -499,7 +501,7 @@ You should see `react-app/` as a new (untracked) folder, but nothing from `node_
 
 **An error about "Adjacent JSX elements must be wrapped in an enclosing tag" (wording depends on the tool version).** `App` is returning two top-level elements. Wrap everything in one parent or a fragment `<> … </>`.
 
-**Nothing changes when I use `class=` (or the Console warns about `class`).** In JSX the attribute is `className`. React may warn about `class` in the Console, and the styles won't match.
+**My styles don't apply to an element I wrote with `class=`.** In JSX the attribute is `className`. Search `App.jsx` for `class=` and change each one.
 
 **Thousands of `node_modules` files show up in Git (or VS Code's Source Control view).** The `.gitignore` is missing from `react-app/`. Look for it with `ls -a` (names starting with a dot are hidden). If it's missing, copy the contents shown in the solution folder for this lesson, or recreate the project.
 
@@ -537,7 +539,7 @@ function Page() {
 :::
 
 ::: quiz
-You run `git clone` on a project and `npm install` is the first command you should run. Why?
+You clone a React project from GitHub onto a new computer. Why must you run `npm install` before `npm run dev`?
 
 - [ ] It installs Git
 - [x] The project's packages in `node_modules/` aren't committed to Git, and `npm install` downloads them as listed in `package.json`

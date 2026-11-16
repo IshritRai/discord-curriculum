@@ -99,6 +99,7 @@
     {"id":"checkbox","lesson":30,"title":"Checkboxes and the change event","tokens":["html:attrval:type=checkbox","js:member:checked","html:attr:checked"]},
     {"id":"vite-project","lesson":32,"title":"A Vite project: index.html, main.jsx and importing CSS","tokens":["import:react-dom/client:createRoot","import:react:StrictMode","js:member:getElementById","import:vite:defineConfig","import:@vitejs/plugin-react:default","js:syntax:import-package","js:syntax:import-default","js:syntax:import-css","js:syntax:export-default","html:attrval:type=image/svg+xml"]},
     {"id":"jsx-basics","lesson":32,"title":"JSX: elements, className, comments and fragments","tokens":["jsx:syntax:element","jsx:syntax:component","jsx:syntax:fragment","jsx:syntax:comment","jsx:attr:className","jsx:attr:dateTime"]},
+    {"id":"node-npm","lesson":32,"title":"Node, npm and shell commands for a project","tokens":["sh:node","sh:npm","sh:npm create","sh:npm install","sh:npm run","sh:rm","sh:cp"]},
     {"id":"react-props","lesson":33,"title":"Components with props, and destructuring","tokens":["jsx:syntax:props","jsx:syntax:expression","js:syntax:destructure-object","js:syntax:destructure-default","js:syntax:rest","jsx:syntax:spread-props","js:global:Boolean"]},
     {"id":"react-lists-keys","lesson":33,"title":"Rendering lists with map() and key","tokens":["jsx:attr:key"]},
     {"id":"react-styles-html","lesson":33,"title":"Inline style objects, dangerouslySetInnerHTML and importing JSON","tokens":["jsx:attr:style","jsx:attr:dangerouslySetInnerHTML","js:syntax:import-json"]},
