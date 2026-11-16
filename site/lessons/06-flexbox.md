@@ -602,7 +602,7 @@ Place `.chat-header-icon` after `.chat-header`, and `.chat-toolbar` and `.search
 `.chat-title` and `.search-input` are unchanged.
 :::
 
-**An experiment (do it in DevTools, nothing to save).** Right-click the page, choose **Inspect**, select the `.chat-topic` paragraph and untick `flex: 1` in the Styles pane. The toolbar jumps to the right edge thanks to `margin-left: auto`. Tick `flex: 1` again: the topic now takes all the free space, so the toolbar is *still* at the right edge, but this time because the topic grew up against it. Both rules point at the same result here; the course keeps both, so the toolbar stays right-aligned even if the topic is removed later.
+**An experiment (do it in DevTools, nothing to save).** Right-click the page (on a Mac trackpad: click with two fingers, or hold <kbd>Ctrl</kbd> and click), choose **Inspect**, select the `.chat-topic` paragraph and untick `flex: 1` in the Styles pane. The toolbar jumps to the right edge thanks to `margin-left: auto`. Tick `flex: 1` again: the topic now takes all the free space, so the toolbar is *still* at the right edge, but this time because the topic grew up against it. Both rules point at the same result here; the course keeps both, so the toolbar stays right-aligned even if the topic is removed later.
 
 ### Step 7 — Messages and the composer
 

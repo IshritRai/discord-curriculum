@@ -36,6 +36,10 @@ Lesson 38's emoji picker already showed the pattern: a piece of state says what 
 
 ### Right-click: onContextMenu
 
+::: os mac
+On a Mac, "right-click" means a two-finger click on the trackpad, or holding <kbd>Ctrl</kbd> while you click (if your mouse has no right button).
+:::
+
 The browser fires a `contextmenu` event when you right-click (or press the menu key). React exposes it as the `onContextMenu` prop. Two details:
 
 - Call `event.preventDefault()` to stop the browser's own menu from appearing.

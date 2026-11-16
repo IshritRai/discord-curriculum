@@ -88,36 +88,105 @@ In Python, indentation is part of the syntax. In HTML it isn't: the browser igno
 
 ### The terminal
 
-You'll type a few commands in the **terminal** (a text window for giving your computer commands). On macOS the terminal runs a program called a shell (usually `zsh`). You need four commands today:
+You'll type a few commands in the **terminal** (a text window for giving your computer commands). The terminal runs a program called a **shell**, which reads what you type. Different shells understand slightly different commands. Every command in this course is written for the **bash** family of shells, so that the same line works for everyone:
+
+- **macOS:** the Terminal app, or VS Code's built-in terminal. Both use `zsh` by default, which understands the commands in this course.
+- **Linux:** any terminal.
+- **Windows:** **Git Bash**, a bash terminal that comes with Git for Windows. VS Code's built-in terminal on Windows uses PowerShell unless you change it, so Step 2 shows you how to switch it to Git Bash. Don't use PowerShell or Command Prompt for this course.
+
+You need four commands today:
 
 | Command | Means | Example |
 | --- | --- | --- |
-| `pwd` | **p**rint **w**orking **d**irectory: "where am I?" | `pwd` → `/Users/you` |
+| `pwd` | **p**rint **w**orking **d**irectory: "where am I?" | `pwd` |
 | `ls` | **l**i**s**t what's in this folder | `ls` |
 | `mkdir` | **m**a**k**e a **dir**ectory (folder) | `mkdir code` |
 | `cd` | **c**hange **d**irectory: move into a folder | `cd code` |
 
-`~` is shorthand for your home folder (`/Users/your-name`).
+`~` is shorthand for your **home folder**, the folder that holds your own files. Typing `~/code` means "the `code` folder inside my home folder".
+
+| | Your home folder, as `pwd` prints it |
+| --- | --- |
+| macOS | `/Users/your-name` |
+| Linux | `/home/your-name` |
+| Windows (Git Bash) | usually `/c/Users/your-name`, which is the `C:\Users\your-name` folder that File Explorer shows |
+
+::: warning Check your own home folder
+Git Bash writes Windows paths with forward slashes and `/c/` for the `C:` drive. That is how Git Bash normally behaves, but a school or work computer can place the home folder elsewhere. To see yours, type `cd ~` and then `pwd`.
+:::
 
 ## 🛠️ Build it
 
-### Step 1 — Install a browser and the VS Code extensions
+### Step 1 — Install VS Code, Chrome and (on Windows) Git
 
-1. Use **Google Chrome** for this course. Its developer tools match the descriptions in these lessons. Firefox and Safari work too, but their menus differ.
-2. Open **VS Code**, click the **Extensions** icon in the left bar (four squares), and install:
-   - **Live Server** by *Ritwick Dey*: a local web server that reloads the page every time you save. Check the publisher name before installing, because several look-alike extensions exist.
-   - *(Optional)* **Prettier - Code formatter**: tidies indentation. If you install it, leave "format on save" off for now so your code keeps the layout you typed.
-3. Turn on **File → Auto Save** in VS Code so you never test an unsaved file.
+You need an editor (VS Code), a browser (Google Chrome) and, on Windows, Git for Windows, because it brings Git Bash. Skip anything you already have.
+
+::: os mac
+1. **VS Code:** download it from [code.visualstudio.com/download](https://code.visualstudio.com/download), open the downloaded `.dmg` file and drag **Visual Studio Code** into your **Applications** folder. See the [macOS setup page](https://code.visualstudio.com/docs/setup/mac).
+2. **Chrome:** download it from [google.com/chrome](https://www.google.com/chrome/), open `googlechrome.dmg` and drag Chrome into **Applications**. See [Google's install steps](https://support.google.com/chrome/answer/95346).
+:::
+
+::: os windows
+1. **Git for Windows (includes Git Bash):** download the installer from [git-scm.com/install/windows](https://git-scm.com/install/windows), run it and follow the prompts. Git for Windows provides Git Bash, a bash terminal, together with Git. The installer asks several questions; the defaults are fine for this course. (The same page also shows a `winget` command if you prefer the command line.)
+2. **VS Code:** download it from [code.visualstudio.com/download](https://code.visualstudio.com/download). The "User setup" installer is the one VS Code recommends and doesn't need administrator rights. See the [Windows setup page](https://code.visualstudio.com/docs/setup/windows). If the installer shows a **Select Additional Tasks** step, leave **Add to PATH** checked.
+3. **Chrome:** download it from [google.com/chrome](https://www.google.com/chrome/), run the file and follow the prompts. See [Google's install steps](https://support.google.com/chrome/answer/95346).
+:::
+
+::: os linux
+1. **VS Code:** VS Code publishes `.deb` and `.rpm` packages, an apt repository, a dnf repository and a Snap package. Follow the steps for your distribution on the [Linux setup page](https://code.visualstudio.com/docs/setup/linux); other distributions differ.
+2. **Chrome or Chromium:** Google's [install steps](https://support.google.com/chrome/answer/95346) for Linux say to download the `.deb` package (Debian/Ubuntu) or the `.rpm` package (Fedora/openSUSE), open it and choose **Install**. Chromium, the open-source browser Chrome is built on, is usually in your distribution's software center and works for this course too.
+3. Git is installed in Lesson 01 if you don't have it yet.
+:::
 
 ::: warning Tool setup can change
-Extension names, menus and buttons change over time. If something below doesn't match what you see, look for the closest option. If Live Server isn't available anymore, Microsoft's **Live Preview** extension does the same job.
+Installer screens, download pages and button names change over time. If something doesn't match what you see, look for the closest option on the official page linked above. I could not check the installer screens themselves, only the official pages.
 :::
 
 <!-- no-solution: installing tools, nothing to type -->
 
-### Step 2 — Create the project folder in the terminal
+### Step 2 — Make your terminal use bash
 
-Open the terminal inside VS Code with **View → Terminal** (or <kbd>Ctrl</kbd>+<kbd>`</kbd>). Type each command and press <kbd>Enter</kbd>:
+::: os mac
+The Terminal app (in **Applications → Utilities**, or search for "Terminal") already works. VS Code's built-in terminal does too, and that's what you'll use. Open it with <Keys mac="Ctrl+`" win="Ctrl+`" /> (that's the Control key, not Cmd), or with **Terminal → New Terminal** in the menu bar at the top of the screen. Nothing to change.
+:::
+
+::: os linux
+Any terminal works. VS Code's built-in terminal is handy because it opens inside your project: open it with <Keys mac="Ctrl+`" win="Ctrl+`" /> or with **Terminal → New Terminal** in the window's menu bar. Nothing to change.
+:::
+
+::: os windows
+VS Code's terminal uses PowerShell by default, so you must switch it to Git Bash once:
+
+1. Open VS Code and press <Keys mac="Cmd+Shift+P" win="Ctrl+Shift+P" /> to open the **Command Palette**.
+2. Type `Terminal: Select Default Profile` and choose that command.
+3. In the list that appears, choose **Git Bash**. (You can also find the same command in the dropdown arrow next to the **+** button of the terminal panel.)
+4. Open a new terminal with <Keys mac="Ctrl+Shift+`" win="Ctrl+Shift+`" /> or **Terminal → New Terminal** in the window's menu bar. Open and close the panel with <Keys mac="Ctrl+`" win="Ctrl+`" />.
+
+If **Git Bash** isn't in the list, Git for Windows isn't installed yet or VS Code started before you installed it. Install Git (Step 1), then close and reopen VS Code.
+:::
+
+::: warning Check which terminal you have
+VS Code's docs say Windows uses PowerShell by default and that Git Bash is detected automatically, but I couldn't check the exact look of your screen. If a command in this course fails in strange ways, open the terminal dropdown next to the **+** button and confirm the profile in use is **Git Bash**.
+:::
+
+<!-- no-solution: configuring the editor, nothing to type -->
+
+### Step 3 — Install Live Server and turn on Auto Save
+
+1. In VS Code, click the **Extensions** icon in the left bar (four squares), and install:
+   - **Live Server** by *Ritwick Dey*: a local web server that reloads the page every time you save. Check the publisher name before installing, because several look-alike extensions exist.
+   - *(Optional)* **Prettier - Code formatter**: tidies indentation. If you install it, leave "format on save" off for now so your code keeps the layout you typed.
+2. Turn on **File → Auto Save** in VS Code so you never test an unsaved file.
+
+::: warning Tool setup can change
+Extension names, menus and buttons change over time. If something below doesn't match what you see, look for the closest option. If Live Server isn't available anymore, Microsoft's **Live Preview** extension does the same job. On macOS the **File** menu is in the bar at the top of the screen; on Windows and Linux it's in VS Code's own window.
+:::
+
+<!-- no-solution: installing tools, nothing to type -->
+
+### Step 4 — Create the project folder in the terminal
+
+Open VS Code's terminal (<Keys mac="Ctrl+`" win="Ctrl+`" />, or **Terminal → New Terminal**). On Windows it must be Git Bash (Step 2). Type each command and press <kbd>Enter</kbd>:
 
 ```sh
 pwd
@@ -133,8 +202,10 @@ ls
 
 `chat-clone` will become your Git repository in the next lesson. The plain HTML/CSS/JS version of the app lives in `vanilla/`. In Lesson 32 a `react/` folder joins it.
 
+The `code` folder now sits inside your home folder (`~`): <Os mac="`/Users/your-name/code`" windows="`C:\Users\your-name\code` in File Explorer" linux="`/home/your-name/code`" />.
+
 ::: solution
-Your terminal should look roughly like this (your user name will differ):
+Your terminal should look roughly like this. Your user name will differ, and the first line shows your home folder: `/Users/sam` on macOS, `/home/sam` on Linux, `/c/Users/sam` in Git Bash on Windows.
 
 ```text
 $ pwd
@@ -146,7 +217,7 @@ vanilla
 ```
 :::
 
-### Step 3 — Open the folder in VS Code
+### Step 5 — Open the folder in VS Code
 
 Use **File → Open Folder…**, go to your home folder → `code` → `chat-clone`, and click **Open**. The Explorer sidebar now shows `CHAT-CLONE` with a `vanilla` folder inside.
 
@@ -154,7 +225,7 @@ Always open the **`chat-clone`** folder itself, not `code` and not `vanilla`. Li
 
 <!-- no-solution: clicking through a menu -->
 
-### Step 4 — Write your first page
+### Step 6 — Write your first page
 
 Hover over `vanilla` in the Explorer, click the **New File** icon, and name the file `index.html`. Browsers and servers look for a file with exactly this name when you open a folder.
 
@@ -176,7 +247,7 @@ Type the skeleton from the *New concepts* section into it, line by line. Don't p
 ```
 :::
 
-### Step 5 — Serve it with Live Server
+### Step 7 — Serve it with Live Server
 
 Right-click `index.html` in the Explorer and choose **Open with Live Server**. Your default browser opens an address like:
 
@@ -191,15 +262,15 @@ Now change the text of the `<h1>` in VS Code, for example to `Hello, Hubbub!`. W
 ::: solution
 - `127.0.0.1` means "this computer", and `5500` is the **port** Live Server listens on.
 - `/vanilla/index.html` is the path of your file inside the `chat-clone` folder.
-- If the address shows `/index.html` without `/vanilla/`, you opened the `vanilla` folder instead of `chat-clone` in Step 3.
+- If the address shows `/index.html` without `/vanilla/`, you opened the `vanilla` folder instead of `chat-clone` in Step 5.
 :::
 
-### Step 6 — Look inside with DevTools
+### Step 8 — Look inside with DevTools
 
-Every browser has built-in **developer tools** (DevTools). You'll use them in every lesson. In Chrome, open them with <Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />, or right-click the page and choose **Inspect**.
+Every browser has built-in **developer tools** (DevTools). You'll use them in every lesson. In Chrome, open them with <Keys mac="Cmd+Option+I" win="F12 or Ctrl+Shift+I" />, or right-click the page and choose **Inspect**. Other useful shortcuts from Chrome's documentation: the Console panel opens with <Keys mac="Cmd+Option+J" win="Ctrl+Shift+J" />, and the Elements panel in inspect mode with <Keys mac="Cmd+Option+C" win="Ctrl+Shift+C" />.
 
 1. **Elements panel**: shows the page as a tree of elements. Click the small triangles to open `<html>`, then `<body>`. Hover over `<h1>`: the heading lights up on the page.
-2. **Edit live**: double-click the text inside the `<h1>` in the Elements panel, type something else and press <kbd>Enter</kbd>. The page changes. Now reload (<Keys mac="Cmd+R" win="Ctrl+R" />): your change is gone. DevTools edits the page *in memory only*; your file is unchanged.
+2. **Edit live**: double-click the text inside the `<h1>` in the Elements panel, type something else and press <kbd>Enter</kbd>. The page changes. Now reload (<Keys mac="Cmd+R" win="F5 or Ctrl+R" />): your change is gone. DevTools edits the page *in memory only*; your file is unchanged.
 3. **Network panel**: click the **Network** tab and reload. You'll see a row for `index.html` with **Status 200** (meaning "OK") and **Type document**. That's the request and response from the diagram above.
 4. **Console panel**: click **Console**. It's empty for now. In later lessons this is where errors and your JavaScript messages show up.
 5. **Page source**: press <Keys mac="Cmd+Option+U" win="Ctrl+U" />. A new tab shows the exact text the server sent. Compare it with the Elements tree: it's the same structure.
@@ -210,7 +281,7 @@ Every browser has built-in **developer tools** (DevTools). You'll use them in ev
 
 You're done when all of these are true:
 
-- [ ] `~/code/chat-clone/vanilla/index.html` exists and is open in VS Code.
+- [ ] `~/code/chat-clone/vanilla/index.html` exists (in Git Bash on Windows, that's `C:\Users\your-name\code\chat-clone\vanilla\index.html`) and is open in VS Code.
 - [ ] Chrome shows your heading and paragraph at `http://127.0.0.1:5500/vanilla/index.html`.
 - [ ] The tab title says **My Chat App**.
 - [ ] Saving a change in VS Code updates the page without a manual reload.
@@ -219,13 +290,21 @@ You're done when all of these are true:
 
 ## 🐛 Common mistakes
 
-**The page shows the raw code (`<h1>Hello…`) instead of a heading.** The file isn't named `.html`. On macOS it may be `index.html.txt` with the extension hidden. Rename it in VS Code's Explorer.
+**The page shows the raw code (`<h1>Hello…`) instead of a heading.** The file isn't named `.html`. It may be `index.html.txt` with the extension hidden by <Os mac="Finder" windows="File Explorer" linux="your file manager" />. Rename it in VS Code's Explorer.
 
 **The address starts with `file://`.** You double-clicked the file instead of using Live Server. That works today but will break in Lesson 17. Use **Open with Live Server**.
 
-**"Cannot GET /vanilla/index.html" or a 404.** VS Code has the wrong folder open. Open `chat-clone` itself (Step 3), then start Live Server again.
+**"Cannot GET /vanilla/index.html" or a 404.** VS Code has the wrong folder open. Open `chat-clone` itself (Step 5), then start Live Server again.
 
-**Changes don't show up.** The file isn't saved (a white dot on the tab means unsaved). Turn on **File → Auto Save**. If the page still doesn't update, do a hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R" />.
+**Changes don't show up.** The file isn't saved (a white dot on the tab means unsaved). Turn on **File → Auto Save**. If the page still doesn't update, do a hard reload with <Keys mac="Cmd+Shift+R" win="Ctrl+Shift+R or Ctrl+F5" />.
+
+**Windows: commands fail or behave strangely, or the prompt doesn't look like bash.** You are probably in PowerShell, VS Code's default on Windows. Redo Step 2 (**Terminal: Select Default Profile** → **Git Bash**), then open a **new** terminal. `mkdir -p` and other commands in this course are written for bash, and PowerShell and Command Prompt use different rules for options and for `~`.
+
+**Windows: "Git Bash" is not in the profile list.** Git for Windows isn't installed, or VS Code was already open during the install. Install it (Step 1), then close and reopen VS Code.
+
+**macOS: a window offers to install developer tools.** That's the Command Line Tools prompt, and it appears the first time you use Git. It's expected; see Lesson 01.
+
+**Linux: no Chrome in the software center, or the Chrome package won't install.** Chrome comes as a `.deb` or `.rpm` file from Google's site, not from every distribution's own store. Install Chromium from your distribution instead, or follow Google's Linux steps in Step 1. Other distributions differ, so check your distribution's documentation.
 
 **Port 5500 is already in use.** Another Live Server is still running, maybe from another VS Code window. Click **Port: 5500** in VS Code's bottom status bar to stop it, then start it again.
 
@@ -256,7 +335,7 @@ You change the `<h1>` text in the DevTools **Elements** panel, then reload the p
 ::: quiz
 Why does this course use Live Server instead of opening `index.html` by double-clicking it?
 
-- [ ] Double-clicking doesn't work on macOS
+- [ ] Double-clicking doesn't work on any computer
 - [ ] Live Server makes the page load faster on the internet
 - [x] Pages served over `http://` behave like real websites, and some features you'll use later don't work on `file://` pages
 - [ ] Live Server is required to write HTML

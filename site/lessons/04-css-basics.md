@@ -348,7 +348,7 @@ Link the last stylesheet, `css/members.css`, and create it. The group titles ("A
 
 ### Step 8 — Use the Styles pane to see the cascade, and to restyle
 
-Open DevTools → **Elements**. This is the most useful CSS tool you have.
+Open DevTools (<Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />, or F12 on Windows and Linux) → **Elements**. This is the most useful CSS tool you have.
 
 1. **Crossed-out rule.** Click the `help` button (the one inside `<li class="channel-item is-unread">`). In the **Styles** pane on the right, find two rules that set `color`: `.channel-item.is-unread .channel-button` and `.channel-button`. The second one's `color` is **crossed out**: it lost on specificity.
 2. **Toggle a declaration.** Hover over the `button, input, textarea` rule: a checkbox appears next to each declaration. Untick `font: inherit` and watch the button font change. Tick it again.

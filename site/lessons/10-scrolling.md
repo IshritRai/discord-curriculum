@@ -152,17 +152,17 @@ Read it as "if the browser does **not** know `::-webkit-scrollbar`, use the stan
 
 The class `scroller` is just a name of ours: any scroll area that should get the custom look carries it in the HTML.
 
-::: info Are my scrollbars always visible?
-::: os mac
+::::: info Are my scrollbars always visible?
+:::: os mac
 On a Mac, the system setting "Show scroll bars" (Automatic, When scrolling, Always) decides whether classic scrollbars appear, and the default hides them until you scroll. Whether custom `::-webkit-scrollbar` styling shows up in each mode can vary, so don't be surprised if you only see the bars while scrolling. If you want to always see them, change the macOS setting to **Always**.
-:::
+::::
 
-::: os windows linux
+:::: os windows linux
 On Windows and Linux, Chrome normally shows classic scrollbars that stay visible whenever content overflows, so you will see the custom 8px bars right away. Some systems and Chrome versions use thin overlay scrollbars that only appear when you scroll or hover, so if you don't see them, scroll over the column first.
-:::
+::::
 
 We haven't tested every browser and operating system combination.
-:::
+:::::
 
 ## 🛠️ Build it
 
