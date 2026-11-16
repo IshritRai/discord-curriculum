@@ -138,7 +138,6 @@ You *could* add the same URL-reading to the vanilla app with `location.hash` and
 
 Open the terminal in VS Code, go into the React project and install the package:
 
-<!-- ledger-ignore: npm commands are explained in Lesson 32; the Lesson 32 writer owns the sh:npm tokens -->
 ```sh
 cd react-app
 npm install react-router
@@ -284,9 +283,16 @@ export function reducer(state, action) {
         const channel = findChannel(state, channelId);
         servers = updateChannel(servers, channelId, { unread: true, mentions: channel.mentions + (mentionsMe ? 1 : 0) });
       }
-      /* ...the rest of sendMessage and all the other cases are unchanged... */
-      return { ...state, servers };
+      return {
+        ...state,
+        servers,
+        messages: { ...state.messages, [channelId]: [...list, message] },
+        // Whoever was "typing" this message is done typing
+        typing: state.typing && state.typing.userId === message.authorId ? null : state.typing,
+      };
     }
+
+    /* ...the other cases (setTyping, setDraft, startEditing, …) are unchanged... */
 
     default:
       throw new Error(`Unknown action: ${action.type}`);
