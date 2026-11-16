@@ -31,15 +31,19 @@ The app uses a placeholder name ("Hubbub") and original icons. All branding live
 | React | 32–40 | The same app again, with components, state, effects and routing |
 | Wrap-up | 41 | Vanilla vs React, and deploying React |
 
-There are 42 lessons of about 45–60 minutes each (41 core lessons plus one optional). At six lessons a week that's about seven weeks. `CURRICULUM.md` in the course repository explains why the lessons are in this order.
+There are 42 lessons of about 45–60 minutes each (41 core lessons plus one optional). At six lessons a week that's about seven weeks. [The curriculum plan](https://github.com/IshritRai/discord-curriculum/blob/main/docs/CURRICULUM.md) explains why the lessons are in this order.
 
 ## Two rules the course follows
 
 - **No untaught code.** You are only asked to type code that uses ideas from the current lesson or earlier ones. Everything else is clearly marked as pasted starter code. The [concept index](./concepts) lists every idea and the lesson that introduces it.
 - **Every solution runs.** The course repository contains a working copy of the app at the end of every lesson, in `solutions/lesson-NN/`. If you get stuck, compare your folder with it, or copy it. Each was opened in a real browser and checked.
 
+## Works on macOS, Windows and Linux
+
+Use the **I use macOS / Windows / Linux** switch in the top bar. The site detects your system, remembers your choice, and shows the right keyboard shortcuts and install steps. On Windows the course uses **Git Bash** as the terminal, so every command is the same on all three systems.
+
 ## Before you start
 
-You need a Mac with VS Code, Google Chrome and a few free accounts and tools. Lesson 00 walks through all of it.
+You need a computer with VS Code, Google Chrome (on Linux, Chrome or Chromium) and a few free accounts and tools. Lesson 00 walks through all of it for your system.
 
 [Start with Lesson 00 →](./lessons/00-toolkit)

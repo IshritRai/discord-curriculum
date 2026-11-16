@@ -1,6 +1,6 @@
 # Curriculum plan
 
-This file is the plan behind the tutorial site: the lesson list, why the lessons are in this order, the tools I picked, and the conventions the lessons and reference solutions follow.
+This file is the plan behind the tutorial site: the lesson list, why the lessons are in this order, the tools that were chosen, and the conventions the lessons and reference solutions follow.
 
 ## The two things in this repository
 
@@ -72,24 +72,35 @@ Each lesson takes about 45–60 minutes. At 6 lessons a week that is about 7 wee
 | 40 | React | Voice UI & custom hooks | Feature parity for voice (and the optional mic hook) |
 | 41 | Wrap-up | Vanilla vs React, and deploying React | Side-by-side comparison; React app live |
 
-## Changes from the suggested order, and why
+## Why the lessons are in this order
 
 1. **Typography is part of the first CSS lesson.** Font, size and color are the first things you notice on a page, and they need no new mental model.
 2. **SVG icons come with Flexbox.** Icons are the first thing you line up in a row, so you learn them where you use them.
-3. **I added a Positioning lesson (09).** Badges, status dots, tooltips, menus and the drawer all need `position`. It wasn't in the suggested list, but every overlay feature depends on it.
+3. **Positioning has its own lesson (09).** Badges, status dots, tooltips, menus and the drawer all need `position`, so every overlay feature depends on it.
 4. **Responsive CSS comes before JavaScript, and the JavaScript part comes with Events (15).** CSS does the hard part with classes such as `is-nav-open`. Your first event handlers then just toggle those classes, which is a satisfying first win.
 5. **State (16) comes before Modules (17).** By the end of Lesson 16 `app.js` is a few hundred lines with a clear shape (state, render functions, actions). That makes the reason for splitting it into modules obvious, and makes it clear where each piece should go.
 6. **localStorage is taught with State (16), not as a late feature.** Once the app saves its state from that lesson on, every later feature (sent messages, reactions, new servers) is saved without extra work.
 7. **JSON/fetch (18) comes after State.** Loading data asynchronously is easier once you know where the data goes.
 8. **Native `<dialog>` and the Popover API are used for modals and menus.** They are current web standards ([MDN: dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog), [MDN: Popover API](https://developer.mozilla.org/en-US/docs/Web/API/Popover_API)) and give you Escape-to-close, focus handling and click-outside-to-close for free, with less code to type than hand-built versions.
 9. **The React half reuses your CSS, data and pure functions.** You copy them over (pasting is clearly marked) and spend your typing time on components and state. Each React lesson has a "Vanilla vs React" box, and Lesson 41 is a full side-by-side comparison.
-10. **42 lessons, slightly more than the 35–40 asked for.** Rebuilding the clone in React with every feature needs about nine lessons. Squeezing them into fewer would push lessons well past 60 minutes. Lesson 30 is optional, so the core path is 41 lessons.
+10. **42 lessons.** Rebuilding the clone in React with every feature needs about nine lessons; squeezing them into fewer would push lessons well past 60 minutes. Lesson 30 is optional, so the core path is 41 lessons.
 
 ## Tool choices
 
 - **Tutorial site: VitePress 1.6.** It gives you the sidebar, previous/next links, dark mode, local search and syntax highlighting (Shiki) out of the box. Lessons are plain Markdown. Interactive parts (quizzes, progress tracking) are small Vue components that you never have to read or edit. Its 1.x API has been stable for a long time, which makes it less likely that the site's own setup is out of date. Astro would also work, but it needs more custom code for the same features.
 - **Local server for the vanilla app: VS Code's Live Server extension.** JavaScript modules and `fetch()` don't work from `file://` URLs, so you need a local web server from the start. Live Server also reloads the page whenever you save.
+- **One terminal language for every operating system: bash.** macOS and Linux have it. On Windows, learners use **Git Bash** (installed together with Git for Windows) as VS Code's terminal, so every command in every lesson is identical on all three systems, and the course never needs PowerShell or cmd.
 - **React tooling: Vite + React + React Router**, created with `npm create vite@latest`. Tool setup screens change often, so each lesson that installs something says what to check if the prompts look different.
+
+## Platforms
+
+The course supports **macOS, Windows and Linux**. The site has an operating-system switcher in its top bar (it detects your system and remembers your choice). Lessons use three small tools to show the right thing:
+
+- `<Keys mac="Cmd+Option+I" win="Ctrl+Shift+I" />` for keyboard shortcuts,
+- `<Os mac="Finder" windows="File Explorer" linux="your file manager" />` for words,
+- `::: os windows linux` blocks for steps and commands that differ (installing software, mostly).
+
+Without JavaScript, every variant is shown, each labelled with its system. The reference solutions were tested in headless Chromium on Linux; the app code itself is OS-independent.
 
 ## Conventions
 

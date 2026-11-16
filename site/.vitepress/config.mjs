@@ -55,6 +55,11 @@ export default defineConfig({
     outline: { level: [2, 3], label: 'In this lesson' },
     docFooter: { prev: 'Previous lesson', next: 'Next lesson' },
     search: { provider: 'local' },
+    socialLinks: [{ icon: 'github', link: 'https://github.com/IshritRai/discord-curriculum' }],
+    footer: {
+      message: 'Released under the MIT licence. Not affiliated with Discord.',
+      copyright: 'Found a problem? Open an issue on GitHub.',
+    },
   },
   markdown: {
     theme: { light: 'github-light', dark: 'github-dark' },
