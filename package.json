@@ -19,6 +19,11 @@
   "scripts": {
     "site:dev": "vitepress dev site",
     "site:build": "vitepress build site",
-    "site:preview": "vitepress preview site"
+    "site:preview": "vitepress preview site",
+    "check:concepts": "node tools/check-concepts.mjs",
+    "check:lessons": "node tools/render-check.mjs",
+    "verify": "node tools/verify-solutions.mjs",
+    "check": "npm run check:concepts && npm run check:lessons && npm run verify",
+    "demos": "node tools/build-demos.mjs"
   }
 }
