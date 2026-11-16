@@ -177,7 +177,8 @@ async function verifyLesson(browser, baseUrl, lesson) {
 const server = await startServer()
 const baseUrl = `http://127.0.0.1:${server.address().port}`
 const browser = await chromium.launch({
-  executablePath: existsSync('/opt/pw-browsers/chromium-1194/chrome-linux/chrome') ? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' : undefined,
+  // Use the machine's own Chromium if there is one (set CHROMIUM_PATH to override); otherwise Playwright's.
+  executablePath: process.env.CHROMIUM_PATH || (existsSync('/opt/pw-browsers/chromium') ? '/opt/pw-browsers/chromium' : undefined),
   args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream', '--autoplay-policy=no-user-gesture-required'],
 })
 
